@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Home",
+    "tours": "Tours",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "label": "🇺🇿 Private Tours · Uzbekistan Silk Road",
+    "title": "Discover the Wonders of the Silk Road",
+    "subtitle": "Private guided tours across Uzbekistan's legendary cities — Samarkand, Bukhara, Khiva, Tashkent & beyond.",
+    "exploreBtn": "Explore All Tours",
+    "whatsappBtn": "WhatsApp Us",
+    "stats": [
+      {
+        "num": "10+",
+        "label": "Years Experience"
+      },
+      {
+        "num": "500+",
+        "label": "Happy Travelers"
+      },
+      {
+        "num": "15+",
+        "label": "Tour Packages"
+      }
+    ]
+  },
+  "tours": {
+    "sectionTitle": "Popular Tours",
+    "sectionSubtitle": "Hand-crafted itineraries for unforgettable Uzbekistan experiences",
+    "viewAll": "All Tours",
+    "days": "days",
+    "from": "From",
+    "viewTour": "View Tour",
+    "pageTitle": "Our Tours",
+    "pageSubtitle": "Private Uzbekistan tours crafted for every traveler",
+    "filterAll": "All Tours",
+    "filter1": "1–4 Days",
+    "filter2": "5–7 Days",
+    "filter3": "8+ Days",
+    "duration": "Duration",
+    "language": "Languages",
+    "groupSize": "Group size",
+    "destination": "Destination",
+    "overview": "Overview",
+    "included": "What's Included",
+    "itinerary": "Day-by-Day Itinerary",
+    "requestTour": "Request This Tour",
+    "contactDirectly": "Or contact directly",
+    "perPerson": "per person"
+  },
+  "booking": {
+    "name": "Your Name *",
+    "phone": "Phone / WhatsApp *",
+    "email": "Email",
+    "date": "Preferred Date",
+    "groupSize": "Group Size",
+    "message": "Message (optional)",
+    "submit": "Request This Tour",
+    "sending": "Sending...",
+    "successTitle": "Request Sent!",
+    "successText": "We'll contact you within 24 hours.",
+    "cancel": "Free consultation · No booking fee · Cancel anytime"
+  },
+  "features": {
+    "title": "Why Choose Kashf",
+    "subtitle": "What makes our tours different"
+  },
+  "about": {
+    "sectionLabel": "Your Guide",
+    "name": "Samandar Ikromov",
+    "pageTitle": "About Your Guide",
+    "pageSubtitle": "10+ years of sharing Uzbekistan's wonders with the world",
+    "bio1": "Born and raised in Tashkent, I have spent my entire life discovering the hidden gems and legendary monuments of Uzbekistan.",
+    "bio2": "Over the past decade, I have guided hundreds of international visitors through the ancient streets of Samarkand, Bukhara, Khiva, and beyond.",
+    "whatsapp": "WhatsApp",
+    "viewTours": "View Tours",
+    "whyTitle": "Why Travel With Me",
+    "whySubtitle": "What makes Kashf tours different"
+  },
+  "testimonials": {
+    "title": "What Our Travelers Say",
+    "subtitle": "Real experiences from real travelers worldwide"
+  },
+  "cta": {
+    "title": "Ready to Explore Uzbekistan?",
+    "subtitle": "Contact us for a free consultation and custom itinerary",
+    "whatsapp": "Chat on WhatsApp",
+    "viewTours": "View All Tours"
+  },
+  "contact": {
+    "pageTitle": "Contact Us",
+    "pageSubtitle": "We'll get back to you within 24 hours",
+    "title": "Get in Touch",
+    "phone": "WhatsApp / Phone",
+    "email": "Email",
+    "location": "Location",
+    "whatsappBtn": "Chat on WhatsApp",
+    "formTitle": "Send a Message",
+    "successTitle": "Message Sent!",
+    "successText": "We'll contact you within 24 hours."
+  },
+  "footer": {
+    "description": "Private guided tours across Uzbekistan's legendary Silk Road cities.",
+    "quickLinks": "Quick Links",
+    "popularTours": "Popular Tours",
+    "contact": "Contact",
+    "copyright": "Private Tours · Silk Road · Uzbekistan"
+  }
+}

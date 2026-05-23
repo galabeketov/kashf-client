@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "tours": "Turlar",
+    "about": "Biz haqimizda",
+    "contact": "Aloqa"
+  },
+  "hero": {
+    "label": "🇺🇿 Xususiy Turlar · O'zbekiston Ipak Yo'li",
+    "title": "Ipak Yo'lining Mo'jizalarini Kashf Eting",
+    "subtitle": "O'zbekistonning afsonaviy shaharlari bo'ylab xususiy sayohat — Samarqand, Buxoro, Xiva, Toshkent va boshqalar.",
+    "exploreBtn": "Barcha Turlarni Ko'rish",
+    "whatsappBtn": "WhatsApp",
+    "stats": [
+      {
+        "num": "10+",
+        "label": "Yillik Tajriba"
+      },
+      {
+        "num": "500+",
+        "label": "Mamnun Sayohatchilar"
+      },
+      {
+        "num": "15+",
+        "label": "Tur Paketlari"
+      }
+    ]
+  },
+  "tours": {
+    "sectionTitle": "Mashhur Turlar",
+    "sectionSubtitle": "O'zbekistonda unutilmas sayohat uchun maxsus marshrut",
+    "viewAll": "Barcha Turlar",
+    "days": "kun",
+    "from": "Dan boshlab",
+    "viewTour": "Turni Ko'rish",
+    "pageTitle": "Bizning Turlar",
+    "pageSubtitle": "Har bir sayohatchi uchun xususiy O'zbekiston turlari",
+    "filterAll": "Barcha Turlar",
+    "filter1": "1–4 Kun",
+    "filter2": "5–7 Kun",
+    "filter3": "8+ Kun",
+    "duration": "Davomiyligi",
+    "language": "Tillar",
+    "groupSize": "Guruh hajmi",
+    "destination": "Yo'nalish",
+    "overview": "Umumiy Ma'lumot",
+    "included": "Nimalar Kiradi",
+    "itinerary": "Kun Bo'yicha Dastur",
+    "requestTour": "Tur So'rash",
+    "contactDirectly": "Yoki to'g'ridan-to'g'ri bog'laning",
+    "perPerson": "kishi boshiga"
+  },
+  "booking": {
+    "name": "Ismingiz *",
+    "phone": "Telefon / WhatsApp *",
+    "email": "Email",
+    "date": "Afzal Sana",
+    "groupSize": "Guruh Hajmi",
+    "message": "Xabar (ixtiyoriy)",
+    "submit": "Tur So'rash",
+    "sending": "Yuborilmoqda...",
+    "successTitle": "So'rov Yuborildi!",
+    "successText": "24 soat ichida siz bilan bog'lanamiz.",
+    "cancel": "Bepul konsultatsiya · Buyurtma to'lovi yo'q · Istalgan vaqt bekor qilish"
+  },
+  "features": {
+    "title": "Nima Uchun Kashf",
+    "subtitle": "Turlarimiz nimasi bilan farq qiladi"
+  },
+  "about": {
+    "sectionLabel": "Sizning Gidingiz",
+    "name": "Samandar Ikromov",
+    "pageTitle": "Gid Haqida",
+    "pageSubtitle": "10+ yil davomida O'zbekiston mo'jizalarini dunyo bilan ulashib kelaman",
+    "bio1": "Toshkentda tug'ilib o'sganman va butun hayotim davomida O'zbekistonning yashirin go'shalarini kashf etib kelaman.",
+    "bio2": "O'tgan o'n yil ichida yuzlab xalqaro sayohatchilarni Samarqand, Buxoro, Xiva ko'chalarida boshqarganman.",
+    "whatsapp": "WhatsApp",
+    "viewTours": "Turlarni Ko'rish",
+    "whyTitle": "Nima Uchun Men Bilan Sayohat",
+    "whySubtitle": "Kashf turlarini farqli qiladigan narsa"
+  },
+  "testimonials": {
+    "title": "Sayohatchilarimiz Nima Deydi",
+    "subtitle": "Dunyo bo'ylab haqiqiy sayohatchilarning haqiqiy tajribalari"
+  },
+  "cta": {
+    "title": "O'zbekistonni Kashf Etishga Tayyormisiz?",
+    "subtitle": "Bepul konsultatsiya va maxsus marshrut uchun bog'laning",
+    "whatsapp": "WhatsApp da Yozing",
+    "viewTours": "Barcha Turlarni Ko'rish"
+  },
+  "contact": {
+    "pageTitle": "Aloqa",
+    "pageSubtitle": "24 soat ichida javob beramiz",
+    "title": "Bog'lanish",
+    "phone": "WhatsApp / Telefon",
+    "email": "Email",
+    "location": "Manzil",
+    "whatsappBtn": "WhatsApp da Yozing",
+    "formTitle": "Xabar Yuborish",
+    "successTitle": "Xabar Yuborildi!",
+    "successText": "24 soat ichida siz bilan bog'lanamiz."
+  },
+  "footer": {
+    "description": "O'zbekistonning afsonaviy Ipak Yo'li shaharlari bo'ylab xususiy gidli turlar.",
+    "quickLinks": "Tezkor Havolalar",
+    "popularTours": "Mashhur Turlar",
+    "contact": "Aloqa",
+    "copyright": "Xususiy Turlar · Ipak Yo'li · O'zbekiston"
+  }
+}
