@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useLocale, useTranslations } from "next-intl";
+import { FaArrowRight, FaStar, LuMapPin } from "@/components/shared/Icons";
 import { tours as staticTours } from "@/data/kashf";
 import { getPublishedTours } from "@/lib/tours";
 
@@ -61,16 +62,19 @@ const ToursSection = () => {
               <p className="sectionTitle__text mt-5 sm:mt-0">
                 {t("sectionSubtitle")}
               </p>
+              <div className="uzbek-gold-line" />
             </div>
           </div>
 
           <div className="col-auto md:d-none">
             <Link
               href={`/${locale}/tours`}
-              className="button -md -blue-1 bg-blue-1-05 text-blue-1"
+              className="button -md btn-uzbek-primary"
             >
               {t("viewAll")}
-              <div className="icon-arrow-top-right ml-15" />
+              <span className="ml-10 d-inline-flex">
+                <FaArrowRight size={14} />
+              </span>
             </Link>
           </div>
         </div>
@@ -106,16 +110,24 @@ const ToursSection = () => {
                   </SwiperSlide>
                 ))
               : displayTours.map((tour, idx) => (
-                  <SwiperSlide key={tour.id}>
-                    <div data-aos="fade" data-aos-delay={`${(idx + 1) * 100}`}>
-                      <div className="tourCard -type-1 rounded-4 hover-inside-slider">
+                  <SwiperSlide key={tour.id} className="h-100">
+                    <div
+                      data-aos="fade"
+                      data-aos-delay={`${(idx + 1) * 100}`}
+                      className="h-100"
+                    >
+                      <div className="uzbek-tour-card rounded-8 hover-inside-slider h-100">
+                        <span
+                          className="uzbek-dome-ornament"
+                          aria-hidden="true"
+                        />
                         <div className="tourCard__image position-relative">
-                          <div className="cardImage ratio ratio-1:1 rounded-4">
+                          <div className="cardImage ratio ratio-1:1 rounded-8">
                             <div className="cardImage__content">
                               <Image
                                 width={320}
                                 height={320}
-                                className="col-12 js-lazy"
+                                className="col-12 js-lazy w-1/1 h-1/1 object-cover"
                                 src={tour.images?.[0] || "/img/tours/1.png"}
                                 alt={getTourTitle(tour)}
                               />
@@ -132,27 +144,39 @@ const ToursSection = () => {
                         </div>
 
                         <div className="tourCard__content mt-10">
-                          <div className="d-flex items-center lh-14 mb-5">
-                            <div className="text-14 text-light-1">
+                          <div className="d-flex items-center justify-between lh-14 mb-10">
+                            <div className="text-13 text-light-1">
                               {Number(tour.duration) === 0
                                 ? t("filterAll")
                                 : `${tour.duration} ${t("days")}`}
                             </div>
+                            <div
+                              className="d-flex items-center x-gap-5 text-12"
+                              style={{ color: "#C9A84C" }}
+                            >
+                              <FaStar size={12} />
+                              <span className="text-dark-1">5.0</span>
+                            </div>
                           </div>
 
-                          <h4 className="tourCard__title text-dark-1 text-18 lh-16 fw-500">
+                          <h4 className="tourCard__title uzbek-tour-card__title text-dark-1 text-18 lh-16 fw-500">
                             <span>{getTourTitle(tour)}</span>
                           </h4>
 
-                          <p className="text-light-1 lh-14 text-14 mt-5">
-                            {tourLocations[tour.id] || "Uzbekistan"}
-                          </p>
+                          <div className="d-flex items-center text-light-1 lh-14 text-14 mt-8 uzbek-tour-card__location">
+                            <span className="mr-8 text-blue-1 d-inline-flex">
+                              <LuMapPin size={14} />
+                            </span>
+                            <span>
+                              {tourLocations[tour.id] || "Uzbekistan"}
+                            </span>
+                          </div>
 
-                          <div className="row justify-between items-center pt-15">
+                          <div className="row justify-between items-end pt-18 uzbek-tour-card__footer">
                             <div className="col-auto">
-                              <div className="text-14 text-light-1">
+                              <div className="text-13 text-light-1">
                                 {t("from")}
-                                <span className="text-16 fw-500 text-dark-1">
+                                <span className="text-18 fw-600 text-dark-1">
                                   {" "}
                                   US${tour.price || 0}
                                 </span>
@@ -165,7 +189,7 @@ const ToursSection = () => {
                             <div className="col-auto">
                               <Link
                                 href={`/${locale}/tours/${tour.id}`}
-                                className="button -sm -outline-blue-1 text-blue-1"
+                                className="button -sm btn-uzbek-outline-dark"
                               >
                                 {t("viewTour")}
                               </Link>

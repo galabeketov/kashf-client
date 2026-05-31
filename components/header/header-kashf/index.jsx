@@ -4,12 +4,20 @@ import Link from "next/link";
 import { usePathname, useRouter as useNextRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { LuMenu, LuX } from "@/components/shared/Icons";
+import { trackContact } from "@/lib/analytics";
+import { useSettings } from "@/hooks/useSettings";
+import { contact as staticContact } from "@/data/kashf";
 
 const LOCALES = ["en", "uz", "ru"];
 
 const HeaderKashf = () => {
+  const brandT = useTranslations("brand");
   const t = useTranslations("nav");
   const locale = useLocale();
+  const { settings } = useSettings();
+  const contact = settings?.contact || staticContact;
+  const whatsappUrl = contact?.whatsapp || "https://wa.me/998901234567";
   const nextRouter = useNextRouter();
   const pathname = usePathname();
   const [navbar, setNavbar] = useState(false);
@@ -29,10 +37,25 @@ const HeaderKashf = () => {
   };
 
   const currentPath = stripLocale(pathname || "/");
+  const noHeroPages = [
+    "/tours/",
+    "/rent-car",
+    "/transfer",
+    "/business",
+    "/driver",
+    "/currency",
+    "/blog/",
+  ];
+  const isNoHeroPage = noHeroPages.some((pathPart) =>
+    currentPath.includes(pathPart),
+  );
+  const headerBg = isNoHeroPage || navbar ? "bg-dark-1 is-sticky" : "";
 
   const navLinks = [
     { label: t("home"), href: "/" },
     { label: t("tours"), href: "/tours" },
+    { label: t("services"), href: "/services" },
+    { label: t("blog"), href: "/blog" },
     { label: t("about"), href: "/about" },
     { label: t("contact"), href: "/contact" },
   ];
@@ -60,17 +83,34 @@ const HeaderKashf = () => {
     };
   }, []);
 
+  const handleWhatsApp = async (event) => {
+    event.preventDefault();
+    try {
+      await trackContact({
+        method: "whatsapp",
+        source: "header",
+        tourId: null,
+        tourTitle: null,
+        locale,
+      });
+    } catch {}
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
-    <header className={`header -type-1 ${navbar ? "bg-dark-1 is-sticky" : ""}`}>
+    <header className={`header -type-1 ${headerBg}`}>
       <div className="header__container px-30 sm:px-20">
         <div className="row justify-between items-center">
           <div className="col-auto">
             <div className="d-flex items-center">
               <Link
                 href={localizedPath("/")}
-                className="header-logo mr-20 text-white fw-700 text-24"
+                className="header-logo mr-20 text-white"
               >
-                KASHF
+                <div className="fw-700 text-24 lh-1">{brandT("name")}</div>
+                <div className="text-12 text-light-1 mt-3">
+                  {brandT("tagline")}
+                </div>
               </Link>
 
               <div className="header-menu">
@@ -97,32 +137,27 @@ const HeaderKashf = () => {
           <div className="col-auto">
             <div className="d-flex items-center">
               <div className="d-flex items-center x-gap-10 mr-20 lg:d-none">
-                <button
-                  className={`button -sm ${locale === "en" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                  onClick={() => switchLocale("en")}
-                >
-                  EN
-                </button>
-                <button
-                  className={`button -sm ${locale === "uz" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                  onClick={() => switchLocale("uz")}
-                >
-                  UZ
-                </button>
-                <button
-                  className={`button -sm ${locale === "ru" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                  onClick={() => switchLocale("ru")}
-                >
-                  RU
-                </button>
+                <div className="kashf-locale-select-wrap">
+                  <select
+                    value={locale}
+                    onChange={(event) => switchLocale(event.target.value)}
+                    className="kashf-locale-select"
+                    aria-label="Select language"
+                  >
+                    <option value="en">EN</option>
+                    <option value="uz">UZ</option>
+                    <option value="ru">RU</option>
+                  </select>
+                </div>
               </div>
 
               <div className="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
                 <Link
-                  href="https://wa.me/998901234567"
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="button px-30 fw-400 text-14 -white bg-white h-50 text-dark-1"
+                  onClick={handleWhatsApp}
                 >
                   WhatsApp
                 </Link>
@@ -135,33 +170,27 @@ const HeaderKashf = () => {
               </div>
 
               <div className="d-none xl:d-flex x-gap-20 items-center pl-30 text-white">
-                <div className="d-flex items-center x-gap-10">
-                  <button
-                    className={`button -sm ${locale === "en" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                    onClick={() => switchLocale("en")}
+                <div className="kashf-locale-select-wrap">
+                  <select
+                    value={locale}
+                    onChange={(event) => switchLocale(event.target.value)}
+                    className="kashf-locale-select"
+                    aria-label="Select language"
                   >
-                    EN
-                  </button>
-                  <button
-                    className={`button -sm ${locale === "uz" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                    onClick={() => switchLocale("uz")}
-                  >
-                    UZ
-                  </button>
-                  <button
-                    className={`button -sm ${locale === "ru" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                    onClick={() => switchLocale("ru")}
-                  >
-                    RU
-                  </button>
+                    <option value="en">EN</option>
+                    <option value="uz">UZ</option>
+                    <option value="ru">RU</option>
+                  </select>
                 </div>
                 <div>
                   <button
-                    className="d-flex items-center icon-menu text-inherit text-20"
+                    className="d-flex items-center text-inherit text-20"
                     data-bs-toggle="offcanvas"
                     aria-controls="mobile-sidebar_menu"
                     data-bs-target="#mobile-sidebar_menu"
-                  />
+                  >
+                    <LuMenu size={20} />
+                  </button>
 
                   <div
                     className="offcanvas offcanvas-start  mobile_menu-contnet "
@@ -171,11 +200,13 @@ const HeaderKashf = () => {
                     data-bs-scroll="true"
                   >
                     <div className="pro-header d-flex align-items-center justify-between border-bottom-light">
-                      <Link
-                        href={localizedPath("/")}
-                        className="fw-700 text-20"
-                      >
-                        KASHF
+                      <Link href={localizedPath("/")} className="text-white">
+                        <div className="fw-700 text-20 lh-1">
+                          {brandT("name")}
+                        </div>
+                        <div className="text-12 text-light-1 mt-3">
+                          {brandT("tagline")}
+                        </div>
                       </Link>
 
                       <div
@@ -183,7 +214,7 @@ const HeaderKashf = () => {
                         data-bs-dismiss="offcanvas"
                         aria-label="Close"
                       >
-                        <i className="icon icon-close"></i>
+                        <LuX size={18} />
                       </div>
                     </div>
 
@@ -204,33 +235,30 @@ const HeaderKashf = () => {
                         </ul>
                       </nav>
 
-                      <div className="d-flex x-gap-10 mt-20">
-                        <button
-                          className={`button -sm ${locale === "en" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                          onClick={() => switchLocale("en")}
-                        >
-                          EN
-                        </button>
-                        <button
-                          className={`button -sm ${locale === "uz" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                          onClick={() => switchLocale("uz")}
-                        >
-                          UZ
-                        </button>
-                        <button
-                          className={`button -sm ${locale === "ru" ? "bg-blue-1 text-white" : "border-blue-1 text-blue-1"}`}
-                          onClick={() => switchLocale("ru")}
-                        >
-                          RU
-                        </button>
+                      <div className="mt-20">
+                        <div className="kashf-locale-select-wrap is-mobile">
+                          <select
+                            value={locale}
+                            onChange={(event) =>
+                              switchLocale(event.target.value)
+                            }
+                            className="kashf-locale-select"
+                            aria-label="Select language"
+                          >
+                            <option value="en">EN</option>
+                            <option value="uz">UZ</option>
+                            <option value="ru">RU</option>
+                          </select>
+                        </div>
                       </div>
 
                       <div className="d-flex flex-column y-gap-10 mt-20">
                         <Link
-                          href="https://wa.me/998901234567"
+                          href={whatsappUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="button px-30 fw-400 text-14 -white bg-white h-50 text-dark-1 border-light"
+                          onClick={handleWhatsApp}
                         >
                           WhatsApp
                         </Link>

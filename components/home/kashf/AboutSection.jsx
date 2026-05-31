@@ -3,8 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
+import { LuCheck } from "@/components/shared/Icons";
 import { defaultSettings } from "@/data/kashf";
 import { useSettings } from "@/hooks/useSettings";
+import { trackContact } from "@/lib/analytics";
 
 const AboutSection = () => {
   const t = useTranslations("about");
@@ -17,9 +19,34 @@ const AboutSection = () => {
   const localized = (value) => value?.[locale] || value?.en || value || "";
 
   const stats = guide.stats || defaultSettings.guide.stats;
+  const checklistItems = stats
+    .slice(0, 3)
+    .map((item) => localized(item.label))
+    .filter(Boolean);
+
+  const handleContactClick =
+    (method, href, target = "_blank") =>
+    async (event) => {
+      event.preventDefault();
+      try {
+        await trackContact({
+          method,
+          source: "cta",
+          tourId: null,
+          tourTitle: null,
+          locale,
+        });
+      } catch {}
+
+      if (target === "_blank") {
+        window.open(href, "_blank", "noopener,noreferrer");
+      } else {
+        window.location.href = href;
+      }
+    };
 
   return (
-    <section className="layout-pt-lg layout-pb-lg bg-light-2">
+    <section className="layout-pt-lg layout-pb-lg uzbek-pattern-bg">
       <div className="container">
         <div className="row y-gap-30 items-center">
           <div className="col-lg-6" data-aos="fade-up">
@@ -45,6 +72,7 @@ const AboutSection = () => {
               <h2 className="text-40 lg:text-30 mt-10">
                 {localized(guide.name)}
               </h2>
+              <div className="uzbek-gold-line" />
 
               <p className="mt-20 text-16 text-dark-1">
                 {localized(guide.bio1)}
@@ -52,6 +80,19 @@ const AboutSection = () => {
               <p className="mt-15 text-16 text-dark-1">
                 {localized(guide.bio2)}
               </p>
+
+              <div className="mt-20 d-flex flex-column y-gap-10">
+                {checklistItems.map((item) => (
+                  <div className="d-flex items-center" key={item}>
+                    <LuCheck
+                      size={16}
+                      className="mr-10 flex-shrink-0"
+                      style={{ color: "#C9A84C" }}
+                    />
+                    <span className="text-15 text-dark-1">{item}</span>
+                  </div>
+                ))}
+              </div>
 
               <div className="row y-gap-15 x-gap-15 mt-30">
                 {stats.map((item, index) => (
@@ -73,13 +114,22 @@ const AboutSection = () => {
                   href={contact.whatsapp || "https://wa.me/998901234567"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="button -md -blue-1 bg-blue-1 text-white"
+                  className="button -md btn-uzbek-primary"
+                  onClick={handleContactClick(
+                    "whatsapp",
+                    contact.whatsapp || "https://wa.me/998901234567",
+                  )}
                 >
                   {t("whatsapp")}
                 </Link>
                 <Link
                   href={`mailto:${contact.email || "hello@kashf.uz"}`}
-                  className="button -md border-blue-1 -outline-blue-1 text-blue-1"
+                  className="button -md btn-uzbek-outline"
+                  onClick={handleContactClick(
+                    "email",
+                    `mailto:${contact.email || "hello@kashf.uz"}`,
+                    "_self",
+                  )}
                 >
                   Email
                 </Link>

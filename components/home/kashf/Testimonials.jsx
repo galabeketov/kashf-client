@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
 import { useLocale, useTranslations } from "next-intl";
+import { FaStar } from "@/components/shared/Icons";
 import { defaultSettings } from "@/data/kashf";
 import { useSettings } from "@/hooks/useSettings";
 
@@ -32,11 +33,14 @@ const Testimonials = () => {
                 <div className="text-30 lh-15 fw-600">5.0</div>
                 <div className="text-light-1 lh-15">Overall rating</div>
                 <div className="d-flex x-gap-5 items-center pt-10">
-                  <div className="icon-star text-blue-1 text-10" />
-                  <div className="icon-star text-blue-1 text-10" />
-                  <div className="icon-star text-blue-1 text-10" />
-                  <div className="icon-star text-blue-1 text-10" />
-                  <div className="icon-star text-blue-1 text-10" />
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span
+                      className="text-blue-1 d-inline-flex"
+                      key={`stat-star-${index}`}
+                    >
+                      <FaStar size={10} />
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -83,10 +87,9 @@ const Testimonials = () => {
                     </p>
                     <div className="d-flex x-gap-5 items-center pt-15">
                       {Array.from({ length: item.rating }).map((_, i) => (
-                        <div
-                          key={i}
-                          className="icon-star text-blue-1 text-10"
-                        />
+                        <span className="text-blue-1 d-inline-flex" key={i}>
+                          <FaStar size={10} />
+                        </span>
                       ))}
                     </div>
                   </SwiperSlide>

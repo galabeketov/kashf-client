@@ -1,8 +1,11 @@
 import Link from "next/link";
+import KashfHeader from "@/components/header/header-kashf";
+import KashfFooter from "@/components/footer/kashf";
 
 export default function NotFound() {
   return (
     <>
+      <KashfHeader />
       <section
         className="d-flex flex-column items-center justify-center text-center"
         style={{ minHeight: "70vh", paddingTop: 120 }}
@@ -32,6 +35,7 @@ export default function NotFound() {
           </Link>
         </div>
       </section>
+      <KashfFooter />
     </>
   );
 }

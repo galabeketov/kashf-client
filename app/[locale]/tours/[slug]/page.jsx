@@ -7,6 +7,20 @@ import { useParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import {
+  FaCheck,
+  FaStar,
+  LuClock,
+  LuGlobe,
+  LuMapPin,
+  LuUser,
+  LuUsers,
+} from "@/components/shared/Icons";
+import ReviewForm from "@/components/shared/ReviewForm";
+import ReviewsList from "@/components/shared/ReviewsList";
+import { useSettings } from "@/hooks/useSettings";
+import { contact as staticContact } from "@/data/kashf";
+import { trackContact } from "@/lib/analytics";
 import { getTourById } from "@/lib/tours";
 import { submitInquiry } from "@/lib/inquiries";
 
@@ -29,6 +43,9 @@ export default function TourDetailsPage() {
   const tTours = useTranslations("tours");
   const tBooking = useTranslations("booking");
   const tNav = useTranslations("nav");
+  const tReviews = useTranslations("reviews");
+  const { settings } = useSettings();
+  const contact = settings?.contact || staticContact;
 
   const [tour, setTour] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -36,6 +53,7 @@ export default function TourDetailsPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [reviewRefreshKey, setReviewRefreshKey] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -85,9 +103,17 @@ export default function TourDetailsPage() {
     setError("");
 
     try {
+      const slugValue = Array.isArray(slug) ? slug[0] : slug;
       await submitInquiry({
         ...formData,
-        tourId: Array.isArray(slug) ? slug[0] : slug,
+        tourId: slugValue,
+        tourTitle: localizedTourText(tour?.title, locale),
+        locale,
+      });
+      await trackContact({
+        method: "form",
+        source: "tour_detail",
+        tourId: slugValue,
         tourTitle: localizedTourText(tour?.title, locale),
         locale,
       });
@@ -157,6 +183,7 @@ export default function TourDetailsPage() {
   }
 
   const selectedImage = tour.images?.[activeImage] || tour.images?.[0];
+  const slugValue = Array.isArray(slug) ? slug[0] : slug;
   const tourTitle = localizedTourText(tour.title, locale);
   const tourDescription = localizedTourText(tour.description, locale);
   const tourIncludes =
@@ -164,10 +191,49 @@ export default function TourDetailsPage() {
     tour.includes?.en ||
     (Array.isArray(tour.includes) ? tour.includes : []);
   const itinerary = Array.isArray(tour.itinerary) ? tour.itinerary : [];
+  const whatsappUrl = contact?.whatsapp || "https://wa.me/998901234567";
+
+  const tourJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: tourTitle,
+    description: tourDescription,
+    provider: {
+      "@type": "TravelAgency",
+      name: "Travel Easy Uzbekistan",
+      url: "https://travel-easy.uz",
+    },
+    offers: {
+      "@type": "Offer",
+      price: tour.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    image: tour.images?.[0],
+    touristType: "Private Tour",
+  };
+
+  const handleWhatsApp = async (event) => {
+    event.preventDefault();
+    try {
+      await trackContact({
+        method: "whatsapp",
+        source: "tour_detail",
+        tourId: slugValue,
+        tourTitle,
+        locale,
+      });
+    } catch {}
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <>
       <KashfHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tourJsonLd) }}
+      />
 
       <section className="py-10 bg-light-2" style={{ marginTop: "90px" }}>
         <div className="container">
@@ -197,19 +263,22 @@ export default function TourDetailsPage() {
 
           <div className="row x-gap-20 y-gap-10 items-center pt-10">
             <div className="col-auto">
-              <div className="d-flex x-gap-5 items-center">
-                <i className="icon-star text-10 text-yellow-1" />
-                <i className="icon-star text-10 text-yellow-1" />
-                <i className="icon-star text-10 text-yellow-1" />
-                <i className="icon-star text-10 text-yellow-1" />
-                <i className="icon-star text-10 text-yellow-1" />
+              <div
+                className="d-flex x-gap-5 items-center"
+                style={{ color: "#C9A84C" }}
+              >
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <FaStar size={10} key={`meta-star-${index}`} />
+                ))}
                 <span className="text-14 ml-5">5.0</span>
               </div>
             </div>
 
             <div className="col-auto">
               <div className="d-flex items-center text-14">
-                <i className="icon-clock text-blue-1 mr-8" />
+                <span className="text-blue-1 mr-8 d-inline-flex">
+                  <LuClock size={14} />
+                </span>
                 <span>
                   {tour.duration === 0
                     ? tTours("filterAll")
@@ -220,14 +289,18 @@ export default function TourDetailsPage() {
 
             <div className="col-auto">
               <div className="d-flex items-center text-14">
-                <i className="icon-location-2 text-blue-1 mr-8" />
+                <span className="text-blue-1 mr-8 d-inline-flex">
+                  <LuMapPin size={14} />
+                </span>
                 <span>{locationById[tour.id] || "Uzbekistan"}</span>
               </div>
             </div>
 
             <div className="col-auto">
               <div className="d-flex items-center text-14">
-                <i className="icon-customer text-blue-1 mr-8" />
+                <span className="text-blue-1 mr-8 d-inline-flex">
+                  <LuUser size={14} />
+                </span>
                 <span>Private Tour</span>
               </div>
             </div>
@@ -279,7 +352,9 @@ export default function TourDetailsPage() {
                 <div className="row y-gap-30 justify-between pt-20">
                   <div className="col-md-auto col-6">
                     <div className="d-flex">
-                      <i className="icon-clock text-22 text-blue-1 mr-10" />
+                      <span className="mr-10 text-blue-1">
+                        <LuClock size={18} />
+                      </span>
                       <div className="text-15 lh-15">
                         {tTours("duration")}
                         <br />
@@ -292,7 +367,9 @@ export default function TourDetailsPage() {
 
                   <div className="col-md-auto col-6">
                     <div className="d-flex">
-                      <i className="icon-customer text-22 text-blue-1 mr-10" />
+                      <span className="mr-10 text-blue-1">
+                        <LuUsers size={18} />
+                      </span>
                       <div className="text-15 lh-15">
                         {tTours("groupSize")}
                         <br />
@@ -303,7 +380,9 @@ export default function TourDetailsPage() {
 
                   <div className="col-md-auto col-6">
                     <div className="d-flex">
-                      <i className="icon-route text-22 text-blue-1 mr-10" />
+                      <span className="mr-10 text-blue-1">
+                        <LuMapPin size={18} />
+                      </span>
                       <div className="text-15 lh-15">
                         {tTours("destination")}
                         <br />
@@ -314,7 +393,9 @@ export default function TourDetailsPage() {
 
                   <div className="col-md-auto col-6">
                     <div className="d-flex">
-                      <i className="icon-world text-22 text-blue-1 mr-10" />
+                      <span className="mr-10 text-blue-1">
+                        <LuGlobe size={18} />
+                      </span>
                       <div className="text-15 lh-15">
                         {tTours("language")}
                         <br />
@@ -337,7 +418,9 @@ export default function TourDetailsPage() {
                     <div className="col-md-6" key={`${tour.id}-${item}`}>
                       <div className="d-flex items-center text-15">
                         <div className="size-26 rounded-full bg-blue-1-05 flex-center mr-10">
-                          <i className="icon-check text-blue-1 text-12" />
+                          <span className="text-blue-1 d-inline-flex">
+                            <FaCheck size={12} />
+                          </span>
                         </div>
                         <span>{item}</span>
                       </div>
@@ -376,6 +459,29 @@ export default function TourDetailsPage() {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              <div className="border-top-light pt-40 mt-40">
+                <h2 className="text-22 fw-500 mb-20">
+                  {tReviews("sectionTitle")}
+                </h2>
+                <ReviewsList
+                  type="tour"
+                  tourId={slugValue}
+                  refreshKey={reviewRefreshKey}
+                />
+              </div>
+
+              <div className="border-top-light pt-40 mt-40">
+                <h2 className="text-22 fw-500 mb-20">
+                  {tReviews("writeReview")}
+                </h2>
+                <ReviewForm
+                  type="tour"
+                  tourId={slugValue}
+                  tourTitle={tourTitle}
+                  onSuccess={() => setReviewRefreshKey((prev) => prev + 1)}
+                />
               </div>
             </div>
 
@@ -487,7 +593,9 @@ export default function TourDetailsPage() {
                   ) : (
                     <div className="text-center pt-30 pb-10">
                       <div className="size-60 rounded-full bg-blue-1-05 flex-center mx-auto">
-                        <i className="icon-check text-blue-1 text-24" />
+                        <span className="text-blue-1 d-inline-flex">
+                          <FaCheck size={24} />
+                        </span>
                       </div>
                       <h4 className="text-20 fw-500 mt-20">
                         {tBooking("successTitle")}
@@ -501,10 +609,11 @@ export default function TourDetailsPage() {
                       {tTours("contactDirectly")}
                     </div>
                     <Link
-                      href="https://wa.me/998901234567"
+                      href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="button -md border-blue-1 text-blue-1 w-1/1 mt-12"
+                      onClick={handleWhatsApp}
                     >
                       WhatsApp
                     </Link>

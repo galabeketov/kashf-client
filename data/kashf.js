@@ -268,9 +268,12 @@ export const guide = {
 };
 
 export const contact = {
-  phone: "+998 90 123 45 67",
-  whatsapp: "+998 90 123 45 67",
-  email: "hello@kashf.uz",
+  phone: "+998 99 062 17 36",
+  whatsapp: "https://wa.me/998990621736",
+  telegram: "https://t.me/traveleasyuz",
+  facebook: "https://facebook.com/traveleasyuz",
+  instagram: "https://instagram.com/traveleasyuz",
+  email: "info@travel-easy.uz",
   location: "Tashkent, Uzbekistan",
 };
 

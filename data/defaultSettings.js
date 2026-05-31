@@ -59,7 +59,10 @@ export const defaultSettings = {
   contact: {
     phone: "+998 99 062 17 36",
     whatsapp: "https://wa.me/998990621736",
-    email: "uztrip13@gmail.com",
+    telegram: "https://t.me/traveleasyuz",
+    facebook: "https://facebook.com/traveleasyuz",
+    instagram: "https://instagram.com/traveleasyuz",
+    email: "info@travel-easy.uz",
     location: {
       en: "Tashkent, Uzbekistan",
       uz: "Toshkent, O'zbekiston",

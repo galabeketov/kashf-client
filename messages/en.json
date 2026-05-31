@@ -1,15 +1,23 @@
 {
+  "brand": {
+    "name": "Travel Easy",
+    "tagline": "Uzbekistan",
+    "fullName": "Travel Easy Uzbekistan",
+    "description": "Your all-in-one travel partner in Uzbekistan. Tours, transfers, business support and more."
+  },
   "nav": {
     "home": "Home",
     "tours": "Tours",
+    "services": "Services",
+    "blog": "Blog",
     "about": "About",
     "contact": "Contact"
   },
   "hero": {
-    "label": "🇺🇿 Private Tours · Uzbekistan Silk Road",
-    "title": "Discover the Wonders of the Silk Road",
-    "subtitle": "Private guided tours across Uzbekistan's legendary cities — Samarkand, Bukhara, Khiva, Tashkent & beyond.",
-    "exploreBtn": "Explore All Tours",
+    "label": "🇺🇿 Your Travel Partner in Uzbekistan",
+    "title": "Travel Easy in Uzbekistan",
+    "subtitle": "Private tours, airport transfers, rent a car, business support and more — all in one place.",
+    "exploreBtn": "Explore Services",
     "whatsappBtn": "WhatsApp Us",
     "stats": [
       {
@@ -107,5 +115,67 @@
     "popularTours": "Popular Tours",
     "contact": "Contact",
     "copyright": "Private Tours · Silk Road · Uzbekistan"
+  },
+  "services": {
+    "pageTitle": "Our Services",
+    "pageSubtitle": "Everything you need for a perfect Uzbekistan experience",
+    "sidebarTitle": "Book This Service",
+    "requestSent": "Request Sent!",
+    "whatsappDirect": "WhatsApp Direct",
+    "contactDirectly": "Can't find what you need? Contact us directly",
+    "tours": "Private Tours",
+    "toursDesc": "Hand-crafted Silk Road tours across Uzbekistan's legendary cities",
+    "rentCar": "Rent a Car",
+    "rentCarDesc": "Comfortable vehicles with or without driver for any destination",
+    "transfer": "Airport Transfer",
+    "transferDesc": "Reliable pickup and drop-off from Tashkent International Airport",
+    "business": "Business Meeting Support",
+    "businessDesc": "Interpretation, venue booking, logistics for your business events",
+    "driver": "Personal Driver",
+    "driverDesc": "Professional personal driver for city tours or multi-day trips",
+    "currency": "Currency Exchange",
+    "currencyDesc": "Best rates for USD, EUR, RUB and all major currencies",
+    "blog": "Travel Blog",
+    "blogDesc": "Tips, guides and stories about traveling in Uzbekistan",
+    "telegram": "Telegram Bot",
+    "telegramDesc": "Get instant travel assistance via our Telegram bot",
+    "instagram": "Instagram",
+    "instagramDesc": "Follow our journey and get inspired for your Uzbekistan trip",
+    "bookNow": "Book Now",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us"
+  },
+  "blog": {
+    "pageTitle": "Travel Blog",
+    "pageSubtitle": "Tips, guides and stories about traveling in Uzbekistan",
+    "allPosts": "All Posts",
+    "travelTips": "Travel Tips",
+    "cityGuides": "City Guides",
+    "food": "Food & Cuisine",
+    "culture": "Culture & History",
+    "practical": "Practical Info",
+    "readMore": "Read More",
+    "by": "by",
+    "latestPosts": "Latest from Our Blog",
+    "viewAll": "View All Posts",
+    "noPosts": "No posts yet. Check back soon!",
+    "backToBlog": "Back to Blog",
+    "planningTrip": "Planning a Trip?",
+    "planningDesc": "Contact us for a free consultation and custom itinerary."
+  },
+  "reviews": {
+    "writeReview": "Write a Review",
+    "yourName": "Your Name *",
+    "yourCountry": "Your Country *",
+    "yourReview": "Your Review *",
+    "submit": "Submit Review",
+    "successTitle": "Thank you!",
+    "successText": "Your review will appear after approval.",
+    "moderated": "Reviews are moderated before publishing",
+    "noReviews": "No reviews yet. Be the first!",
+    "averageRating": "Average Rating",
+    "totalReviews": "reviews",
+    "sectionTitle": "What Travelers Say",
+    "sectionSubtitle": "Real experiences from real travelers"
   }
 }

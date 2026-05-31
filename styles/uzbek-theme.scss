@@ -1,0 +1,641 @@
+// =============================================
+// TRAVEL EASY - O'ZBEK MILLIY DIZAYN SYSTEM
+// =============================================
+
+$uzbek-lazur: #1b6ca8;
+$uzbek-gold: #c9a84c;
+$uzbek-terracotta: #c0392b;
+$uzbek-emerald: #1a7a4a;
+$uzbek-sand: #f5e6c8;
+$uzbek-ivory: #fdfaf4;
+$uzbek-dark: #1a1a2e;
+
+.uzbek-pattern-bg {
+  background-color: $uzbek-ivory;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(201, 168, 76, 0.06) 20px,
+      rgba(201, 168, 76, 0.06) 21px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(27, 108, 168, 0.06) 20px,
+      rgba(27, 108, 168, 0.06) 21px
+    );
+}
+
+.uzbek-pattern-dark {
+  background-color: $uzbek-dark;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(201, 168, 76, 0.04) 30px,
+      rgba(201, 168, 76, 0.04) 31px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 30px,
+      rgba(201, 168, 76, 0.04) 30px,
+      rgba(201, 168, 76, 0.04) 31px
+    );
+}
+
+.uzbek-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      $uzbek-gold,
+      transparent
+    );
+  }
+
+  .uzbek-divider__ornament {
+    color: $uzbek-gold;
+    font-size: 20px;
+    letter-spacing: 8px;
+  }
+}
+
+.uzbek-gold-line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, $uzbek-gold, $uzbek-lazur);
+  border-radius: 2px;
+  margin: 12px 0 20px;
+}
+
+.uzbek-gold-line-center {
+  @extend .uzbek-gold-line;
+  margin: 12px auto 20px;
+}
+
+.btn-uzbek-primary {
+  background: linear-gradient(
+    135deg,
+    $uzbek-lazur 0%,
+    darken($uzbek-lazur, 10%) 100%
+  );
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(201, 168, 76, 0.3),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(27, 108, 168, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-uzbek-gold {
+  background: linear-gradient(
+    135deg,
+    $uzbek-gold 0%,
+    darken($uzbek-gold, 8%) 100%
+  );
+  color: $uzbek-dark;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 32px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: $uzbek-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201, 168, 76, 0.4);
+  }
+}
+
+.btn-uzbek-outline {
+  background: transparent;
+  color: #fff;
+  border: 2px solid $uzbek-gold;
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: $uzbek-gold;
+    color: $uzbek-dark;
+    transform: translateY(-2px);
+  }
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.1);
+    color: #fff;
+  }
+
+  &.whatsapp:hover {
+    background: #25d366;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+  }
+
+  &.telegram:hover {
+    background: #0088cc;
+    box-shadow: 0 5px 20px rgba(0, 136, 204, 0.4);
+  }
+
+  &.facebook:hover {
+    background: #1877f2;
+    box-shadow: 0 5px 20px rgba(24, 119, 242, 0.4);
+  }
+
+  &.instagram:hover {
+    background: linear-gradient(
+      45deg,
+      #f09433,
+      #e6683c,
+      #dc2743,
+      #cc2366,
+      #bc1888
+    );
+    box-shadow: 0 5px 20px rgba(220, 39, 67, 0.4);
+  }
+}
+
+.uzbek-section-title {
+  position: relative;
+  padding-bottom: 16px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(to right, $uzbek-gold, $uzbek-lazur);
+    border-radius: 2px;
+  }
+
+  &.centered::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.tourCard.-type-1 {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 20px 40px rgba(27, 108, 168, 0.15),
+      0 0 0 1px rgba(201, 168, 76, 0.1);
+  }
+}
+
+.uzbek-hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 26, 46, 0.4) 0%,
+    rgba(27, 108, 168, 0.3) 50%,
+    rgba(26, 26, 46, 0.7) 100%
+  );
+}
+
+.uzbek-stat-card {
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    border-color: $uzbek-gold;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(201, 168, 76, 0.15);
+  }
+
+  .stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, $uzbek-gold, $uzbek-lazur);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes floatOrnament {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.15;
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+    opacity: 0.25;
+  }
+}
+
+@keyframes shimmerGold {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(201, 168, 76, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      0 0 20px rgba(201, 168, 76, 0.5),
+      0 0 40px rgba(27, 108, 168, 0.2);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ornament-float {
+  animation: floatOrnament 6s ease-in-out infinite;
+  color: $uzbek-gold;
+  font-size: 60px;
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
+.uzbek-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmerGold 1.5s infinite;
+  border-radius: 8px;
+}
+
+.uzbek-cta {
+  @extend .uzbek-pattern-dark;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "❋";
+    @extend .ornament-float;
+    top: 20px;
+    right: 5%;
+    font-size: 80px;
+    animation-delay: 0s;
+  }
+
+  &::after {
+    content: "❋";
+    @extend .ornament-float;
+    bottom: 20px;
+    left: 5%;
+    font-size: 60px;
+    animation-delay: 3s;
+  }
+}
+
+.kashf-service-card {
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(201, 168, 76, 0.6);
+    box-shadow:
+      0 12px 30px rgba(27, 108, 168, 0.12),
+      0 0 0 1px rgba(201, 168, 76, 0.2);
+  }
+}
+
+.uzbek-tour-card {
+  position: relative;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(245, 250, 255, 0.96)
+  );
+  padding: 14px;
+  transition: all 0.35s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .tourCard__image img {
+    transition: transform 0.45s ease;
+  }
+
+  .tourCard__content {
+    padding: 8px 8px 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .uzbek-tour-card__title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 58px;
+  }
+
+  .uzbek-tour-card__location {
+    min-height: 24px;
+  }
+
+  .uzbek-tour-card__footer {
+    margin-top: auto;
+  }
+
+  &:hover {
+    border-color: rgba(201, 168, 76, 0.55);
+    box-shadow:
+      0 16px 34px rgba(27, 108, 168, 0.14),
+      0 0 0 1px rgba(201, 168, 76, 0.2);
+    transform: translateY(-4px);
+
+    .tourCard__image img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.uzbek-tour-row {
+  position: relative;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 14px;
+  background: #fff;
+  padding: 18px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(201, 168, 76, 0.55);
+    box-shadow:
+      0 14px 28px rgba(27, 108, 168, 0.1),
+      0 0 0 1px rgba(201, 168, 76, 0.16);
+    transform: translateY(-2px);
+  }
+
+  .tourCard__title {
+    margin-top: 6px;
+  }
+}
+
+.uzbek-blog-card {
+  position: relative;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px;
+  transition: all 0.35s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .uzbek-blog-card__media img {
+    transition: transform 0.45s ease;
+  }
+
+  .tourCard__content {
+    padding: 8px 8px 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  h3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 58px;
+  }
+
+  p {
+    min-height: 44px;
+  }
+
+  .button {
+    margin-top: auto;
+  }
+
+  &:hover {
+    border-color: rgba(201, 168, 76, 0.55);
+    box-shadow:
+      0 16px 34px rgba(27, 108, 168, 0.14),
+      0 0 0 1px rgba(201, 168, 76, 0.2);
+    transform: translateY(-4px);
+
+    .uzbek-blog-card__media img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.uzbek-dome-ornament {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 28px;
+  height: 16px;
+  border: 2px solid rgba(201, 168, 76, 0.7);
+  border-bottom: none;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.btn-uzbek-outline-dark {
+  background: transparent;
+  color: $uzbek-lazur;
+  border: 1px solid rgba(27, 108, 168, 0.35);
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: #fff;
+    background: $uzbek-lazur;
+    border-color: $uzbek-lazur;
+  }
+}
+
+.kashf-locale-select-wrap {
+  position: relative;
+  min-width: 86px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid rgba(255, 255, 255, 0.9);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+    transform: translateY(-60%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  &.is-mobile {
+    width: 100%;
+
+    &::after {
+      border-right-color: rgba(0, 0, 0, 0.65);
+      border-bottom-color: rgba(0, 0, 0, 0.65);
+    }
+
+    .kashf-locale-select {
+      width: 100%;
+      color: #0f172a;
+      border-color: rgba(15, 23, 42, 0.2);
+      background: #fff;
+    }
+  }
+}
+
+.kashf-locale-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  height: 38px;
+  border-radius: 10px;
+  padding: 0 30px 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover,
+  &:focus {
+    border-color: rgba(201, 168, 76, 0.9);
+    background: rgba(255, 255, 255, 0.18);
+    outline: none;
+  }
+
+  option {
+    color: #0f172a;
+  }
+}
+
+@media (max-width: 768px) {
+  .uzbek-stat-card {
+    padding: 16px;
+  }
+
+  .btn-uzbek-primary,
+  .btn-uzbek-gold,
+  .btn-uzbek-outline {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .uzbek-divider {
+    margin: 20px 0;
+  }
+
+  .kashf-locale-select {
+    height: 36px;
+    font-size: 12px;
+  }
+}

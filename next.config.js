@@ -1,9 +1,35 @@
 const withNextIntl = require("next-intl/plugin")("./i18n.js");
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = withNextIntl({
   images: {
-    domains: ["firebasestorage.googleapis.com"],
+    remotePatterns: [
+      { protocol: "https", hostname: "firebasestorage.googleapis.com" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+    ],
+    formats: ["image/avif", "image/webp"],
+  },
+  compress: true,
+  poweredByHeader: false,
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-XSS-Protection", value: "1; mode=block" },
+        ],
+      },
+      {
+        source: "/img/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
   },
   sassOptions: {
     quietDeps: true, // This will silence deprecation warnings
@@ -15,6 +41,4 @@ const nextConfig = {
       "global-builtin",
     ],
   },
-};
-
-module.exports = withNextIntl(nextConfig);
+});

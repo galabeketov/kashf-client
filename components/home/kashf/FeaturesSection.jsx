@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import { LuHeadphones, LuShield, LuUser } from "@/components/shared/Icons";
 import { defaultSettings } from "@/data/kashf";
 import { useSettings } from "@/hooks/useSettings";
 
@@ -9,6 +10,11 @@ const FeaturesSection = () => {
   const locale = useLocale();
   const { settings } = useSettings();
   const features = settings?.features || defaultSettings.features;
+  const featureIcons = [
+    <LuShield size={40} key="shield" />,
+    <LuUser size={40} key="user" />,
+    <LuHeadphones size={40} key="headphones" />,
+  ];
 
   const localized = (value) => value?.[locale] || value?.en || value || "";
 
@@ -34,11 +40,9 @@ const FeaturesSection = () => {
             >
               <div className="featureIcon -type-1">
                 <div className="d-flex justify-center">
-                  <img
-                    src={item.icon}
-                    alt={localized(item.title)}
-                    className="js-lazy"
-                  />
+                  <div className="text-blue-1">
+                    {featureIcons[item.id - 1] || featureIcons[0]}
+                  </div>
                 </div>
                 <div className="text-center mt-30">
                   <h4 className="text-18 fw-500">{localized(item.title)}</h4>

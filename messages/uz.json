@@ -1,15 +1,23 @@
 {
+  "brand": {
+    "name": "Travel Easy",
+    "tagline": "O'zbekiston",
+    "fullName": "Travel Easy O'zbekiston",
+    "description": "O'zbekistondagi universal sayohat hamkoringiz. Turlar, transferlar, biznes yordam va boshqalar."
+  },
   "nav": {
     "home": "Bosh sahifa",
     "tours": "Turlar",
+    "services": "Xizmatlar",
+    "blog": "Blog",
     "about": "Biz haqimizda",
     "contact": "Aloqa"
   },
   "hero": {
-    "label": "🇺🇿 Xususiy Turlar · O'zbekiston Ipak Yo'li",
-    "title": "Ipak Yo'lining Mo'jizalarini Kashf Eting",
-    "subtitle": "O'zbekistonning afsonaviy shaharlari bo'ylab xususiy sayohat — Samarqand, Buxoro, Xiva, Toshkent va boshqalar.",
-    "exploreBtn": "Barcha Turlarni Ko'rish",
+    "label": "🇺🇿 O'zbekistondagi Sayohat Hamkoringiz",
+    "title": "O'zbekistonda Oson Sayohat",
+    "subtitle": "Xususiy turlar, aeroport transferi, avtomobil ijarasi, biznes yordam va boshqalar — hammasi bir joyda.",
+    "exploreBtn": "Xizmatlarni Ko'rish",
     "whatsappBtn": "WhatsApp",
     "stats": [
       {
@@ -107,5 +115,67 @@
     "popularTours": "Mashhur Turlar",
     "contact": "Aloqa",
     "copyright": "Xususiy Turlar · Ipak Yo'li · O'zbekiston"
+  },
+  "services": {
+    "pageTitle": "Bizning Xizmatlar",
+    "pageSubtitle": "O'zbekistonda mukammal sayohat uchun hamma narsa",
+    "sidebarTitle": "So'rov Yuborish",
+    "requestSent": "So'rov Yuborildi!",
+    "whatsappDirect": "WhatsApp orqali yozish",
+    "contactDirectly": "Kerakli xizmatni topa olmadingizmi? Biz bilan bevosita bog'laning",
+    "tours": "Xususiy Turlar",
+    "toursDesc": "O'zbekistonning afsonaviy shaharlari bo'ylab maxsus Ipak Yo'li turlari",
+    "rentCar": "Avtomobil Ijarasi",
+    "rentCarDesc": "Har qanday yo'nalish uchun haydovchili yoki haydovchisiz qulay avtomobillar",
+    "transfer": "Aeroport Transferi",
+    "transferDesc": "Toshkent xalqaro aeroportidan ishonchli kutib olish va kuzatib qo'yish",
+    "business": "Biznes Uchrashuvlar Tashkiloti",
+    "businessDesc": "Biznes tadbirlaringiz uchun tarjimonlik, joy bron qilish, logistika",
+    "driver": "Shaxsiy Haydovchi",
+    "driverDesc": "Shahar safari yoki ko'p kunlik sayohat uchun professional shaxsiy haydovchi",
+    "currency": "Valyuta Almashtirish",
+    "currencyDesc": "USD, EUR, RUB va barcha asosiy valyutalar uchun eng yaxshi kurslar",
+    "blog": "Sayohat Blogi",
+    "blogDesc": "O'zbekistonda sayohat haqida maslahatlar, yo'riqnomalar va hikoyalar",
+    "telegram": "Telegram Bot",
+    "telegramDesc": "Telegram botimiz orqali tezkor sayohat yordami",
+    "instagram": "Instagram",
+    "instagramDesc": "Sayohatimizni kuzating va O'zbekiston safaringizga ilhom oling",
+    "bookNow": "Bron qilish",
+    "learnMore": "Batafsil",
+    "contactUs": "Bog'lanish"
+  },
+  "blog": {
+    "pageTitle": "Sayohat Blogi",
+    "pageSubtitle": "O'zbekistonda sayohat haqida maslahatlar, yo'riqnomalar va hikoyalar",
+    "allPosts": "Barcha Postlar",
+    "travelTips": "Sayohat Maslahatlari",
+    "cityGuides": "Shahar Yo'riqnomalari",
+    "food": "Taom va Oshpazlik",
+    "culture": "Madaniyat va Tarix",
+    "practical": "Amaliy Ma'lumotlar",
+    "readMore": "Batafsil O'qish",
+    "by": "muallif",
+    "latestPosts": "Blogimizdan So'nggilar",
+    "viewAll": "Barcha Postlarni Ko'rish",
+    "noPosts": "Hozircha postlar yo'q. Tez orada tekshiring!",
+    "backToBlog": "Blogga Qaytish",
+    "planningTrip": "Sayohat Rejalashtiryapsizmi?",
+    "planningDesc": "Bepul konsultatsiya va maxsus marshrut uchun bog'laning."
+  },
+  "reviews": {
+    "writeReview": "Sharh Yozish",
+    "yourName": "Ismingiz *",
+    "yourCountry": "Mamlakatingiz *",
+    "yourReview": "Sharhingiz *",
+    "submit": "Sharhni Yuborish",
+    "successTitle": "Rahmat!",
+    "successText": "Sharhingiz tekshirilgandan so'ng chiqariladi.",
+    "moderated": "Sharhlar nashr etilishdan oldin tekshiriladi",
+    "noReviews": "Hozircha sharhlar yo'q. Birinchi bo'ling!",
+    "averageRating": "O'rtacha Baho",
+    "totalReviews": "sharh",
+    "sectionTitle": "Sayohatchilar Nima Deydi",
+    "sectionSubtitle": "Haqiqiy sayohatchilarning haqiqiy tajribalari"
   }
 }

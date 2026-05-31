@@ -6,6 +6,13 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import {
+  FaArrowRight,
+  FaCheck,
+  FaStar,
+  LuHeart,
+  LuMapPin,
+} from "@/components/shared/Icons";
 import { tours as staticTours } from "@/data/kashf";
 import { getPublishedTours } from "@/lib/tours";
 
@@ -183,15 +190,19 @@ export default function ToursPage() {
                     data-aos="fade"
                     data-aos-delay={`${idx * 100}`}
                   >
-                    <div className="border-top-light pt-30">
+                    <div className="uzbek-tour-row border-top-light pt-30">
+                      <span
+                        className="uzbek-dome-ornament"
+                        aria-hidden="true"
+                      />
                       <div className="row x-gap-20 y-gap-20 items-center">
                         <div className="col-md-auto">
-                          <div className="cardImage ratio ratio-1:1 w-250 md:w-1/1 rounded-4">
+                          <div className="cardImage ratio ratio-1:1 w-250 md:w-1/1 rounded-8">
                             <div className="cardImage__content">
                               <Image
                                 width={320}
                                 height={320}
-                                className="rounded-4 col-12 js-lazy"
+                                className="rounded-8 col-12 js-lazy"
                                 src={tour.images?.[0] || "/img/tours/1.png"}
                                 alt={tourTitle}
                               />
@@ -199,7 +210,7 @@ export default function ToursPage() {
 
                             <div className="cardImage__wishlist">
                               <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                                <i className="icon-heart text-12" />
+                                <LuHeart size={12} />
                               </button>
                             </div>
                           </div>
@@ -208,7 +219,7 @@ export default function ToursPage() {
                         <div className="col-md">
                           <div className="row x-gap-10 items-center">
                             <div className="col-auto">
-                              <p className="text-14 lh-14 mb-5">
+                              <p className="text-13 lh-14 mb-6 px-10 py-4 rounded-100 bg-blue-1-05 text-blue-1 fw-500">
                                 {Number(tour.duration) === 0
                                   ? t("filterAll")
                                   : `${tour.duration} ${t("days")}`}
@@ -218,19 +229,23 @@ export default function ToursPage() {
                               <div className="size-3 rounded-full bg-light-1 mb-5" />
                             </div>
                             <div className="col-auto">
-                              <p className="text-14 lh-14 mb-5">Private Tour</p>
+                              <p className="text-13 lh-14 mb-6 px-10 py-4 rounded-100 bg-light-2 text-dark-1 fw-500">
+                                Private Tour
+                              </p>
                             </div>
                           </div>
 
-                          <h3 className="text-20 lh-16 fw-500">{tourTitle}</h3>
+                          <h3 className="text-22 lh-16 fw-600">{tourTitle}</h3>
 
                           <div className="d-flex items-center text-14 lh-14 mt-8">
-                            <i className="icon-location-2 text-16 text-light-1 mr-8" />
+                            <span className="text-16 text-light-1 mr-8 d-inline-flex">
+                              <LuMapPin size={16} />
+                            </span>
                             <span>{locationById[tour.id] || "Uzbekistan"}</span>
                           </div>
 
                           <p
-                            className="text-14 mt-15"
+                            className="text-14 mt-16"
                             style={{
                               display: "-webkit-box",
                               WebkitLineClamp: 2,
@@ -245,7 +260,9 @@ export default function ToursPage() {
                             {tourIncludes.slice(0, 3).map((inc) => (
                               <div className="col-12" key={`${tour.id}-${inc}`}>
                                 <div className="d-flex items-center text-14">
-                                  <i className="icon-check text-green-2 mr-10" />
+                                  <span className="text-green-2 mr-10 d-inline-flex">
+                                    <FaCheck size={14} />
+                                  </span>
                                   <span>{inc}</span>
                                 </div>
                               </div>
@@ -254,22 +271,26 @@ export default function ToursPage() {
                         </div>
 
                         <div className="col-md-auto text-right md:text-left">
-                          <div className="d-flex x-gap-5 items-center justify-end md:justify-start">
-                            <i className="icon-star text-10 text-yellow-1" />
-                            <i className="icon-star text-10 text-yellow-1" />
-                            <i className="icon-star text-10 text-yellow-1" />
-                            <i className="icon-star text-10 text-yellow-1" />
-                            <i className="icon-star text-10 text-yellow-1" />
+                          <div
+                            className="d-flex x-gap-5 items-center justify-end md:justify-start"
+                            style={{ color: "#C9A84C" }}
+                          >
+                            {Array.from({ length: 5 }).map((_, starIndex) => (
+                              <FaStar
+                                size={11}
+                                key={`${tour.id}-star-${starIndex}`}
+                              />
+                            ))}
                           </div>
 
                           <div className="text-14 lh-14 text-light-1 mt-10">
                             5.0 rating
                           </div>
 
-                          <div className="text-14 text-light-1 mt-50 md:mt-20">
+                          <div className="text-13 text-light-1 mt-40 md:mt-20">
                             {t("from")}
                           </div>
-                          <div className="text-22 lh-12 fw-600 mt-5">
+                          <div className="text-26 lh-12 fw-700 mt-4">
                             US${tour.price || 0}
                           </div>
                           <div className="text-14 text-light-1 mt-5">
@@ -278,10 +299,12 @@ export default function ToursPage() {
 
                           <Link
                             href={`/${locale}/tours/${tour.id}`}
-                            className="button -md -dark-1 bg-blue-1 text-white mt-24"
+                            className="button -md btn-uzbek-primary mt-24"
                           >
                             {t("viewTour")}
-                            <div className="icon-arrow-top-right ml-15" />
+                            <span className="ml-10 d-inline-flex">
+                              <FaArrowRight size={14} />
+                            </span>
                           </Link>
                         </div>
                       </div>

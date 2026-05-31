@@ -5,9 +5,20 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import {
+  FaCheck,
+  FaFacebook,
+  FaInstagram,
+  FaTelegramPlane,
+  FaWhatsapp,
+  LuMail,
+  LuMapPin,
+  LuPhone,
+} from "@/components/shared/Icons";
 import { contact as staticContact } from "@/data/kashf";
 import { submitInquiry } from "@/lib/inquiries";
 import { useSettings } from "@/hooks/useSettings";
+import { trackContact } from "@/lib/analytics";
 
 export default function ContactPage() {
   const locale = useLocale();
@@ -18,6 +29,36 @@ export default function ContactPage() {
   const contact = settings?.contact || staticContact;
   const location =
     contact?.location?.[locale] || contact?.location?.en || contact.location;
+  const socialLinks = [
+    {
+      key: "whatsapp",
+      href: contact?.whatsapp,
+      label: "WhatsApp",
+      className: "whatsapp",
+      icon: <FaWhatsapp size={18} />,
+    },
+    {
+      key: "telegram",
+      href: contact?.telegram,
+      label: "Telegram",
+      className: "telegram",
+      icon: <FaTelegramPlane size={18} />,
+    },
+    {
+      key: "facebook",
+      href: contact?.facebook,
+      label: "Facebook",
+      className: "facebook",
+      icon: <FaFacebook size={18} />,
+    },
+    {
+      key: "instagram",
+      href: contact?.instagram,
+      label: "Instagram",
+      className: "instagram",
+      icon: <FaInstagram size={18} />,
+    },
+  ].filter((item) => !!item.href);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -45,6 +86,13 @@ export default function ContactPage() {
         tourTitle: "General Inquiry",
         locale,
       });
+      await trackContact({
+        method: "form",
+        source: "contact_page",
+        tourId: null,
+        tourTitle: null,
+        locale,
+      });
       setSubmitted(true);
     } catch (submitError) {
       setError(submitError?.message || "Failed to submit inquiry.");
@@ -52,6 +100,30 @@ export default function ContactPage() {
       setSubmitting(false);
     }
   };
+
+  const handleContactClick =
+    (method, href, target = "_self") =>
+    async (event) => {
+      event.preventDefault();
+      const allowedMethods = ["whatsapp", "telegram", "email", "phone", "form"];
+      try {
+        if (allowedMethods.includes(method)) {
+          await trackContact({
+            method,
+            source: "contact_page",
+            tourId: null,
+            tourTitle: null,
+            locale,
+          });
+        }
+      } catch {}
+
+      if (target === "_blank") {
+        window.open(href, "_blank", "noopener,noreferrer");
+        return;
+      }
+      window.location.href = href;
+    };
 
   return (
     <>
@@ -109,13 +181,17 @@ export default function ContactPage() {
 
               <div className="d-flex items-start border-light rounded-8 px-20 py-20 mb-20 mt-30">
                 <div className="size-50 flex-center rounded-full bg-blue-2 mr-15">
-                  <i className="icon-phone text-blue-1" />
+                  <LuPhone size={20} className="text-blue-1" />
                 </div>
                 <div>
                   <div className="text-13 text-light-1">{t("phone")}</div>
                   <a
                     href={`tel:${contact.phone}`}
                     className="text-16 fw-500 text-dark-1"
+                    onClick={handleContactClick(
+                      "phone",
+                      `tel:${contact.phone}`,
+                    )}
                   >
                     {contact.phone}
                   </a>
@@ -124,13 +200,17 @@ export default function ContactPage() {
 
               <div className="d-flex items-start border-light rounded-8 px-20 py-20 mb-20">
                 <div className="size-50 flex-center rounded-full bg-blue-2 mr-15">
-                  <i className="icon-mail text-blue-1" />
+                  <LuMail size={20} className="text-blue-1" />
                 </div>
                 <div>
                   <div className="text-13 text-light-1">{t("email")}</div>
                   <a
                     href={`mailto:${contact.email}`}
                     className="text-16 fw-500 text-dark-1"
+                    onClick={handleContactClick(
+                      "email",
+                      `mailto:${contact.email}`,
+                    )}
                   >
                     {contact.email}
                   </a>
@@ -139,7 +219,7 @@ export default function ContactPage() {
 
               <div className="d-flex items-start border-light rounded-8 px-20 py-20 mb-20">
                 <div className="size-50 flex-center rounded-full bg-blue-2 mr-15">
-                  <i className="icon-location text-blue-1" />
+                  <LuMapPin size={20} className="text-blue-1" />
                 </div>
                 <div>
                   <div className="text-13 text-light-1">{t("location")}</div>
@@ -152,15 +232,44 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button -md -blue-1 bg-blue-1 text-white col-12 h-60 mt-20"
+                onClick={handleContactClick(
+                  "whatsapp",
+                  contact.whatsapp || "https://wa.me/998901234567",
+                  "_blank",
+                )}
               >
                 {t("whatsappBtn")}
               </Link>
+
+              <div className="mt-20">
+                <div className="text-14 text-light-1 mb-10">Social</div>
+                <div className="d-flex x-gap-12">
+                  {socialLinks.map((item) => (
+                    <a
+                      key={item.key}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`social-icon ${item.className}`}
+                      aria-label={item.label}
+                      onClick={handleContactClick(
+                        item.key,
+                        item.href,
+                        "_blank",
+                      )}
+                    >
+                      {item.icon}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div
               className="col-lg-7 offset-lg-1"
               data-aos="fade-up"
               data-aos-delay="100"
+              id="write-review"
             >
               <div className="border-light rounded-8 px-40 py-40 shadow-2">
                 <h3 className="text-24 fw-500">{t("formTitle")}</h3>
@@ -227,7 +336,9 @@ export default function ContactPage() {
                 ) : (
                   <div className="text-center py-40">
                     <div className="size-60 rounded-full bg-blue-1-05 flex-center mx-auto">
-                      <i className="icon-check text-blue-1 text-24" />
+                      <span className="text-blue-1 d-inline-flex">
+                        <FaCheck size={24} />
+                      </span>
                     </div>
                     <h4 className="text-22 fw-500 mt-20">
                       {t("successTitle")}
