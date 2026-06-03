@@ -45,7 +45,7 @@ export async function POST(request) {
     if (text === "/start") {
       await sendPhoto(
         chatId,
-        "https://travel-easy.uz/img/og-image.jpg",
+        "https://kashf-client.vercel.app/img/og-image.jpg",
         `🇺🇿 <b>Assalomu alaykum, ${firstName}!</b>\n\nWelcome to <b>Travel Easy Uzbekistan</b> — your personal travel partner on the Silk Road.\n\n👤 <b>Guide:</b> Samandar Ikromov\n📍 <b>Destination:</b> Uzbekistan\n🗺 <b>Tours:</b> Samarkand, Bukhara, Khiva, Tashkent & beyond\n\nChoose an option below:`,
         {
           reply_markup: {
