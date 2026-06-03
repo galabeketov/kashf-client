@@ -49,7 +49,8 @@ const HeaderKashf = () => {
   const isNoHeroPage = noHeroPages.some((pathPart) =>
     currentPath.includes(pathPart),
   );
-  const headerBg = isNoHeroPage || navbar ? "bg-dark-1 is-sticky" : "";
+  const isSticky = isNoHeroPage || navbar;
+  const headerBg = isSticky ? "is-sticky" : "";
 
   const navLinks = [
     { label: t("home"), href: "/" },
@@ -73,14 +74,9 @@ const HeaderKashf = () => {
   };
 
   useEffect(() => {
-    const changeBackground = () => {
-      setNavbar(window.scrollY >= 10);
-    };
-
+    const changeBackground = () => setNavbar(window.scrollY >= 10);
     window.addEventListener("scroll", changeBackground);
-    return () => {
-      window.removeEventListener("scroll", changeBackground);
-    };
+    return () => window.removeEventListener("scroll", changeBackground);
   }, []);
 
   const handleWhatsApp = async (event) => {
@@ -98,117 +94,142 @@ const HeaderKashf = () => {
   };
 
   return (
-    <header className={`header -type-1 ${headerBg}`}>
-      <div className="header__container px-30 sm:px-20">
-        <div className="row justify-between items-center">
-          <div className="col-auto">
-            <div className="d-flex items-center">
-              <Link
-                href={localizedPath("/")}
-                className="header-logo mr-20 text-white"
-              >
-                <div className="fw-700 text-24 lh-1">{brandT("name")}</div>
-                <div className="text-12 text-light-1 mt-3">
-                  {brandT("tagline")}
-                </div>
-              </Link>
+    <>
+      <header
+        className={`header -type-1 ${headerBg}`}
+        style={
+          isSticky
+            ? {
+                backgroundColor: "var(--uzn-dark)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.32)",
+              }
+            : {}
+        }
+      >
+        <div className="header__container px-30 sm:px-20">
+          <div className="row justify-between items-center">
+            {/* Logo */}
+            <div className="col-auto">
+              <div className="d-flex items-center">
+                <Link
+                  href={localizedPath("/")}
+                  className="header-logo mr-20"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="uzn-logo-name">{brandT("name")}</div>
+                  <span className="uzn-logo-sub">{brandT("tagline")}</span>
+                </Link>
 
-              <div className="header-menu">
-                <div className="header-menu__content">
-                  <nav className="menu js-navList">
-                    <ul className="menu__nav text-white -is-active">
-                      {navLinks.map((item) => (
-                        <li
-                          key={item.href}
-                          className={isActive(item.href) ? "current" : ""}
-                        >
-                          <Link href={localizedPath(item.href)}>
-                            {item.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
+                {/* Desktop nav */}
+                <div className="header-menu">
+                  <div className="header-menu__content">
+                    <nav className="menu js-navList">
+                      <ul className="menu__nav text-white -is-active">
+                        {navLinks.map((item) => (
+                          <li
+                            key={item.href}
+                            className={isActive(item.href) ? "current" : ""}
+                          >
+                            <Link
+                              href={localizedPath(item.href)}
+                              className="uzn-nav-link"
+                            >
+                              {item.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </nav>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-auto">
-            <div className="d-flex items-center">
-              <div className="d-flex items-center x-gap-10 mr-20 lg:d-none">
-                <div className="kashf-locale-select-wrap">
-                  <select
-                    value={locale}
-                    onChange={(event) => switchLocale(event.target.value)}
-                    className="kashf-locale-select"
-                    aria-label="Select language"
-                  >
-                    <option value="en">EN</option>
-                    <option value="uz">UZ</option>
-                    <option value="ru">RU</option>
-                  </select>
+            {/* Right side actions */}
+            <div className="col-auto">
+              <div className="d-flex items-center">
+                {/* Locale pill — desktop */}
+                <div className="mr-20 lg:d-none">
+                  <div className="uzn-locale-pill">
+                    {LOCALES.map((loc) => (
+                      <button
+                        key={loc}
+                        className={locale === loc ? "active" : ""}
+                        onClick={() => switchLocale(loc)}
+                      >
+                        {loc.toUpperCase()}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div className="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
-                <Link
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="button px-30 fw-400 text-14 -white bg-white h-50 text-dark-1"
-                  onClick={handleWhatsApp}
-                >
-                  WhatsApp
-                </Link>
-                <Link
-                  href={localizedPath("/tours")}
-                  className="button px-30 fw-400 text-14 border-white -outline-white h-50 text-white ml-20"
-                >
-                  Explore Tours
-                </Link>
-              </div>
-
-              <div className="d-none xl:d-flex x-gap-20 items-center pl-30 text-white">
-                <div className="kashf-locale-select-wrap">
-                  <select
-                    value={locale}
-                    onChange={(event) => switchLocale(event.target.value)}
-                    className="kashf-locale-select"
-                    aria-label="Select language"
+                {/* CTA buttons — desktop */}
+                <div className="d-flex items-center is-menu-opened-hide md:d-none">
+                  <Link
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="uzn-btn-gold px-28 h-46"
+                    style={{ fontSize: "14px" }}
+                    onClick={handleWhatsApp}
                   >
-                    <option value="en">EN</option>
-                    <option value="uz">UZ</option>
-                    <option value="ru">RU</option>
-                  </select>
+                    WhatsApp
+                  </Link>
+                  <Link
+                    href={localizedPath("/tours")}
+                    className="uzn-btn-outline-gold px-28 h-46 ml-12"
+                    style={{ fontSize: "14px" }}
+                  >
+                    Explore Tours
+                  </Link>
                 </div>
-                <div>
+
+                {/* Mobile hamburger + locale */}
+                <div className="d-none xl:d-flex x-gap-16 items-center pl-24 text-white">
+                  <div className="uzn-locale-pill">
+                    {LOCALES.map((loc) => (
+                      <button
+                        key={`m-${loc}`}
+                        className={locale === loc ? "active" : ""}
+                        onClick={() => switchLocale(loc)}
+                      >
+                        {loc.toUpperCase()}
+                      </button>
+                    ))}
+                  </div>
+
                   <button
                     className="d-flex items-center text-inherit text-20"
                     data-bs-toggle="offcanvas"
                     aria-controls="mobile-sidebar_menu"
                     data-bs-target="#mobile-sidebar_menu"
                   >
-                    <LuMenu size={20} />
+                    <LuMenu size={22} />
                   </button>
 
+                  {/* Mobile offcanvas */}
                   <div
-                    className="offcanvas offcanvas-start  mobile_menu-contnet "
+                    className="offcanvas offcanvas-start mobile_menu-contnet"
                     tabIndex="-1"
                     id="mobile-sidebar_menu"
                     aria-labelledby="offcanvasMenuLabel"
                     data-bs-scroll="true"
                   >
                     <div className="pro-header d-flex align-items-center justify-between border-bottom-light">
-                      <Link href={localizedPath("/")} className="text-white">
-                        <div className="fw-700 text-20 lh-1">
+                      <Link
+                        href={localizedPath("/")}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div
+                          className="uzn-logo-name"
+                          style={{ fontSize: "20px" }}
+                        >
                           {brandT("name")}
                         </div>
-                        <div className="text-12 text-light-1 mt-3">
+                        <span className="uzn-logo-sub">
                           {brandT("tagline")}
-                        </div>
+                        </span>
                       </Link>
-
                       <div
                         className="fix-icon"
                         data-bs-dismiss="offcanvas"
@@ -236,19 +257,20 @@ const HeaderKashf = () => {
                       </nav>
 
                       <div className="mt-20">
-                        <div className="kashf-locale-select-wrap is-mobile">
-                          <select
-                            value={locale}
-                            onChange={(event) =>
-                              switchLocale(event.target.value)
-                            }
-                            className="kashf-locale-select"
-                            aria-label="Select language"
-                          >
-                            <option value="en">EN</option>
-                            <option value="uz">UZ</option>
-                            <option value="ru">RU</option>
-                          </select>
+                        <div
+                          className="uzn-locale-pill"
+                          style={{ width: "100%", justifyContent: "center" }}
+                        >
+                          {LOCALES.map((loc) => (
+                            <button
+                              key={`mob-pill-${loc}`}
+                              className={locale === loc ? "active" : ""}
+                              onClick={() => switchLocale(loc)}
+                              style={{ flex: 1 }}
+                            >
+                              {loc.toUpperCase()}
+                            </button>
+                          ))}
                         </div>
                       </div>
 
@@ -257,14 +279,14 @@ const HeaderKashf = () => {
                           href={whatsappUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="button px-30 fw-400 text-14 -white bg-white h-50 text-dark-1 border-light"
+                          className="uzn-btn-gold h-50 text-center"
                           onClick={handleWhatsApp}
                         >
                           WhatsApp
                         </Link>
                         <Link
                           href={localizedPath("/tours")}
-                          className="button px-30 fw-400 text-14 border-dark-1 -outline-dark-1 h-50 text-dark-1"
+                          className="uzn-btn-primary h-50 text-center"
                           data-bs-dismiss="offcanvas"
                         >
                           Explore Tours
@@ -277,8 +299,8 @@ const HeaderKashf = () => {
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

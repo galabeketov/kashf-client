@@ -1,27 +1,15 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
-import {
-  FaArrowRight,
-  FaCheck,
-  FaStar,
-  LuHeart,
-  LuMapPin,
-} from "@/components/shared/Icons";
+import TourCard from "@/components/ui/TourCard";
+import IslamicPattern from "@/components/ui/IslamicPattern";
+import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
 import { tours as staticTours } from "@/data/kashf";
 import { getPublishedTours } from "@/lib/tours";
-
-const locationById = {
-  "4-days-uzbekistan-highlights": "Tashkent, Samarkand, Amirsoy",
-  "7-days-grand-uzbekistan-escape": "Tashkent, Samarkand, Shakhrisabz, Bukhara",
-  "10-days-legendary-adventure": "Tashkent, Samarkand, Bukhara, Khiva, Urganch",
-  "custom-private-tour": "Flexible across Uzbekistan",
-};
 
 const filterTourByKey = (tour, key) => {
   if (key === "all") return true;
@@ -31,34 +19,34 @@ const filterTourByKey = (tour, key) => {
   return true;
 };
 
-const localizedTourText = (value, locale) => {
-  if (!value) return "";
-  if (typeof value === "string") return value;
-  return value?.[locale] || value?.en || value?.uz || value?.ru || "";
-};
-
-const localizedTourList = (value, locale) => {
-  if (Array.isArray(value)) return value;
-  const localized = value?.[locale] || value?.en || value?.uz || value?.ru;
-  return Array.isArray(localized) ? localized : [];
-};
+const SkeletonCard = () => (
+  <div
+    style={{
+      borderRadius: "16px",
+      height: "370px",
+      background: "linear-gradient(135deg, #f5f0e8, #ede8de)",
+      animation: "tourPagePulse 1.6s ease-in-out infinite",
+      border: "1px solid rgba(201,168,76,0.12)",
+    }}
+  />
+);
 
 export default function ToursPage() {
   const t = useTranslations("tours");
   const navT = useTranslations("nav");
   const locale = useLocale();
+
   const [activeFilter, setActiveFilter] = useState("all");
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
-
-    const loadTours = async () => {
+    const load = async () => {
       try {
-        const firestoreTours = await getPublishedTours();
+        const remote = await getPublishedTours();
         if (!isMounted) return;
-        setTours(firestoreTours);
+        setTours(remote.length ? remote : staticTours);
       } catch {
         if (!isMounted) return;
         setTours(staticTours);
@@ -66,9 +54,7 @@ export default function ToursPage() {
         if (isMounted) setLoading(false);
       }
     };
-
-    loadTours();
-
+    load();
     return () => {
       isMounted = false;
     };
@@ -90,243 +76,180 @@ export default function ToursPage() {
     <>
       <KashfHeader />
 
+      {/* ── Hero ── */}
       <section
+        className="uzn-section-dark"
         style={{
-          background: "linear-gradient(135deg, #051036 0%, #0d2268 100%)",
           paddingTop: "130px",
-          paddingBottom: "60px",
+          paddingBottom: "70px",
+          overflow: "hidden",
+          position: "relative",
         }}
       >
-        <div className="container">
+        {/* Decorative Islamic pattern top-right */}
+        <div
+          style={{
+            position: "absolute",
+            top: -40,
+            right: -40,
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+          aria-hidden="true"
+        >
+          <IslamicPattern size={260} color="#C9A84C" opacity={0.12} animated />
+        </div>
+        {/* Bottom-left smaller */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: -20,
+            left: -20,
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+          aria-hidden="true"
+        >
+          <IslamicPattern size={160} color="#C9A84C" opacity={0.07} animated />
+        </div>
+
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <div className="row justify-center text-center">
             <div className="col-lg-8">
+              {/* Bismillah label */}
+              <span className="uzn-bismillah" data-aos="fade-down">
+                ✦ Silk Road Collection ✦
+              </span>
+
               <h1
-                className="text-50 lg:text-40 md:text-30 text-white"
+                className="text-50 lg:text-40 md:text-32 text-white mt-10"
+                style={{ fontFamily: "var(--font-heading)", fontWeight: 700 }}
                 data-aos="fade-up"
               >
                 {t("pageTitle")}
               </h1>
+
               <p
-                className="text-white mt-15"
+                className="mt-16 text-white"
+                style={{ opacity: 0.75 }}
                 data-aos="fade-up"
                 data-aos-delay="100"
               >
                 {t("pageSubtitle")}
               </p>
+
+              <OrnamentalDivider
+                starSize={20}
+                color="#C9A84C"
+                className="mt-20"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-10 bg-light-2">
+      {/* ── Breadcrumb ── */}
+      <nav
+        className="py-12"
+        style={{
+          background: "#FDFAF4",
+          borderBottom: "1px solid rgba(201,168,76,0.14)",
+        }}
+        aria-label="Breadcrumb"
+      >
         <div className="container">
-          <div className="row x-gap-10 y-gap-10 items-center text-14 text-light-1">
-            <div className="col-auto">
-              <Link href={`/${locale}`} className="text-dark-1">
-                {navT("home")}
-              </Link>
-            </div>
-            <div className="col-auto">&gt;</div>
-            <div className="col-auto">
-              <span className="text-dark-1">{t("pageTitle")}</span>
-            </div>
+          <div className="d-flex x-gap-8 items-center text-13 text-light-1">
+            <Link
+              href={`/${locale}`}
+              className="text-dark-1"
+              style={{ fontWeight: 500 }}
+            >
+              {navT("home")}
+            </Link>
+            <span style={{ opacity: 0.4 }}>/</span>
+            <span
+              className="text-dark-1"
+              style={{ color: "#C9A84C", fontWeight: 600 }}
+            >
+              {t("pageTitle")}
+            </span>
           </div>
         </div>
-      </section>
+      </nav>
 
-      <section className="layout-pt-md layout-pb-lg">
+      {/* ── Tour listing ── */}
+      <section
+        className="layout-pt-md layout-pb-lg uzn-section-ivory"
+        style={{ position: "relative" }}
+      >
         <div className="container">
-          <div className="d-flex x-gap-10 y-gap-10 flex-wrap mb-30">
-            {filters.map((filter) => (
+          {/* Filter pills */}
+          <div className="d-flex x-gap-10 y-gap-10 flex-wrap mb-40">
+            {filters.map((f) => (
               <button
-                key={filter.key}
-                className={
-                  activeFilter === filter.key
-                    ? "button -sm -blue-1 bg-blue-1 text-white"
-                    : "button -sm border-blue-1 text-blue-1"
-                }
-                onClick={() => setActiveFilter(filter.key)}
+                key={f.key}
+                className={`uzn-filter-pill${activeFilter === f.key ? " active" : ""}`}
+                onClick={() => setActiveFilter(f.key)}
               >
-                {filter.label}
+                {f.label}
               </button>
             ))}
           </div>
 
-          <div className="row y-gap-30">
+          {/* Grid */}
+          <div className="row y-gap-28">
+            {/* Skeleton */}
             {loading &&
-              Array.from({ length: 4 }).map((_, idx) => (
-                <div className="col-12" key={`loading-${idx}`}>
-                  <div className="border-top-light pt-30">
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "180px",
-                        borderRadius: "12px",
-                        background: "#f5f5f5",
-                        animation: "kashfListPulse 1.4s ease-in-out infinite",
-                      }}
-                    />
-                  </div>
+              Array.from({ length: 4 }).map((_, i) => (
+                <div className="col-lg-4 col-sm-6 col-12" key={`sk-${i}`}>
+                  <SkeletonCard />
                 </div>
               ))}
 
+            {/* Empty state */}
             {!loading && filteredTours.length === 0 && (
-              <div className="col-12">
-                <div className="border-top-light pt-30">
-                  <p className="text-16 text-dark-1">Tours coming soon</p>
-                </div>
+              <div className="col-12 text-center py-60">
+                <p
+                  className="text-18 text-light-1"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  No tours found for this filter.
+                </p>
               </div>
             )}
 
+            {/* Tour cards */}
             {!loading &&
-              filteredTours.map((tour, idx) => {
-                const tourTitle = localizedTourText(tour.title, locale);
-                const tourIncludes = localizedTourList(tour.includes, locale);
-
-                return (
-                  <div
-                    className="col-12"
-                    key={tour.id}
-                    data-aos="fade"
-                    data-aos-delay={`${idx * 100}`}
-                  >
-                    <div className="uzbek-tour-row border-top-light pt-30">
-                      <span
-                        className="uzbek-dome-ornament"
-                        aria-hidden="true"
-                      />
-                      <div className="row x-gap-20 y-gap-20 items-center">
-                        <div className="col-md-auto">
-                          <div className="cardImage ratio ratio-1:1 w-250 md:w-1/1 rounded-8">
-                            <div className="cardImage__content">
-                              <Image
-                                width={320}
-                                height={320}
-                                className="rounded-8 col-12 js-lazy"
-                                src={tour.images?.[0] || "/img/tours/1.png"}
-                                alt={tourTitle}
-                              />
-                            </div>
-
-                            <div className="cardImage__wishlist">
-                              <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                                <LuHeart size={12} />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="col-md">
-                          <div className="row x-gap-10 items-center">
-                            <div className="col-auto">
-                              <p className="text-13 lh-14 mb-6 px-10 py-4 rounded-100 bg-blue-1-05 text-blue-1 fw-500">
-                                {Number(tour.duration) === 0
-                                  ? t("filterAll")
-                                  : `${tour.duration} ${t("days")}`}
-                              </p>
-                            </div>
-                            <div className="col-auto">
-                              <div className="size-3 rounded-full bg-light-1 mb-5" />
-                            </div>
-                            <div className="col-auto">
-                              <p className="text-13 lh-14 mb-6 px-10 py-4 rounded-100 bg-light-2 text-dark-1 fw-500">
-                                Private Tour
-                              </p>
-                            </div>
-                          </div>
-
-                          <h3 className="text-22 lh-16 fw-600">{tourTitle}</h3>
-
-                          <div className="d-flex items-center text-14 lh-14 mt-8">
-                            <span className="text-16 text-light-1 mr-8 d-inline-flex">
-                              <LuMapPin size={16} />
-                            </span>
-                            <span>{locationById[tour.id] || "Uzbekistan"}</span>
-                          </div>
-
-                          <p
-                            className="text-14 mt-16"
-                            style={{
-                              display: "-webkit-box",
-                              WebkitLineClamp: 2,
-                              WebkitBoxOrient: "vertical",
-                              overflow: "hidden",
-                            }}
-                          >
-                            {localizedTourText(tour.description, locale)}
-                          </p>
-
-                          <div className="row y-gap-8 mt-15">
-                            {tourIncludes.slice(0, 3).map((inc) => (
-                              <div className="col-12" key={`${tour.id}-${inc}`}>
-                                <div className="d-flex items-center text-14">
-                                  <span className="text-green-2 mr-10 d-inline-flex">
-                                    <FaCheck size={14} />
-                                  </span>
-                                  <span>{inc}</span>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="col-md-auto text-right md:text-left">
-                          <div
-                            className="d-flex x-gap-5 items-center justify-end md:justify-start"
-                            style={{ color: "#C9A84C" }}
-                          >
-                            {Array.from({ length: 5 }).map((_, starIndex) => (
-                              <FaStar
-                                size={11}
-                                key={`${tour.id}-star-${starIndex}`}
-                              />
-                            ))}
-                          </div>
-
-                          <div className="text-14 lh-14 text-light-1 mt-10">
-                            5.0 rating
-                          </div>
-
-                          <div className="text-13 text-light-1 mt-40 md:mt-20">
-                            {t("from")}
-                          </div>
-                          <div className="text-26 lh-12 fw-700 mt-4">
-                            US${tour.price || 0}
-                          </div>
-                          <div className="text-14 text-light-1 mt-5">
-                            {t("perPerson")}
-                          </div>
-
-                          <Link
-                            href={`/${locale}/tours/${tour.id}`}
-                            className="button -md btn-uzbek-primary mt-24"
-                          >
-                            {t("viewTour")}
-                            <span className="ml-10 d-inline-flex">
-                              <FaArrowRight size={14} />
-                            </span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              filteredTours.map((tour, idx) => (
+                <div
+                  className="col-lg-4 col-sm-6 col-12"
+                  key={tour.id}
+                  style={{ height: "100%" }}
+                  data-aos="fade-up"
+                  data-aos-delay={idx * 60}
+                >
+                  <TourCard
+                    tour={tour}
+                    locale={locale}
+                    t={t}
+                    variant="gotrip"
+                  />
+                </div>
+              ))}
           </div>
         </div>
       </section>
 
       <KashfFooter />
+
       <style jsx global>{`
-        @keyframes kashfListPulse {
-          0% {
+        @keyframes tourPagePulse {
+          0%,
+          100% {
             opacity: 1;
           }
           50% {
             opacity: 0.5;
-          }
-          100% {
-            opacity: 1;
           }
         }
       `}</style>

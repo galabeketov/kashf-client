@@ -17,24 +17,45 @@ export default function ClientProviders({ children }) {
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
+    let frame1;
+    let frame2;
     let startDelay;
 
-    const initDelay = window.setTimeout(() => {
+    const startAos = () => {
+      if (cancelled || aosReady.current) return;
+
       Aos.init({
         duration: 1200,
         once: true,
-        startEvent: "aos:hydrate-ready",
+        startEvent: "kashf:aos-start",
+        disableMutationObserver: true,
       });
 
-      // Defer AOS class mutations until after hydration finishes.
-      startDelay = window.setTimeout(() => {
-        document.dispatchEvent(new Event("aos:hydrate-ready"));
-        aosReady.current = true;
-      }, 250);
-    }, 0);
+      // Wait for two paint frames before applying AOS classes.
+      frame1 = window.requestAnimationFrame(() => {
+        frame2 = window.requestAnimationFrame(() => {
+          startDelay = window.setTimeout(() => {
+            if (cancelled) return;
+            document.dispatchEvent(new Event("kashf:aos-start"));
+            aosReady.current = true;
+            Aos.refreshHard();
+          }, 0);
+        });
+      });
+    };
+
+    if (document.readyState === "complete") {
+      startAos();
+    } else {
+      window.addEventListener("load", startAos, { once: true });
+    }
 
     return () => {
-      clearTimeout(initDelay);
+      cancelled = true;
+      window.removeEventListener("load", startAos);
+      if (frame1) window.cancelAnimationFrame(frame1);
+      if (frame2) window.cancelAnimationFrame(frame2);
       if (startDelay) clearTimeout(startDelay);
     };
   }, []);

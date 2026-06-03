@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import OptimizedImage from "@/components/shared/OptimizedImage";
 import {
   FaCheck,
   FaStar,
@@ -310,33 +310,40 @@ export default function TourDetailsPage() {
 
       <section className="layout-pb-md">
         <div className="container">
-          <div
-            className="rounded-8 overflow-hidden"
-            style={{ height: "460px" }}
-          >
-            <Image
-              src={selectedImage || "/img/tours/1.png"}
-              alt={tourTitle}
-              width={1200}
-              height={460}
-              className="col-12 h-full object-cover"
-            />
-          </div>
+          <OptimizedImage
+            src={selectedImage || "/img/tours/1.png"}
+            alt={tourTitle}
+            priority
+            sizes="100vw"
+            wrapperStyle={{
+              width: "100%",
+              height: "460px",
+              borderRadius: "8px",
+            }}
+          />
 
           <div className="row x-gap-10 y-gap-10 pt-15">
             {(tour.images || []).map((img, idx) => (
               <div className="col-auto" key={`${img}-${idx}`}>
-                <button
-                  className={`rounded-4 overflow-hidden border ${activeImage === idx ? "border-blue-1" : "border-light"}`}
+                <OptimizedImage
+                  src={img}
+                  alt={`${tourTitle}-${idx}`}
                   onClick={() => setActiveImage(idx)}
-                >
-                  <Image
-                    src={img}
-                    alt={`${tourTitle}-${idx}`}
-                    width={110}
-                    height={80}
-                  />
-                </button>
+                  sizes="80px"
+                  wrapperStyle={{
+                    width: "80px",
+                    height: "60px",
+                    flexShrink: 0,
+                    borderRadius: "6px",
+                    overflow: "hidden",
+                    cursor: "pointer",
+                    border:
+                      activeImage === idx
+                        ? "2px solid #C9A84C"
+                        : "2px solid transparent",
+                  }}
+                  skeletonStyle={{ display: "none" }}
+                />
               </div>
             ))}
           </div>

@@ -7,6 +7,7 @@ import { LuCheck } from "@/components/shared/Icons";
 import { defaultSettings } from "@/data/kashf";
 import { useSettings } from "@/hooks/useSettings";
 import { trackContact } from "@/lib/analytics";
+import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
 
 const AboutSection = () => {
   const t = useTranslations("about");
@@ -29,15 +30,8 @@ const AboutSection = () => {
     async (event) => {
       event.preventDefault();
       try {
-        await trackContact({
-          method,
-          source: "cta",
-          tourId: null,
-          tourTitle: null,
-          locale,
-        });
+        await trackContact({ method, source: "cta", tourId: null, tourTitle: null, locale });
       } catch {}
-
       if (target === "_blank") {
         window.open(href, "_blank", "noopener,noreferrer");
       } else {
@@ -46,42 +40,52 @@ const AboutSection = () => {
     };
 
   return (
-    <section className="layout-pt-lg layout-pb-lg uzbek-pattern-bg">
-      <div className="container">
+    <section className="layout-pt-lg layout-pb-lg uzn-section-ivory">
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div className="row y-gap-30 items-center">
+          {/* Photo column */}
           <div className="col-lg-6" data-aos="fade-up">
-            <div
-              className="rounded-8 overflow-hidden"
-              style={{ height: "520px" }}
-            >
+            <div className="uzn-photo-frame" style={{ height: "520px" }}>
               <Image
                 src={guide.photo}
                 alt={localized(guide.name)}
                 width={640}
                 height={520}
-                className="col-12 h-full object-cover"
+                className="col-12 h-full"
+                style={{ height: "520px", objectFit: "cover" }}
               />
             </div>
           </div>
 
+          {/* Content column */}
           <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div className="pl-20 lg:pl-0">
-              <div className="text-14 fw-500 text-blue-1 text-uppercase">
+              <div
+                className="text-14 fw-600 text-uppercase mb-8"
+                style={{ color: "#1B6CA8", letterSpacing: "0.14em" }}
+              >
                 {t("sectionLabel")}
               </div>
-              <h2 className="text-40 lg:text-30 mt-10">
+
+              <h2
+                className="text-40 lg:text-30 mt-10"
+                style={{ fontFamily: "var(--font-heading)", fontWeight: 700 }}
+              >
                 {localized(guide.name)}
               </h2>
-              <div className="uzbek-gold-line" />
 
-              <p className="mt-20 text-16 text-dark-1">
+              {/* Ornamental divider below guide name */}
+              <OrnamentalDivider starSize={22} />
+
+              <p className="text-16 text-dark-1" style={{ lineHeight: 1.7 }}>
                 {localized(guide.bio1)}
               </p>
-              <p className="mt-15 text-16 text-dark-1">
+              <p className="mt-15 text-16 text-dark-1" style={{ lineHeight: 1.7 }}>
                 {localized(guide.bio2)}
               </p>
 
-              <div className="mt-20 d-flex flex-column y-gap-10">
+              {/* Checklist */}
+              <div className="mt-20 d-flex flex-column y-gap-12">
                 {checklistItems.map((item) => (
                   <div className="d-flex items-center" key={item}>
                     <LuCheck
@@ -94,14 +98,13 @@ const AboutSection = () => {
                 ))}
               </div>
 
-              <div className="row y-gap-15 x-gap-15 mt-30">
+              {/* Gold-bordered stat cards */}
+              <div className="row y-gap-14 x-gap-14 mt-30">
                 {stats.map((item, index) => (
                   <div className="col-sm-6" key={`${item.num}-${index}`}>
-                    <div className="rounded-8 border-light bg-white py-15 px-20">
-                      <div className="text-24 fw-600 text-dark-1">
-                        {item.num}
-                      </div>
-                      <div className="text-14 text-light-1 mt-5">
+                    <div className="uzn-about-stat">
+                      <div className="uzn-about-stat__num">{item.num}</div>
+                      <div className="text-14 text-light-1 mt-4">
                         {localized(item.label)}
                       </div>
                     </div>
@@ -109,12 +112,13 @@ const AboutSection = () => {
                 ))}
               </div>
 
-              <div className="d-flex x-gap-15 y-gap-15 flex-wrap mt-30">
+              {/* CTA buttons */}
+              <div className="d-flex x-gap-14 y-gap-14 flex-wrap mt-30">
                 <Link
                   href={contact.whatsapp || "https://wa.me/998901234567"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="button -md btn-uzbek-primary"
+                  className="uzn-btn-gold"
                   onClick={handleContactClick(
                     "whatsapp",
                     contact.whatsapp || "https://wa.me/998901234567",
@@ -124,7 +128,8 @@ const AboutSection = () => {
                 </Link>
                 <Link
                   href={`mailto:${contact.email || "hello@kashf.uz"}`}
-                  className="button -md btn-uzbek-outline"
+                  className="uzn-btn-outline-gold"
+                  style={{ color: "#1A1A2E", borderColor: "#C9A84C" }}
                   onClick={handleContactClick(
                     "email",
                     `mailto:${contact.email || "hello@kashf.uz"}`,

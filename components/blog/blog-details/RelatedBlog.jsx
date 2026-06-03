@@ -1,5 +1,6 @@
 import Image from "next/image";
 import blogsData from "../../../data/blogs";
+import OptimizedImage from "@/components/shared/OptimizedImage";
 
 const RelatedBlog = () => {
   return (
@@ -11,15 +12,16 @@ const RelatedBlog = () => {
             className="blogCard -type-2 d-block bg-white rounded-4 shadow-4"
           >
             <div className="blogCard__image">
-              <div className="rounded-4">
-                <Image
-                  width={400}
-                  height={300}
-                  className="cover w-100 img-fluid"
-                  src={item.img}
-                  alt="image"
-                />
-              </div>
+              <OptimizedImage
+                src={item.img}
+                alt={item.title}
+                sizes="(max-width: 576px) 100vw, 25vw"
+                wrapperStyle={{
+                  width: "100%",
+                  height: "300px",
+                  borderRadius: "4px",
+                }}
+              />
             </div>
             <div className="px-20 py-20">
               <h4 className="text-dark-1 text-18 fw-500">{item.title}</h4>

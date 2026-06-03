@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import OptimizedImage from "@/components/shared/OptimizedImage";
 import { getPublishedPosts } from "@/lib/posts";
 
 const CATEGORY_KEYS = [
@@ -199,17 +200,16 @@ export default function BlogPage() {
                   >
                     <div className="tourCard -type-1 rounded-4 h-100">
                       <div className="tourCard__image position-relative">
-                        <div className="ratio ratio-16:9 rounded-4 overflow-hidden">
-                          <img
-                            src={post.coverImage || "/img/blog/1.png"}
-                            alt={title}
-                            style={{
-                              width: "100%",
-                              height: "220px",
-                              objectFit: "cover",
-                            }}
-                          />
-                        </div>
+                        <OptimizedImage
+                          src={post.coverImage || "/img/blog/1.png"}
+                          alt={title}
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          wrapperStyle={{
+                            width: "100%",
+                            height: "220px",
+                            borderRadius: "12px",
+                          }}
+                        />
                         <div
                           style={{
                             position: "absolute",

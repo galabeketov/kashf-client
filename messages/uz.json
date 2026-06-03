@@ -56,7 +56,8 @@
     "itinerary": "Kun Bo'yicha Dastur",
     "requestTour": "Tur So'rash",
     "contactDirectly": "Yoki to'g'ridan-to'g'ri bog'laning",
-    "perPerson": "kishi boshiga"
+    "perPerson": "kishi boshiga",
+    "priceOnRequest": "Narx so'rang"
   },
   "booking": {
     "name": "Ismingiz *",

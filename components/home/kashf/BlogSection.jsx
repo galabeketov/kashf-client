@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { LuArrowRight } from "@/components/shared/Icons";
+import OptimizedImage from "@/components/shared/OptimizedImage";
 import { getFeaturedPosts } from "@/lib/posts";
 
 const getLocalized = (value, locale) => {
@@ -76,17 +77,16 @@ export default function BlogSection() {
               >
                 <article className="uzbek-blog-card h-100 position-relative">
                   <span className="uzbek-dome-ornament" aria-hidden="true" />
-                  <div className="uzbek-blog-card__media ratio ratio-16:9 rounded-8 overflow-hidden">
-                    <img
-                      src={post.coverImage || "/img/blog/1.png"}
-                      alt={title}
-                      style={{
-                        width: "100%",
-                        height: "220px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </div>
+                  <OptimizedImage
+                    src={post.coverImage || "/img/blog/1.png"}
+                    alt={title}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    wrapperStyle={{
+                      width: "100%",
+                      height: "220px",
+                      borderRadius: "8px",
+                    }}
+                  />
 
                   <div className="tourCard__content mt-16">
                     <div className="text-12 text-blue-1 fw-600 uppercase mb-10">

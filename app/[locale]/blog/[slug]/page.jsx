@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import OptimizedImage from "@/components/shared/OptimizedImage";
 import { getPostById } from "@/lib/posts";
 
 const getLocalized = (value, locale) => {
@@ -153,13 +154,14 @@ export default function BlogDetailPage() {
                   <span>{t("by")} Samandar Ikromov</span>
                 </div>
 
-                <img
+                <OptimizedImage
                   src={post.coverImage || "/img/blog/1.png"}
                   alt={title}
-                  style={{
+                  priority
+                  sizes="(max-width: 992px) 100vw, 860px"
+                  wrapperStyle={{
                     width: "100%",
                     height: "400px",
-                    objectFit: "cover",
                     borderRadius: "12px",
                     marginTop: "20px",
                     marginBottom: "24px",

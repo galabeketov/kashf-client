@@ -56,7 +56,8 @@
     "itinerary": "Day-by-Day Itinerary",
     "requestTour": "Request This Tour",
     "contactDirectly": "Or contact directly",
-    "perPerson": "per person"
+    "perPerson": "per person",
+    "priceOnRequest": "On request"
   },
   "booking": {
     "name": "Your Name *",

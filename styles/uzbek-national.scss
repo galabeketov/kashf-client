@@ -1,0 +1,1240 @@
+// =============================================
+// TRAVEL EASY — UZBEK NATIONAL DESIGN SYSTEM
+// =============================================
+// Fonts loaded via app/layout.jsx (Cormorant Garamond + Inter)
+
+// ── Color Variables ───────────────────────────────
+$uzn-lazur:       #1b6ca8;
+$uzn-lazur-light: #2e8fd4;
+$uzn-lazur-dark:  #134f7d;
+$uzn-gold:        #c9a84c;
+$uzn-gold-light:  #e8c97a;
+$uzn-gold-dark:   #a8863a;
+$uzn-ivory:       #fdfaf4;
+$uzn-terracotta:  #c0392b;
+$uzn-emerald:     #1a7a4a;
+$uzn-dark:        #1a1a2e;
+$uzn-dark-mid:    #252545;
+
+// ── CSS Custom Properties ────────────────────────
+:root {
+  --uzn-lazur:       #{$uzn-lazur};
+  --uzn-lazur-light: #{$uzn-lazur-light};
+  --uzn-lazur-dark:  #{$uzn-lazur-dark};
+  --uzn-gold:        #{$uzn-gold};
+  --uzn-gold-light:  #{$uzn-gold-light};
+  --uzn-gold-dark:   #{$uzn-gold-dark};
+  --uzn-ivory:       #{$uzn-ivory};
+  --uzn-terracotta:  #{$uzn-terracotta};
+  --uzn-emerald:     #{$uzn-emerald};
+  --uzn-dark:        #{$uzn-dark};
+  --uzn-dark-mid:    #{$uzn-dark-mid};
+  --font-heading:    'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:       'Inter', system-ui, -apple-system, sans-serif;
+  --uzn-radius-sm:   8px;
+  --uzn-radius-md:   12px;
+  --uzn-radius-lg:   20px;
+}
+
+// ── Islamic SVG Data-URI Tiles ────────────────────
+// 8-pointed star lattice as SVG pattern
+$islamic-star-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='rgba(201%2C168%2C76%2C0.14)' stroke-width='0.8'%3E%3Cpolygon points='40%2C4 46%2C20 62%2C14 56%2C30 72%2C36 56%2C42 62%2C58 46%2C52 40%2C68 34%2C52 18%2C58 24%2C42 8%2C36 24%2C30 18%2C14 34%2C20'/%3E%3Crect x='28' y='28' width='24' height='24' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
+$islamic-star-dark:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='rgba(201%2C168%2C76%2C0.07)' stroke-width='0.8'%3E%3Cpolygon points='40%2C4 46%2C20 62%2C14 56%2C30 72%2C36 56%2C42 62%2C58 46%2C52 40%2C68 34%2C52 18%2C58 24%2C42 8%2C36 24%2C30 18%2C14 34%2C20'/%3E%3Crect x='28' y='28' width='24' height='24' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
+
+// ── Keyframes ─────────────────────────────────────
+@keyframes uzn-shimmer-bg {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes uzn-float {
+  0%, 100% { transform: translateY(0)    rotate(0deg);  opacity: 0.55; }
+  50%       { transform: translateY(-14px) rotate(6deg); opacity: 0.9; }
+}
+
+@keyframes uzn-crescent-float {
+  0%, 100% { transform: translateY(0px)   rotate(-4deg); opacity: 0.45; }
+  50%       { transform: translateY(-22px) rotate(6deg);  opacity: 0.75; }
+}
+
+@keyframes uzn-pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(201,168,76,0.18); }
+  50%       { box-shadow: 0 0 24px rgba(201,168,76,0.5), 0 0 48px rgba(27,108,168,0.18); }
+}
+
+@keyframes uzn-sweep {
+  from { left: -100%; }
+  to   { left:  120%; }
+}
+
+@keyframes uzn-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+// ── Typography ────────────────────────────────────
+h1, h2, h3 {
+  font-family: var(--font-heading);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+// ── Gold Shimmer Text ─────────────────────────────
+.uzn-shimmer-text {
+  background: linear-gradient(
+    90deg,
+    $uzn-gold-dark  0%,
+    $uzn-gold       30%,
+    #fff5cc         50%,
+    $uzn-gold       70%,
+    $uzn-gold-dark  100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: uzn-shimmer-bg 3.5s linear infinite;
+}
+
+// ── Logo ──────────────────────────────────────────
+.uzn-logo-name {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, $uzn-gold-light, $uzn-gold, $uzn-gold-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.uzn-logo-sub {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: $uzn-lazur-light;
+  -webkit-text-fill-color: $uzn-lazur-light;
+  display: block;
+  margin-top: 2px;
+}
+
+// ── Buttons ───────────────────────────────────────
+%uzn-btn-base {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--uzn-radius-sm);
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease, color 0.28s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+    transform: skewX(-18deg);
+  }
+
+  &:hover::after {
+    animation: uzn-sweep 0.52s ease forwards;
+  }
+
+  &:hover { transform: translateY(-2px); }
+  &:active { transform: translateY(0); }
+}
+
+.uzn-btn-primary {
+  @extend %uzn-btn-base;
+  background: linear-gradient(135deg, $uzn-lazur 0%, $uzn-lazur-dark 100%);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 15px;
+
+  &:hover {
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(27,108,168,0.42);
+  }
+}
+
+.uzn-btn-gold {
+  @extend %uzn-btn-base;
+  background: linear-gradient(135deg, $uzn-gold-light 0%, $uzn-gold 50%, $uzn-gold-dark 100%);
+  color: $uzn-dark;
+  border: none;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 700;
+
+  &:hover {
+    color: $uzn-dark;
+    box-shadow: 0 8px 24px rgba(201,168,76,0.48);
+  }
+}
+
+.uzn-btn-outline-gold {
+  @extend %uzn-btn-base;
+  background: transparent;
+  color: #fff;
+  border: 2px solid $uzn-gold;
+  padding: 12px 30px;
+  font-size: 15px;
+
+  &:hover {
+    background: $uzn-gold;
+    color: $uzn-dark;
+    box-shadow: 0 8px 24px rgba(201,168,76,0.38);
+  }
+}
+
+.uzn-btn-outline-dark {
+  @extend %uzn-btn-base;
+  background: transparent;
+  color: $uzn-lazur;
+  border: 1px solid rgba(27,108,168,0.35);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+
+  &:hover {
+    background: $uzn-lazur;
+    color: #fff;
+    border-color: $uzn-lazur;
+  }
+}
+
+// ── Gold Line Dividers ────────────────────────────
+.uzn-gold-line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, $uzn-gold, $uzn-lazur);
+  border-radius: 2px;
+  margin: 12px 0 20px;
+}
+
+.uzn-gold-line-center {
+  @extend .uzn-gold-line;
+  margin: 12px auto 20px;
+}
+
+// ── Ornamental Divider ────────────────────────────
+.uzn-ornament-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  margin: 16px 0 24px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, $uzn-gold 40%, transparent 100%);
+  }
+  &::after {
+    background: linear-gradient(to left, transparent, $uzn-gold 40%, transparent 100%);
+  }
+
+  .uzn-ornament-divider__star {
+    flex-shrink: 0;
+    color: $uzn-gold;
+    display: flex;
+    align-items: center;
+    filter: drop-shadow(0 0 4px rgba(201,168,76,0.5));
+    animation: uzn-spin-slow 18s linear infinite;
+  }
+}
+
+// ── Hero Overlay ──────────────────────────────────
+.uzn-hero-overlay {
+  background: linear-gradient(
+    160deg,
+    rgba(26,26,46,0.58)  0%,
+    rgba(27,108,168,0.22) 40%,
+    rgba(26,26,46,0.74)  100%
+  );
+}
+
+// ── Bismillah Label ───────────────────────────────
+.uzn-bismillah {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  color: $uzn-gold;
+  text-transform: uppercase;
+  opacity: 0.88;
+  display: block;
+  margin-bottom: 10px;
+}
+
+// ── Stat Cards (Hero glassmorphism) ───────────────
+.uzn-stat-card {
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: var(--uzn-radius-md);
+  padding: 22px 16px;
+  text-align: center;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: uzn-pulse-glow 5s ease-in-out infinite;
+  transition: all 0.3s ease;
+
+  &:nth-child(2) { animation-delay: 1.6s; }
+  &:nth-child(3) { animation-delay: 3.2s; }
+
+  &:hover {
+    border-color: $uzn-gold;
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+  }
+
+  .uzn-stat-num {
+    font-family: var(--font-heading);
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, $uzn-gold-light, $uzn-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+// ── Section Backgrounds ───────────────────────────
+.uzn-section-ivory {
+  background-color: $uzn-ivory;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: $islamic-star-light;
+    background-repeat: repeat;
+    background-size: 80px 80px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}
+
+.uzn-section-dark {
+  background-color: $uzn-dark;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: $islamic-star-dark;
+    background-repeat: repeat;
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+}
+
+// ── Floating Crescent ─────────────────────────────
+.uzn-crescent {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  animation: uzn-crescent-float 8s ease-in-out infinite;
+
+  svg {
+    filter: drop-shadow(0 0 10px rgba(201,168,76,0.42));
+  }
+
+  &.uzn-crescent--delay {
+    animation-delay: 4s;
+  }
+}
+
+// ── Floating Ornament ─────────────────────────────
+.uzn-ornament-float {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  animation: uzn-float 7s ease-in-out infinite;
+  color: $uzn-gold;
+  font-size: 64px;
+}
+
+// ── Service Icon — Octagon ────────────────────────
+.uzn-icon-octagon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  background: var(--icon-bg, rgba(27,108,168,0.1));
+  color: var(--icon-color, #1b6ca8);
+  margin-bottom: 18px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+// ── Service Card ──────────────────────────────────
+.uzn-service-card {
+  background: #fff;
+  border-radius: var(--uzn-radius-md);
+  padding: 28px 22px;
+  border: 1px solid rgba(201,168,76,0.12);
+  transition: all 0.35s ease;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $uzn-gold, $uzn-lazur);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+
+  &:hover {
+    box-shadow: 0 12px 32px rgba(27,108,168,0.12), 0 0 0 1px rgba(201,168,76,0.2);
+    transform: translateY(-4px);
+    text-decoration: none;
+
+    .uzn-icon-octagon {
+      filter: brightness(1.1);
+      transform: scale(1.06);
+    }
+  }
+}
+
+// ── Silk Road Tour Card ───────────────────────────
+// Premium card: full-bleed image w/ gradient overlay + title on image,
+// Islamic horseshoe-arch transition to ivory content footer, gold corner ornaments.
+
+.uzn-silk-card {
+  position: relative;
+  border-radius: 16px;
+  background: $uzn-ivory;
+  border: 1px solid rgba(201,168,76,0.22);
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  // Gold corner ornaments — top-right
+  &::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    border-top: 2px solid rgba(201,168,76,0.7);
+    border-right: 2px solid rgba(201,168,76,0.7);
+    border-radius: 0 5px 0 0;
+    z-index: 10;
+    pointer-events: none;
+    transition: border-color 0.3s ease;
+  }
+
+  // Gold corner ornament — bottom-left
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 18px;
+    height: 18px;
+    border-bottom: 2px solid rgba(201,168,76,0.5);
+    border-left: 2px solid rgba(201,168,76,0.5);
+    border-radius: 0 0 0 4px;
+    z-index: 10;
+    pointer-events: none;
+    transition: border-color 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    border-color: rgba(201,168,76,0.65);
+    box-shadow:
+      0 28px 60px rgba(26,26,46,0.22),
+      0 0 0 1px rgba(201,168,76,0.38);
+
+    &::before { border-color: $uzn-gold; }
+    &::after  { border-color: rgba(201,168,76,0.8); }
+
+    .uzn-silk-card__photo img {
+      transform: scale(1.08);
+    }
+
+    .uzn-silk-card__arch-line {
+      border-color: rgba(201,168,76,0.9);
+    }
+
+    .uzn-silk-card__cta {
+      background: $uzn-gold;
+      color: $uzn-dark;
+      border-color: $uzn-gold;
+    }
+  }
+}
+
+// Image section
+.uzn-silk-card__photo {
+  position: relative;
+  height: 270px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.52s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block;
+  }
+
+  // Gradient overlay — heavy at bottom for text legibility
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(26,26,46,0)    0%,
+      rgba(26,26,46,0.05) 30%,
+      rgba(26,26,46,0.55) 55%,
+      rgba(26,26,46,0.85) 78%,
+      rgba(26,26,46,0.94) 100%
+    );
+    z-index: 1;
+  }
+
+  // Ivory arch cutout at the very bottom (creates the iwan arch shape)
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 32px;
+    background: $uzn-ivory;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 3;
+  }
+}
+
+// Gold arch outline — sits just above the ivory cutout
+.uzn-silk-card__arch-line {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 32px;
+  border: 1.5px solid rgba(201,168,76,0.52);
+  border-bottom: none;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  z-index: 2;
+  pointer-events: none;
+  transition: border-color 0.35s ease;
+}
+
+// Top badge row (duration + rating)
+.uzn-silk-card__top-row {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  right: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+
+.uzn-silk-card__dur {
+  background: rgba(19,79,125,0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 4px 13px;
+  border: 1px solid rgba(201,168,76,0.38);
+}
+
+.uzn-silk-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(26,26,46,0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: $uzn-gold;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 4px 10px;
+  border: 1px solid rgba(201,168,76,0.28);
+}
+
+// Text overlay — lives on the gradient, above the arch cutout
+.uzn-silk-card__text-overlay {
+  position: absolute;
+  bottom: 40px;   // clears the 32px arch + a tiny gap
+  left: 0;
+  right: 0;
+  padding: 0 15px 6px;
+  z-index: 4;
+}
+
+.uzn-silk-card__title {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 700;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0 0 5px;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.55);
+}
+
+.uzn-silk-card__location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.78);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+// Footer (below image, on ivory)
+.uzn-silk-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px 15px;
+  flex: 1;
+}
+
+.uzn-silk-card__price {
+  .uzn-silk-price-label {
+    display: block;
+    font-size: 10px;
+    color: rgba(26,26,46,0.48);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .uzn-silk-price-amount {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: $uzn-dark;
+    line-height: 1.1;
+    display: block;
+  }
+
+  .uzn-silk-price-pp {
+    display: block;
+    font-size: 10px;
+    color: rgba(26,26,46,0.42);
+    margin-top: 2px;
+    letter-spacing: 0.04em;
+  }
+}
+
+.uzn-silk-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: $uzn-lazur;
+  background: transparent;
+  border: 1.5px solid rgba(27,108,168,0.32);
+  border-radius: 22px;
+  padding: 8px 15px;
+  text-decoration: none;
+  transition: all 0.28s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
+
+  &:hover {
+    text-decoration: none;
+    color: $uzn-dark;
+  }
+}
+
+// ── Legacy badge classes (kept for compatibility) ──
+.uzn-price-badge {
+  background: linear-gradient(135deg, $uzn-gold-light, $uzn-gold);
+  color: $uzn-dark;
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 3px 10px;
+  display: inline-block;
+}
+
+.uzn-duration-badge {
+  background: $uzn-lazur;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 3px 10px;
+  display: inline-block;
+}
+
+// ── About Photo Frame ─────────────────────────────
+.uzn-photo-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 36px;
+    height: 36px;
+    border: 3px solid $uzn-gold;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 3px 0 0 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 36px;
+    height: 36px;
+    border: 3px solid $uzn-gold;
+    border-left: none;
+    border-top: none;
+    border-radius: 0 0 3px 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  img {
+    border: 2px solid rgba(201,168,76,0.32);
+    border-radius: var(--uzn-radius-md);
+    display: block;
+    width: 100%;
+  }
+}
+
+// ── About Stat Cards ──────────────────────────────
+.uzn-about-stat {
+  border: 1px solid rgba(201,168,76,0.28);
+  border-radius: var(--uzn-radius-sm);
+  padding: 16px 18px;
+  background: #fff;
+  transition: all 0.28s ease;
+
+  &:hover {
+    border-color: $uzn-gold;
+    box-shadow: 0 6px 20px rgba(201,168,76,0.16);
+    transform: translateY(-2px);
+  }
+
+  .uzn-about-stat__num {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: $uzn-dark;
+  }
+}
+
+// ── Dome Decor Container ──────────────────────────
+.uzn-dome-decor {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  overflow: hidden;
+
+  svg {
+    display: block;
+    width: 100%;
+  }
+}
+
+// ── Footer Styles ─────────────────────────────────
+.uzn-footer {
+  background-color: $uzn-dark;
+  position: relative;
+  overflow: hidden;
+  color: rgba(255,255,255,0.78);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: $islamic-star-dark;
+    background-repeat: repeat;
+    background-size: 80px 80px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .uzn-footer__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  a {
+    color: rgba(255,255,255,0.72);
+    transition: color 0.22s ease;
+
+    &:hover {
+      color: $uzn-gold;
+    }
+  }
+
+  h4, h5 {
+    color: rgba(255,255,255,0.96);
+  }
+
+  p {
+    color: rgba(255,255,255,0.65);
+  }
+}
+
+.uzn-footer-bottom-bar {
+  border-top: 1px solid rgba(201,168,76,0.22);
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.05), transparent);
+  position: relative;
+  z-index: 1;
+}
+
+// ── Header Nav Gold Underline ─────────────────────
+.uzn-nav-link {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $uzn-gold;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after,
+  &.current::after {
+    width: 100%;
+  }
+}
+
+// ── Locale Pill Switcher ──────────────────────────
+.uzn-locale-pill {
+  display: inline-flex;
+  border-radius: 24px;
+  border: 1px solid rgba(201,168,76,0.38);
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+
+  button {
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: rgba(255,255,255,0.65);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    font-family: var(--font-body);
+
+    &.active {
+      background: $uzn-gold;
+      color: $uzn-dark;
+    }
+
+    &:hover:not(.active) {
+      color: #fff;
+      background: rgba(255,255,255,0.1);
+    }
+  }
+}
+
+// ── Islamic Pattern overlay ───────────────────────
+.uzn-pattern-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: $islamic-star-light;
+  background-repeat: repeat;
+  background-size: 80px 80px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+// ── Tour Card Uzbek ───────────────────────────────
+.tour-card-uzbek {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(201,168,76,0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 20px 60px rgba(27,108,168,0.15),
+      0 0 0 2px rgba(201,168,76,0.4);
+    text-decoration: none;
+  }
+
+  &__image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    // Dark gradient overlay
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 35%,
+        rgba(26,26,46,0.82) 100%
+      );
+      pointer-events: none;
+    }
+  }
+
+  &:hover &__image img { transform: scale(1.08); }
+
+  &__corner-ornament {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    opacity: 0.92;
+    color: $uzn-gold;
+    animation: rotateSlow 20s linear infinite;
+    pointer-events: none;
+    line-height: 0;
+  }
+
+  &__duration {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 3;
+    background: linear-gradient(135deg, $uzn-lazur, $uzn-lazur-dark);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(4px);
+  }
+
+  &__price-overlay {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 3;
+    background: linear-gradient(135deg, $uzn-gold-light, $uzn-gold-dark);
+    color: $uzn-dark;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    box-shadow: 0 2px 12px rgba(201,168,76,0.35);
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: rgba(26,26,46,0.52);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    padding: 18px 20px 16px;
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 19px;
+      font-weight: 600;
+      color: $uzn-dark;
+      margin-bottom: 8px;
+      line-height: 1.28;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+
+    .stars {
+      color: $uzn-gold;
+      font-size: 13px;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    .cta {
+      font-size: 13px;
+      font-weight: 600;
+      color: $uzn-lazur;
+      transition: color 0.2s ease, letter-spacing 0.2s ease;
+
+      &:hover {
+        color: $uzn-gold;
+        letter-spacing: 0.06em;
+      }
+    }
+  }
+}
+
+// Placeholder for missing images
+.tour-card-uzbek__image img:not([src]),
+.tour-card-uzbek__image img[src=""] {
+  background: linear-gradient(135deg, $uzn-lazur 0%, $uzn-gold 100%);
+}
+
+// ── Service Card Uzbek ────────────────────────────
+.service-card-uzbek {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  border: 1px solid rgba(201,168,76,0.12);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  height: 100%;
+
+  // Animated gold top accent line
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, $uzn-gold, $uzn-lazur, $uzn-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  &:hover::before { transform: scaleX(1); }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(27,108,168,0.12);
+    border-color: rgba(201,168,76,0.35);
+    text-decoration: none;
+  }
+
+  .service-icon-uzbek {
+    width: 64px;
+    height: 64px;
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    flex-shrink: 0;
+  }
+
+  &:hover .service-icon-uzbek {
+    transform: scale(1.12) rotate(22.5deg); // half-step of octagon symmetry
+  }
+
+  h3 {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 600;
+    color: $uzn-dark;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  p {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.58;
+    margin: 0;
+  }
+
+  .service-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: $uzn-gold;
+    transition: gap 0.22s ease, color 0.22s ease;
+    letter-spacing: 0.02em;
+
+    svg { transition: transform 0.22s ease; }
+
+    &:hover {
+      gap: 10px;
+      color: $uzn-gold-dark;
+      svg { transform: translateX(3px); }
+    }
+  }
+}
+
+// ── Filter Pills (tours listing page) ────────────
+.uzn-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid rgba(201,168,76,0.35);
+  background: transparent;
+  color: rgba(26,26,46,0.65);
+  transition: all 0.22s ease;
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+
+  &:hover {
+    border-color: $uzn-gold;
+    color: $uzn-dark;
+    background: rgba(201,168,76,0.08);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, $uzn-gold-light, $uzn-gold);
+    border-color: $uzn-gold;
+    color: $uzn-dark;
+    box-shadow: 0 4px 14px rgba(201,168,76,0.3);
+  }
+}
+
+// ── Keyframes ─────────────────────────────────────
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+// ── Responsive ────────────────────────────────────
+@media (max-width: 1024px) {
+  .uzn-logo-name { font-size: 22px; }
+}
+
+@media (max-width: 768px) {
+  .uzn-stat-card {
+    padding: 16px 12px;
+    .uzn-stat-num { font-size: 30px; }
+  }
+
+  .uzn-btn-primary,
+  .uzn-btn-gold,
+  .uzn-btn-outline-gold {
+    padding: 12px 22px;
+    font-size: 14px;
+  }
+
+  .uzn-ornament-divider { margin: 12px 0 18px; }
+  .uzn-logo-name        { font-size: 20px; }
+  .uzn-logo-sub         { font-size: 9px; letter-spacing: 0.16em; }
+  .uzn-icon-octagon     { width: 52px; height: 52px; }
+}

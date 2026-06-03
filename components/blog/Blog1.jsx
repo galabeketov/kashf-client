@@ -1,21 +1,21 @@
+"use client";
 
-'use client'
-
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import OptimizedImage from "@/components/shared/OptimizedImage";
 import blogsData from "../../data/blogs";
 import BlogPagination from "./BlogPagination";
 
 const Blog1 = () => {
   const [filterOption, setFilterOption] = useState("art_culture");
-  const [filteredItems, setFilteredItems] = useState([])
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
-    setFilteredItems(blogsData.filter(elm=>elm.tags?.includes(filterOption)))
-  
-  }, [filterOption])
-  
+    setFilteredItems(
+      blogsData.filter((elm) => elm.tags?.includes(filterOption)),
+    );
+  }, [filterOption]);
+
   const filterOptions = [
     { label: "Art and culture", value: "art_culture" },
     { label: "Beaches", value: "beaches" },
@@ -54,15 +54,16 @@ const Blog1 = () => {
                 className="blogCard -type-1 d-block "
               >
                 <div className="blogCard__image">
-                  <div className="rounded-8">
-                    <Image
-                      width={400}
-                      height={300}
-                      className="cover w-100 img-fluid"
-                      src={item.img}
-                      alt="image"
-                    />
-                  </div>
+                  <OptimizedImage
+                    src={item.img}
+                    alt={item.title}
+                    sizes="(max-width: 576px) 100vw, 33vw"
+                    wrapperStyle={{
+                      width: "100%",
+                      height: "300px",
+                      borderRadius: "8px",
+                    }}
+                  />
                 </div>
                 <div className="pt-20">
                   <h4 className="text-dark-1 text-18 fw-500">{item.title}</h4>

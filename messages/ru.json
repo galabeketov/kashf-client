@@ -56,7 +56,8 @@
     "itinerary": "Программа по дням",
     "requestTour": "Запросить тур",
     "contactDirectly": "Или свяжитесь напрямую",
-    "perPerson": "за человека"
+    "perPerson": "за человека",
+    "priceOnRequest": "По запросу"
   },
   "booking": {
     "name": "Ваше имя *",
