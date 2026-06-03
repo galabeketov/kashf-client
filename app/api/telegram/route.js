@@ -5,30 +5,20 @@ const SITE_URL = "https://kashf-client.vercel.app/en";
 const WHATSAPP_URL = "https://wa.me/998990621736";
 
 async function sendMessage(chatId, text, options = {}) {
-  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: "HTML",
-      ...options,
-    }),
-  });
-}
-
-async function sendPhoto(chatId, photo, caption, options = {}) {
-  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: chatId,
-      photo,
-      caption,
-      parse_mode: "HTML",
-      ...options,
-    }),
-  });
+  const res = await fetch(
+    `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: "HTML",
+        ...options,
+      }),
+    },
+  );
+  return res.json();
 }
 
 export async function POST(request) {
@@ -41,12 +31,10 @@ export async function POST(request) {
     const text = message.text || "";
     const firstName = message.from?.first_name || "Traveler";
 
-    // /start command
     if (text === "/start") {
-      await sendPhoto(
+      await sendMessage(
         chatId,
-        "https://kashf-client.vercel.app/img/og-image.jpg",
-        `🇺🇿 <b>Assalomu alaykum, ${firstName}!</b>\n\nWelcome to <b>Travel Easy Uzbekistan</b> — your personal travel partner on the Silk Road.\n\n👤 <b>Guide:</b> Samandar Ikromov\n📍 <b>Destination:</b> Uzbekistan\n🗺 <b>Tours:</b> Samarkand, Bukhara, Khiva, Tashkent & beyond\n\nChoose an option below:`,
+        `🇺🇿 <b>Assalomu alaykum, ${firstName}!</b>\n\nWelcome to <b>Travel Easy Uzbekistan</b> — your personal travel partner on the Silk Road.\n\n👤 <b>Guide:</b> Samandar Ikromov\n📍 <b>Destination:</b> Uzbekistan\n🗺 <b>Tours:</b> Samarkand, Bukhara, Khiva, Tashkent & beyond\n\n<i>Choose an option below 👇</i>`,
         {
           reply_markup: {
             inline_keyboard: [
@@ -68,13 +56,10 @@ export async function POST(request) {
           },
         },
       );
-    }
-
-    // /tours command
-    else if (text === "/tours") {
+    } else if (text === "/tours") {
       await sendMessage(
         chatId,
-        `🗺 <b>Our Tours</b>\n\nDiscover Uzbekistan's Silk Road with private guided tours:\n\n• Tashkent City Tour — from $50\n• Day Tour to Samarkand — from $80\n• Day Tour to Bukhara — from $90\n• Khiva & Urgench — from $180\n• 8 Days Complete Silk Road — from $950\n• And more...\n\nTap below to see all tours:`,
+        `🗺 <b>Our Tours</b>\n\nDiscover Uzbekistan's Silk Road with private guided tours:\n\n• Tashkent City Tour\n• Day Tour to Samarkand\n• Day Tour to Bukhara\n• Khiva &amp; Urgench\n• Chimgan Mountains &amp; Charvak Lake\n• 8 Days Complete Silk Road\n• And more...\n\nTap below to see all tours:`,
         {
           reply_markup: {
             inline_keyboard: [
@@ -89,10 +74,7 @@ export async function POST(request) {
           },
         },
       );
-    }
-
-    // /contact command
-    else if (text === "/contact") {
+    } else if (text === "/contact") {
       await sendMessage(
         chatId,
         `📞 <b>Contact Samandar Ikromov</b>\n\n📱 <b>Phone/WhatsApp:</b> +998 99 062 17 36\n📧 <b>Email:</b> samandarwtf13@gmail.com\n📍 <b>Location:</b> Tashkent, Uzbekistan\n\n<i>We reply within 24 hours</i>`,
@@ -105,13 +87,10 @@ export async function POST(request) {
           },
         },
       );
-    }
-
-    // /about command
-    else if (text === "/about") {
+    } else if (text === "/about") {
       await sendMessage(
         chatId,
-        `👤 <b>About Samandar Ikromov</b>\n\nProfessional Tour Guide & Travel Consultant in Uzbekistan.\n\n✅ 614+ happy clients\n✅ 18+ countries served\n✅ 11+ tour packages\n✅ Languages: English, Russian, Uzbek\n✅ Private tours only — no strangers\n✅ Business trip logistics expert\n\n<i>"Let's create memories that last a lifetime!"</i>`,
+        `👤 <b>About Samandar Ikromov</b>\n\nProfessional Tour Guide &amp; Travel Consultant in Uzbekistan.\n\n✅ 614+ happy clients\n✅ 18+ countries served\n✅ 11+ tour packages\n✅ Languages: English, Russian, Uzbek\n✅ Private tours only — no strangers\n✅ Business trip logistics expert\n\n<i>"Let's create memories that last a lifetime!"</i>`,
         {
           reply_markup: {
             inline_keyboard: [
@@ -121,13 +100,10 @@ export async function POST(request) {
           },
         },
       );
-    }
-
-    // Any other message
-    else {
+    } else {
       await sendMessage(
         chatId,
-        `🇺🇿 <b>Travel Easy Uzbekistan</b>\n\nUse the menu button or commands:\n/start — Welcome\n/tours — View tours\n/contact — Contact us\n/about — About the guide`,
+        `🇺🇿 <b>Travel Easy Uzbekistan</b>\n\nUse the commands:\n/start — Welcome\n/tours — View tours\n/contact — Contact us\n/about — About the guide`,
         {
           reply_markup: {
             inline_keyboard: [

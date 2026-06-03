@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
+import Aos from "aos";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
 import TourCard from "@/components/ui/TourCard";
@@ -71,6 +72,18 @@ export default function ToursPage() {
     () => tours.filter((tour) => filterTourByKey(tour, activeFilter)),
     [activeFilter, tours],
   );
+
+  useEffect(() => {
+    if (loading) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      Aos.refreshHard();
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [loading, filteredTours.length]);
 
   return (
     <>
