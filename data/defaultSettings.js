@@ -172,9 +172,9 @@ export const defaultSettings = {
       },
       avatar: "/img/avatars/testimonials/2.png",
       text: {
-        en: "Professional, punctual and incredibly knowledgeable. We saw places typical tours miss. Already recommending Kashf to everyone!",
-        uz: "Professional, aniq va inanilmas darajada bilimli. Odatiy turlar o'tkazib yuboradigan joylarni ko'rdik. Allaqachon hammaga Kashf ni tavsiya qilyapmiz!",
-        ru: "Профессиональный, пунктуальный и невероятно знающий. Мы увидели места, которые пропускают обычные туры. Уже рекомендуем Kashf всем!",
+        en: "Professional, punctual and incredibly knowledgeable. We saw places typical tours miss. Already recommending Travel Easy Uzbekistan to everyone!",
+        uz: "Professional, aniq va nihoyatda bilimli. Odatiy turlar o'tkazib yuboradigan joylarni ko'rdik. Travel Easy Uzbekistan'ni hammaga tavsiya qilyapmiz!",
+        ru: "Профессиональный, пунктуальный и невероятно знающий. Мы увидели места, которые пропускают обычные туры. Уже рекомендуем Travel Easy Uzbekistan всем!",
       },
       tour: "10 Days Legendary Adventure",
       rating: 5,

@@ -42,11 +42,17 @@ export default function ClientProviders({ children }) {
     const startAos = () => {
       if (cancelled || aosReady.current) return;
 
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
       Aos.init({
-        duration: 1200,
-        once: false,
+        duration: reduceMotion ? 0 : 520,
+        offset: 40,
+        once: true,
         startEvent: "kashf:aos-start",
         disableMutationObserver: false,
+        disable: reduceMotion,
       });
 
       // Defer class mutations until hydration has settled.

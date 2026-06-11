@@ -1,8 +1,20 @@
 import { NextResponse } from "next/server";
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const SITE_URL = "https://kashf-client.vercel.app/en";
+const WEBHOOK_SECRET = process.env.TELEGRAM_WEBHOOK_SECRET;
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://travel-easy.uz"
+).replace(/\/$/, "");
 const WHATSAPP_URL = "https://wa.me/998990621736";
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
 async function sendMessage(chatId, text, options = {}) {
   const res = await fetch(
@@ -23,13 +35,20 @@ async function sendMessage(chatId, text, options = {}) {
 
 export async function POST(request) {
   try {
+    if (
+      WEBHOOK_SECRET &&
+      request.headers.get("x-telegram-bot-api-secret-token") !== WEBHOOK_SECRET
+    ) {
+      return NextResponse.json({ ok: false }, { status: 401 });
+    }
+
     const body = await request.json();
     const message = body?.message;
     if (!message) return NextResponse.json({ ok: true });
 
     const chatId = message.chat.id;
     const text = message.text || "";
-    const firstName = message.from?.first_name || "Traveler";
+    const firstName = escapeHtml(message.from?.first_name || "Traveler");
 
     if (text === "/start") {
       await sendMessage(

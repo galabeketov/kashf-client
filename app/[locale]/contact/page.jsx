@@ -62,6 +62,7 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -72,20 +73,30 @@ export default function ContactPage() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setFieldErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSubmitting(true);
     setError("");
+    setFieldErrors({});
 
     try {
-      await submitInquiry({
+      const result = await submitInquiry({
         ...formData,
         tourId: "",
         tourTitle: "General Inquiry",
         locale,
       });
+      if (!result.success) {
+        if (result.errorCode === "validation") {
+          setFieldErrors(result.errors || {});
+          setError(Object.values(result.errors || {})[0] || "Check the form.");
+          return;
+        }
+        throw new Error("Failed to submit inquiry.");
+      }
       await trackContact({
         method: "form",
         source: "contact_page",
@@ -291,6 +302,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
+                        aria-invalid={Boolean(fieldErrors.name)}
                       />
                     </div>
                     <div className="col-sm-6">
@@ -301,6 +313,7 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
+                        aria-invalid={Boolean(fieldErrors.phone)}
                       />
                     </div>
                     <div className="col-12">
@@ -311,6 +324,7 @@ export default function ContactPage() {
                         placeholder={tBooking("email")}
                         value={formData.email}
                         onChange={handleInputChange}
+                        aria-invalid={Boolean(fieldErrors.email)}
                       />
                     </div>
                     <div className="col-12">
@@ -325,11 +339,11 @@ export default function ContactPage() {
                     </div>
                     <div className="col-12">
                       <button
-                        className="button -md -dark-1 bg-blue-1 text-white h-60 px-40"
+                        className="travel-btn travel-btn--primary"
                         type="submit"
                         disabled={submitting}
                       >
-                        {submitting ? "Submitting..." : tBooking("submit")}
+                        {submitting ? tBooking("sending") : tBooking("submit")}
                       </button>
                     </div>
                   </form>

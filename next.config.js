@@ -1,12 +1,14 @@
 const withNextIntl = require("next-intl/plugin")("./i18n.js");
 
 module.exports = withNextIntl({
+  allowedDevOrigins: ["127.0.0.1"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
     ],
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 86],
   },
   compress: true,
   poweredByHeader: false,

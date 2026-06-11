@@ -104,12 +104,19 @@ export default function TourDetailsPage() {
 
     try {
       const slugValue = Array.isArray(slug) ? slug[0] : slug;
-      await submitInquiry({
+      const result = await submitInquiry({
         ...formData,
         tourId: slugValue,
         tourTitle: localizedTourText(tour?.title, locale),
         locale,
       });
+      if (!result.success) {
+        throw new Error(
+          result.errorCode === "validation"
+            ? Object.values(result.errors || {})[0]
+            : "Failed to submit inquiry.",
+        );
+      }
       await trackContact({
         method: "form",
         source: "tour_detail",

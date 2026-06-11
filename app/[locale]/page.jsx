@@ -3,7 +3,6 @@ import KashfHero from "@/components/hero/kashf-hero";
 import ServicesSection from "@/components/home/kashf/ServicesSection";
 import ToursSection from "@/components/home/kashf/ToursSection";
 import AboutSection from "@/components/home/kashf/AboutSection";
-import Testimonials from "@/components/home/kashf/Testimonials";
 import SiteReviews from "@/components/home/kashf/SiteReviews";
 import BlogSection from "@/components/home/kashf/BlogSection";
 import CTA from "@/components/home/kashf/CTA";
@@ -37,13 +36,12 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <KashfHero />
-      <ServicesSection />
       <ToursSection />
+      <ServicesSection />
       <AboutSection />
-      <Testimonials />
       <SiteReviews />
-      <BlogSection />
       <CTA />
+      <BlogSection />
       <KashfFooter />
     </>
   );

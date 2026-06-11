@@ -1,8 +1,8 @@
 {
   "brand": {
-    "name": "TE-UZB Trip",
-    "tagline": "Travel & Tours",
-    "fullName": "TE-UZB Trip",
+    "name": "Travel Easy",
+    "tagline": "O'zbekiston",
+    "fullName": "Travel Easy Uzbekistan",
     "description": "O'zbekiston bo'ylab ishonchli sayohat xizmatlari: turlar, transferlar, transport va yordam."
   },
   "nav": {
@@ -19,7 +19,7 @@
     "label": "🇺🇿 O'zbekistondagi Sayohat Hamkoringiz",
     "title": "O'zbekistonda Oson Sayohat",
     "subtitle": "Xususiy turlar, aeroport transferi, avtomobil ijarasi, biznes yordam va boshqalar — hammasi bir joyda.",
-    "exploreBtn": "Xizmatlarni Ko'rish",
+    "exploreBtn": "Turlarni Ko'rish",
     "whatsappBtn": "WhatsApp",
     "stats": [
       {
@@ -75,7 +75,7 @@
     "cancel": "Bepul konsultatsiya · Buyurtma to'lovi yo'q · Istalgan vaqt bekor qilish"
   },
   "features": {
-    "title": "Nima Uchun Kashf",
+    "title": "Nima Uchun Travel Easy",
     "subtitle": "Turlarimiz nimasi bilan farq qiladi"
   },
   "about": {
@@ -88,7 +88,7 @@
     "whatsapp": "WhatsApp",
     "viewTours": "Turlarni Ko'rish",
     "whyTitle": "Nima Uchun Men Bilan Sayohat",
-    "whySubtitle": "Kashf turlarini farqli qiladigan narsa"
+    "whySubtitle": "Travel Easy turlarini farqli qiladigan narsa"
   },
   "testimonials": {
     "title": "Sayohatchilarimiz Nima Deydi",
@@ -177,6 +177,7 @@
     "yourCountry": "Mamlakatingiz *",
     "yourReview": "Sharhingiz *",
     "submit": "Sharhni Yuborish",
+    "submitting": "Yuborilmoqda...",
     "successTitle": "Rahmat!",
     "successText": "Sharhingiz tekshirilgandan so'ng chiqariladi.",
     "moderated": "Sharhlar nashr etilishdan oldin tekshiriladi",

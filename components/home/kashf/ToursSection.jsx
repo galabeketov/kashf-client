@@ -50,7 +50,7 @@ const ToursSection = () => {
   const displayTours = tours.length ? tours : staticTours;
 
   return (
-    <section className="layout-pt-lg layout-pb-md" data-aos="fade-up">
+    <section className="layout-pt-lg layout-pb-md travel-section travel-section--ivory">
       <div className="container">
         {/* Section header */}
         <div className="row y-gap-20 justify-between items-end">
@@ -101,14 +101,17 @@ const ToursSection = () => {
                     <SkeletonCard />
                   </SwiperSlide>
                 ))
-              : displayTours.map((tour, idx) => (
+              : displayTours.slice(0, 8).map((tour, idx) => (
                   <SwiperSlide key={tour.id} style={{ height: "auto" }}>
                     <div
                       style={{ height: "100%" }}
-                      data-aos="fade-up"
-                      data-aos-delay={idx * 70}
                     >
-                      <TourCard tour={tour} locale={locale} t={t} />
+                      <TourCard
+                        tour={tour}
+                        locale={locale}
+                        t={t}
+                        priority={idx === 0}
+                      />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -116,12 +119,6 @@ const ToursSection = () => {
         </div>
       </div>
 
-      <style jsx global>{`
-        @keyframes silkPulse {
-          0%,100% { opacity: 1; }
-          50%      { opacity: 0.5; }
-        }
-      `}</style>
     </section>
   );
 };

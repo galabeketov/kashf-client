@@ -18,24 +18,22 @@ const ReviewForm = ({ type, tourId, tourTitle, onSuccess }) => {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
 
   const onChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setFieldErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const onSubmit = async (event) => {
     event.preventDefault();
     setError("");
-
-    if (!formData.rating) {
-      setError("Please select a rating.");
-      return;
-    }
+    setFieldErrors({});
 
     setSubmitting(true);
     try {
-      await submitReview({
+      const result = await submitReview({
         type,
         tourId,
         tourTitle,
@@ -45,6 +43,14 @@ const ReviewForm = ({ type, tourId, tourTitle, onSuccess }) => {
         text: formData.text,
         locale,
       });
+      if (!result.success) {
+        if (result.errorCode === "validation") {
+          setFieldErrors(result.errors || {});
+          setError(Object.values(result.errors || {})[0] || "Check the form.");
+          return;
+        }
+        throw new Error("Failed to submit review.");
+      }
       setSubmitted(true);
       onSuccess?.();
     } catch (submitError) {
@@ -106,6 +112,7 @@ const ReviewForm = ({ type, tourId, tourTitle, onSuccess }) => {
                     color: isFilled ? "#C9A84C" : "#ddd",
                   }}
                   aria-label={`Rate ${value}`}
+                  aria-pressed={formData.rating === value}
                 >
                   <FaStar size={24} />
                 </button>
@@ -122,6 +129,7 @@ const ReviewForm = ({ type, tourId, tourTitle, onSuccess }) => {
             value={formData.name}
             onChange={onChange}
             required
+            aria-invalid={Boolean(fieldErrors.name)}
           />
         </div>
 
@@ -129,10 +137,11 @@ const ReviewForm = ({ type, tourId, tourTitle, onSuccess }) => {
           <input
             className="border-light rounded-4 h-50 px-20 w-1/1 text-15"
             name="country"
-            placeholder="e.g. Germany 🇩🇪"
+            placeholder={t("yourCountry")}
             value={formData.country}
             onChange={onChange}
             required
+            aria-invalid={Boolean(fieldErrors.country)}
           />
         </div>
 
@@ -145,16 +154,17 @@ const ReviewForm = ({ type, tourId, tourTitle, onSuccess }) => {
             value={formData.text}
             onChange={onChange}
             required
+            aria-invalid={Boolean(fieldErrors.text)}
           />
         </div>
 
         <div className="col-12">
           <button
-            className="button -md btn-uzbek-primary"
+            className="travel-btn travel-btn--primary"
             type="submit"
             disabled={submitting}
           >
-            {submitting ? "Submitting..." : t("submit")}
+            {submitting ? t("submitting") : t("submit")}
           </button>
           <div className="text-13 text-light-1 mt-10">{t("moderated")}</div>
         </div>

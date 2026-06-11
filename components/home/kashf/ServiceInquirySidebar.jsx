@@ -39,12 +39,19 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
     setError("");
 
     try {
-      await submitInquiry({
+      const result = await submitInquiry({
         ...formData,
         tourId: serviceSlug,
         tourTitle: serviceTitle,
         locale,
       });
+      if (!result.success) {
+        throw new Error(
+          result.errorCode === "validation"
+            ? Object.values(result.errors || {})[0]
+            : "Failed to submit inquiry.",
+        );
+      }
       await trackContact({
         method: "form",
         source: "service_page",

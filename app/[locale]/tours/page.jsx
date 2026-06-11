@@ -20,17 +20,15 @@ const filterTourByKey = (tour, key) => {
   return true;
 };
 
-const SkeletonCard = () => (
-  <div
-    style={{
-      borderRadius: "16px",
-      height: "370px",
-      background: "linear-gradient(135deg, #f5f0e8, #ede8de)",
-      animation: "tourPagePulse 1.6s ease-in-out infinite",
-      border: "1px solid rgba(201,168,76,0.12)",
-    }}
-  />
-);
+const SkeletonCard = () => <div className="travel-skeleton-card" />;
+
+const withTimeout = (promise, milliseconds = 2500) =>
+  Promise.race([
+    promise,
+    new Promise((_, reject) => {
+      window.setTimeout(() => reject(new Error("REQUEST_TIMEOUT")), milliseconds);
+    }),
+  ]);
 
 export default function ToursPage() {
   const t = useTranslations("tours");
@@ -45,7 +43,7 @@ export default function ToursPage() {
     let isMounted = true;
     const load = async () => {
       try {
-        const remote = await getPublishedTours();
+        const remote = await withTimeout(getPublishedTours());
         if (!isMounted) return;
         setTours(remote.length ? remote : staticTours);
       } catch {
@@ -197,16 +195,26 @@ export default function ToursPage() {
       >
         <div className="container">
           {/* Filter pills */}
-          <div className="d-flex x-gap-10 y-gap-10 flex-wrap mb-40">
+          <div
+            className="travel-filter-row mb-40"
+            role="group"
+            aria-label="Tour duration"
+          >
             {filters.map((f) => (
               <button
                 key={f.key}
                 className={`uzn-filter-pill${activeFilter === f.key ? " active" : ""}`}
                 onClick={() => setActiveFilter(f.key)}
+                aria-pressed={activeFilter === f.key}
               >
                 {f.label}
               </button>
             ))}
+            {!loading && (
+              <span className="travel-filter-count" aria-live="polite">
+                {filteredTours.length}
+              </span>
+            )}
           </div>
 
           {/* Grid */}
@@ -238,14 +246,12 @@ export default function ToursPage() {
                   className="col-lg-4 col-sm-6 col-12"
                   key={tour.id}
                   style={{ height: "100%" }}
-                  data-aos="fade-up"
-                  data-aos-delay={idx * 60}
                 >
                   <TourCard
                     tour={tour}
                     locale={locale}
                     t={t}
-                    variant="gotrip"
+                    priority={idx < 3}
                   />
                 </div>
               ))}
@@ -255,17 +261,6 @@ export default function ToursPage() {
 
       <KashfFooter />
 
-      <style jsx global>{`
-        @keyframes tourPagePulse {
-          0%,
-          100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-      `}</style>
     </>
   );
 }

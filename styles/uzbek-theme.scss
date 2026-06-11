@@ -91,7 +91,7 @@ $uzbek-dark: #1a1a2e;
   background: linear-gradient(
     135deg,
     $uzbek-lazur 0%,
-    darken($uzbek-lazur, 10%) 100%
+    #155a8c 100%
   );
   color: #fff;
   border: none;
@@ -139,7 +139,7 @@ $uzbek-dark: #1a1a2e;
   background: linear-gradient(
     135deg,
     $uzbek-gold 0%,
-    darken($uzbek-gold, 8%) 100%
+    #b28f37 100%
   );
   color: $uzbek-dark;
   border: none;

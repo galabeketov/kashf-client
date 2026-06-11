@@ -1,8 +1,8 @@
 {
   "brand": {
-    "name": "TE-UZB Trip",
-    "tagline": "Travel & Tours",
-    "fullName": "TE-UZB Trip",
+    "name": "Travel Easy",
+    "tagline": "Узбекистан",
+    "fullName": "Travel Easy Uzbekistan",
     "description": "Надежные туристические услуги по Узбекистану: туры, трансферы, транспорт и поддержка."
   },
   "nav": {
@@ -19,7 +19,7 @@
     "label": "🇺🇿 Ваш партнёр по путешествиям в Узбекистане",
     "title": "Путешествуйте легко по Узбекистану",
     "subtitle": "Частные туры, трансфер из аэропорта, аренда авто, бизнес-поддержка и многое другое — всё в одном месте.",
-    "exploreBtn": "Смотреть услуги",
+    "exploreBtn": "Смотреть туры",
     "whatsappBtn": "WhatsApp",
     "stats": [
       {
@@ -75,7 +75,7 @@
     "cancel": "Бесплатная консультация · Без платы за бронь · Отмена в любое время"
   },
   "features": {
-    "title": "Почему Kashf",
+    "title": "Почему Travel Easy",
     "subtitle": "Чем наши туры отличаются"
   },
   "about": {
@@ -88,7 +88,7 @@
     "whatsapp": "WhatsApp",
     "viewTours": "Смотреть туры",
     "whyTitle": "Почему путешествовать со мной",
-    "whySubtitle": "Что делает туры Kashf особенными"
+    "whySubtitle": "Что делает туры Travel Easy особенными"
   },
   "testimonials": {
     "title": "Что говорят наши туристы",
@@ -177,6 +177,7 @@
     "yourCountry": "Ваша страна *",
     "yourReview": "Ваш отзыв *",
     "submit": "Отправить отзыв",
+    "submitting": "Отправка...",
     "successTitle": "Спасибо!",
     "successText": "Ваш отзыв появится после проверки.",
     "moderated": "Отзывы проходят модерацию перед публикацией",

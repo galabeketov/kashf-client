@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
+import LocaleDocument from "@/components/common/LocaleDocument";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -31,7 +32,6 @@ export async function generateMetadata({ params }) {
     title,
     description,
     manifest: "/manifest.json",
-    themeColor: "#1B6CA8",
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
@@ -80,8 +80,16 @@ export default async function LocaleLayout({ children, params }) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
+      <LocaleDocument locale={locale} />
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       {children}
     </NextIntlClientProvider>
   );
+}
+
+export function generateViewport() {
+  return {
+    themeColor: "#07152f",
+    colorScheme: "light",
+  };
 }

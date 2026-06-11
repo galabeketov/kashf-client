@@ -10,14 +10,14 @@ import "@/styles/index.scss";
 import "rc-slider/assets/index.css";
 
 export const metadata = {
-  title: "Kashf Uzbekistan — Private Silk Road Tours",
+  title: "Travel Easy Uzbekistan | Private Silk Road Tours",
   description:
     "Discover Uzbekistan with private Silk Road tours across Tashkent, Samarkand, Bukhara, and beyond with personalized service.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

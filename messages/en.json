@@ -1,8 +1,8 @@
 {
   "brand": {
-    "name": "TE-UZB Trip",
-    "tagline": "Travel & Tours",
-    "fullName": "TE-UZB Trip",
+    "name": "Travel Easy",
+    "tagline": "Uzbekistan",
+    "fullName": "Travel Easy Uzbekistan",
     "description": "Trusted travel services across Uzbekistan: tours, transfers, transport and support."
   },
   "nav": {
@@ -19,7 +19,7 @@
     "label": "🇺🇿 Your Travel Partner in Uzbekistan",
     "title": "Travel Easy in Uzbekistan",
     "subtitle": "Private tours, airport transfers, rent a car, business support and more — all in one place.",
-    "exploreBtn": "Explore Services",
+    "exploreBtn": "Explore Tours",
     "whatsappBtn": "WhatsApp Us",
     "stats": [
       {
@@ -75,7 +75,7 @@
     "cancel": "Free consultation · No booking fee · Cancel anytime"
   },
   "features": {
-    "title": "Why Choose Kashf",
+    "title": "Why Choose Travel Easy",
     "subtitle": "What makes our tours different"
   },
   "about": {
@@ -88,7 +88,7 @@
     "whatsapp": "WhatsApp",
     "viewTours": "View Tours",
     "whyTitle": "Why Travel With Me",
-    "whySubtitle": "What makes Kashf tours different"
+    "whySubtitle": "What makes Travel Easy tours different"
   },
   "testimonials": {
     "title": "What Our Travelers Say",
@@ -177,6 +177,7 @@
     "yourCountry": "Your Country *",
     "yourReview": "Your Review *",
     "submit": "Submit Review",
+    "submitting": "Submitting...",
     "successTitle": "Thank you!",
     "successText": "Your review will appear after approval.",
     "moderated": "Reviews are moderated before publishing",
