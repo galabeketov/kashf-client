@@ -6,6 +6,13 @@ import { usePathname } from "next/navigation";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
 
+const AOS_START_DELAY = 450;
+
+const forceAosRecalc = () => {
+  Aos.refreshHard();
+  window.dispatchEvent(new Event("scroll"));
+};
+
 export default function ClientProviders({ children }) {
   const pathname = usePathname();
   const aosReady = useRef(false);
@@ -21,26 +28,38 @@ export default function ClientProviders({ children }) {
     let frame1;
     let frame2;
     let startDelay;
+    let idleId;
+
+    const runWhenIdle = (callback) => {
+      if (typeof window.requestIdleCallback === "function") {
+        idleId = window.requestIdleCallback(callback, { timeout: 1200 });
+        return;
+      }
+
+      startDelay = window.setTimeout(callback, 0);
+    };
 
     const startAos = () => {
       if (cancelled || aosReady.current) return;
 
       Aos.init({
         duration: 1200,
-        once: true,
+        once: false,
         startEvent: "kashf:aos-start",
-        disableMutationObserver: true,
+        disableMutationObserver: false,
       });
 
-      // Wait for two paint frames before applying AOS classes.
+      // Defer class mutations until hydration has settled.
       frame1 = window.requestAnimationFrame(() => {
         frame2 = window.requestAnimationFrame(() => {
-          startDelay = window.setTimeout(() => {
-            if (cancelled) return;
-            document.dispatchEvent(new Event("kashf:aos-start"));
-            aosReady.current = true;
-            Aos.refreshHard();
-          }, 0);
+          runWhenIdle(() => {
+            startDelay = window.setTimeout(() => {
+              if (cancelled) return;
+              document.dispatchEvent(new Event("kashf:aos-start"));
+              aosReady.current = true;
+              forceAosRecalc();
+            }, AOS_START_DELAY);
+          });
         });
       });
     };
@@ -56,6 +75,9 @@ export default function ClientProviders({ children }) {
       window.removeEventListener("load", startAos);
       if (frame1) window.cancelAnimationFrame(frame1);
       if (frame2) window.cancelAnimationFrame(frame2);
+      if (idleId && typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleId);
+      }
       if (startDelay) clearTimeout(startDelay);
     };
   }, []);
@@ -64,16 +86,23 @@ export default function ClientProviders({ children }) {
   useEffect(() => {
     if (!aosReady.current) return;
 
-    Aos.refresh();
+    let raf;
+    const timers = [];
 
-    // In highly dynamic pages (like home_3), Swiper carousels and Next.js Image
-    // components take a fraction of a second to fully render their true heights.
-    // If AOS calculates the triggers before this, bottom sections get stuck hidden.
-    const timeout = setTimeout(() => {
-      Aos.refresh();
-    }, 500);
+    raf = window.requestAnimationFrame(() => {
+      forceAosRecalc();
+    });
 
-    return () => clearTimeout(timeout);
+    // Next.js App Router often streams/mounts chunks after navigation.
+    // Recalculate in small waves so late-mounted sections don't stay hidden.
+    timers.push(window.setTimeout(forceAosRecalc, 180));
+    timers.push(window.setTimeout(forceAosRecalc, 520));
+    timers.push(window.setTimeout(forceAosRecalc, 950));
+
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf);
+      timers.forEach((timerId) => clearTimeout(timerId));
+    };
   }, [pathname]);
 
   return <Provider store={store}>{children}</Provider>;

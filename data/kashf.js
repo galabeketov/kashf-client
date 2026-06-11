@@ -273,7 +273,7 @@ export const contact = {
   telegram: "https://t.me/traveleasyuz",
   facebook: "https://facebook.com/traveleasyuz",
   instagram: "https://instagram.com/traveleasyuz",
-  email: "info@travel-easy.uz",
+  email: "uztrip13@gmail.com",
   location: "Tashkent, Uzbekistan",
 };
 

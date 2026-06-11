@@ -1,14 +1,16 @@
 {
   "brand": {
-    "name": "Travel Easy",
-    "tagline": "Узбекистан",
-    "fullName": "Travel Easy Узбекистан",
-    "description": "Ваш универсальный партнёр по путешествиям в Узбекистане. Туры, трансферы, бизнес-поддержка и многое другое."
+    "name": "TE-UZB Trip",
+    "tagline": "Travel & Tours",
+    "fullName": "TE-UZB Trip",
+    "description": "Надежные туристические услуги по Узбекистану: туры, трансферы, транспорт и поддержка."
   },
   "nav": {
     "home": "Главная",
     "tours": "Туры",
     "services": "Услуги",
+    "popularServices": "Популярные услуги",
+    "allServices": "Все услуги",
     "blog": "Блог",
     "about": "О нас",
     "contact": "Контакты"
@@ -120,9 +122,14 @@
   "services": {
     "pageTitle": "Наши услуги",
     "pageSubtitle": "Всё необходимое для идеального путешествия по Узбекистану",
+    "otherServicesTitle": "Дополнительные услуги",
+    "otherServicesSubtitle": "Смотрите другие услуги помимо самых популярных",
     "sidebarTitle": "Заказать",
     "requestSent": "Запрос отправлен!",
     "whatsappDirect": "Написать в WhatsApp",
+    "phoneLabel": "Телефон",
+    "emailLabel": "Email",
+    "telegramLabel": "Telegram",
     "contactDirectly": "Не нашли то, что нужно? Свяжитесь с нами напрямую",
     "tours": "Частные туры",
     "toursDesc": "Маршруты по Шёлковому пути через легендарные города Узбекистана",

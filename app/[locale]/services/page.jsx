@@ -4,14 +4,19 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import { useSettings } from "@/hooks/useSettings";
+import { contact as staticContact } from "@/data/kashf";
 import {
   FaInstagram,
   LuBriefcase,
+  LuArrowRight,
   LuCar,
   LuDollarSign,
+  LuMail,
   LuFileText,
   LuMapPin,
   LuMessageCircle,
+  LuPhone,
   LuPlane,
   LuUser,
 } from "@/components/shared/Icons";
@@ -23,49 +28,42 @@ const servicesData = [
     href: "/tours",
     color: "#3B82F6",
     bg: "rgba(59,130,246,0.1)",
-    price: "From $99",
   },
   {
     key: "rentCar",
     href: "/rent-car",
     color: "#10B981",
     bg: "rgba(16,185,129,0.1)",
-    price: "From $40/day",
   },
   {
     key: "transfer",
     href: "/transfer",
     color: "#F59E0B",
     bg: "rgba(245,158,11,0.1)",
-    price: "From $15",
   },
   {
     key: "business",
     href: "/business",
     color: "#8B5CF6",
     bg: "rgba(139,92,246,0.1)",
-    price: "From $50",
   },
   {
     key: "driver",
     href: "/driver",
     color: "#EF4444",
     bg: "rgba(239,68,68,0.1)",
-    price: "From $25",
   },
   {
     key: "currency",
     href: "/currency",
     color: "#06B6D4",
     bg: "rgba(6,182,212,0.1)",
-    price: "Contact for rate",
   },
   {
     key: "blog",
     href: "/blog",
     color: "#F97316",
     bg: "rgba(249,115,22,0.1)",
-    price: "Free",
   },
   {
     key: "telegram",
@@ -73,7 +71,6 @@ const servicesData = [
     color: "#0EA5E9",
     bg: "rgba(14,165,233,0.1)",
     external: true,
-    price: "Instant support",
   },
   {
     key: "instagram",
@@ -81,15 +78,26 @@ const servicesData = [
     color: "#EC4899",
     bg: "rgba(236,72,153,0.1)",
     external: true,
-    price: "Follow us",
   },
 ];
+
+const POPULAR_SERVICE_KEYS = ["tours", "transfer", "rentCar", "driver"];
 
 export default function ServicesPage() {
   const locale = useLocale();
   const t = useTranslations("services");
   const navT = useTranslations("nav");
-  const whatsappUrl = "https://wa.me/998901234567";
+  const { settings } = useSettings();
+  const contact = settings?.contact || staticContact;
+  const whatsappUrl = contact?.whatsapp || "https://wa.me/998990621736";
+  const phone = contact?.phone || "+998 99 062 17 36";
+  const email = contact?.email || "info@travel-easy.uz";
+  const telegram = contact?.telegram || "https://t.me/traveleasyuz";
+
+  const otherServices = servicesData.filter(
+    (service) => !POPULAR_SERVICE_KEYS.includes(service.key),
+  );
+
   const serviceIcons = {
     tours: <LuMapPin size={24} />,
     rentCar: <LuCar size={24} />,
@@ -169,16 +177,18 @@ export default function ServicesPage() {
           <div className="row justify-center text-center">
             <div className="col-auto">
               <div className="sectionTitle -md">
-                <h2 className="sectionTitle__title">{t("pageTitle")}</h2>
+                <h2 className="sectionTitle__title">
+                  {t("otherServicesTitle")}
+                </h2>
                 <p className="sectionTitle__text mt-5 sm:mt-0">
-                  {t("pageSubtitle")}
+                  {t("otherServicesSubtitle")}
                 </p>
               </div>
             </div>
           </div>
 
           <div className="row y-gap-30 pt-40">
-            {servicesData.map((service, index) => {
+            {otherServices.map((service, index) => {
               const href = service.external
                 ? service.href
                 : `/${locale}${service.href}`;
@@ -215,16 +225,12 @@ export default function ServicesPage() {
                     <p className="text-14 text-light-1 lh-16">
                       {t(`${service.key}Desc`)}
                     </p>
-                    <div className="d-flex items-center justify-between mt-20">
-                      <div
-                        className="text-14 fw-500"
-                        style={{ color: service.color }}
-                      >
-                        {service.price}
-                      </div>
-                      <span className="button -sm px-20 py-10 bg-blue-1 text-white">
-                        {t("learnMore")}
-                      </span>
+                    <div
+                      className="d-flex items-center mt-20 x-gap-8 text-14 fw-500"
+                      style={{ color: service.color }}
+                    >
+                      <LuArrowRight size={14} />
+                      <span>{t("learnMore")}</span>
                     </div>
                   </Link>
                 </div>
@@ -237,10 +243,39 @@ export default function ServicesPage() {
       <section className="layout-pt-md layout-pb-md bg-dark-2">
         <div className="container">
           <div className="row y-gap-20 justify-between items-center">
-            <div className="col-lg-8">
+            <div className="col-lg-7">
               <h3 className="text-28 text-white fw-600">
                 {t("contactDirectly")}
               </h3>
+              <div className="d-flex flex-column y-gap-10 mt-20 text-white text-16">
+                <a
+                  href={`tel:${phone.replace(/\s+/g, "")}`}
+                  className="d-inline-flex items-center x-gap-10 text-white"
+                >
+                  <LuPhone size={16} />
+                  <span>
+                    {t("phoneLabel")}: {phone}
+                  </span>
+                </a>
+                <a
+                  href={`mailto:${email}`}
+                  className="d-inline-flex items-center x-gap-10 text-white"
+                >
+                  <LuMail size={16} />
+                  <span>
+                    {t("emailLabel")}: {email}
+                  </span>
+                </a>
+                <Link
+                  href={telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="d-inline-flex items-center x-gap-10 text-white"
+                >
+                  <LuMessageCircle size={16} />
+                  <span>{t("telegramLabel")}</span>
+                </Link>
+              </div>
             </div>
             <div className="col-auto">
               <Link

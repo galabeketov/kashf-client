@@ -4,76 +4,111 @@
 // Fonts loaded via app/layout.jsx (Cormorant Garamond + Inter)
 
 // ── Color Variables ───────────────────────────────
-$uzn-lazur:       #1b6ca8;
+$uzn-lazur: #1b6ca8;
 $uzn-lazur-light: #2e8fd4;
-$uzn-lazur-dark:  #134f7d;
-$uzn-gold:        #c9a84c;
-$uzn-gold-light:  #e8c97a;
-$uzn-gold-dark:   #a8863a;
-$uzn-ivory:       #fdfaf4;
-$uzn-terracotta:  #c0392b;
-$uzn-emerald:     #1a7a4a;
-$uzn-dark:        #1a1a2e;
-$uzn-dark-mid:    #252545;
+$uzn-lazur-dark: #134f7d;
+$uzn-gold: #c9a84c;
+$uzn-gold-light: #e8c97a;
+$uzn-gold-dark: #a8863a;
+$uzn-ivory: #fdfaf4;
+$uzn-terracotta: #c0392b;
+$uzn-emerald: #1a7a4a;
+$uzn-dark: #1a1a2e;
+$uzn-dark-mid: #252545;
 
 // ── CSS Custom Properties ────────────────────────
 :root {
-  --uzn-lazur:       #{$uzn-lazur};
+  --uzn-lazur: #{$uzn-lazur};
   --uzn-lazur-light: #{$uzn-lazur-light};
-  --uzn-lazur-dark:  #{$uzn-lazur-dark};
-  --uzn-gold:        #{$uzn-gold};
-  --uzn-gold-light:  #{$uzn-gold-light};
-  --uzn-gold-dark:   #{$uzn-gold-dark};
-  --uzn-ivory:       #{$uzn-ivory};
-  --uzn-terracotta:  #{$uzn-terracotta};
-  --uzn-emerald:     #{$uzn-emerald};
-  --uzn-dark:        #{$uzn-dark};
-  --uzn-dark-mid:    #{$uzn-dark-mid};
-  --font-heading:    'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-body:       'Inter', system-ui, -apple-system, sans-serif;
-  --uzn-radius-sm:   8px;
-  --uzn-radius-md:   12px;
-  --uzn-radius-lg:   20px;
+  --uzn-lazur-dark: #{$uzn-lazur-dark};
+  --uzn-gold: #{$uzn-gold};
+  --uzn-gold-light: #{$uzn-gold-light};
+  --uzn-gold-dark: #{$uzn-gold-dark};
+  --uzn-ivory: #{$uzn-ivory};
+  --uzn-terracotta: #{$uzn-terracotta};
+  --uzn-emerald: #{$uzn-emerald};
+  --uzn-dark: #{$uzn-dark};
+  --uzn-dark-mid: #{$uzn-dark-mid};
+  --font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --uzn-radius-sm: 8px;
+  --uzn-radius-md: 12px;
+  --uzn-radius-lg: 20px;
 }
 
 // ── Islamic SVG Data-URI Tiles ────────────────────
 // 8-pointed star lattice as SVG pattern
 $islamic-star-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='rgba(201%2C168%2C76%2C0.14)' stroke-width='0.8'%3E%3Cpolygon points='40%2C4 46%2C20 62%2C14 56%2C30 72%2C36 56%2C42 62%2C58 46%2C52 40%2C68 34%2C52 18%2C58 24%2C42 8%2C36 24%2C30 18%2C14 34%2C20'/%3E%3Crect x='28' y='28' width='24' height='24' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
-$islamic-star-dark:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='rgba(201%2C168%2C76%2C0.07)' stroke-width='0.8'%3E%3Cpolygon points='40%2C4 46%2C20 62%2C14 56%2C30 72%2C36 56%2C42 62%2C58 46%2C52 40%2C68 34%2C52 18%2C58 24%2C42 8%2C36 24%2C30 18%2C14 34%2C20'/%3E%3Crect x='28' y='28' width='24' height='24' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
+$islamic-star-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='rgba(201%2C168%2C76%2C0.07)' stroke-width='0.8'%3E%3Cpolygon points='40%2C4 46%2C20 62%2C14 56%2C30 72%2C36 56%2C42 62%2C58 46%2C52 40%2C68 34%2C52 18%2C58 24%2C42 8%2C36 24%2C30 18%2C14 34%2C20'/%3E%3Crect x='28' y='28' width='24' height='24' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
 
 // ── Keyframes ─────────────────────────────────────
 @keyframes uzn-shimmer-bg {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes uzn-float {
-  0%, 100% { transform: translateY(0)    rotate(0deg);  opacity: 0.55; }
-  50%       { transform: translateY(-14px) rotate(6deg); opacity: 0.9; }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(-14px) rotate(6deg);
+    opacity: 0.9;
+  }
 }
 
 @keyframes uzn-crescent-float {
-  0%, 100% { transform: translateY(0px)   rotate(-4deg); opacity: 0.45; }
-  50%       { transform: translateY(-22px) rotate(6deg);  opacity: 0.75; }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-4deg);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(-22px) rotate(6deg);
+    opacity: 0.75;
+  }
 }
 
 @keyframes uzn-pulse-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(201,168,76,0.18); }
-  50%       { box-shadow: 0 0 24px rgba(201,168,76,0.5), 0 0 48px rgba(27,108,168,0.18); }
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(201, 168, 76, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 0 24px rgba(201, 168, 76, 0.5),
+      0 0 48px rgba(27, 108, 168, 0.18);
+  }
 }
 
 @keyframes uzn-sweep {
-  from { left: -100%; }
-  to   { left:  120%; }
+  from {
+    left: -100%;
+  }
+  to {
+    left: 120%;
+  }
 }
 
 @keyframes uzn-spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 // ── Typography ────────────────────────────────────
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-heading);
 }
 
@@ -85,11 +120,11 @@ body {
 .uzn-shimmer-text {
   background: linear-gradient(
     90deg,
-    $uzn-gold-dark  0%,
-    $uzn-gold       30%,
-    #fff5cc         50%,
-    $uzn-gold       70%,
-    $uzn-gold-dark  100%
+    $uzn-gold-dark 0%,
+    $uzn-gold 30%,
+    #fff5cc 50%,
+    $uzn-gold 70%,
+    $uzn-gold-dark 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -105,7 +140,12 @@ body {
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: 0.01em;
-  background: linear-gradient(135deg, $uzn-gold-light, $uzn-gold, $uzn-gold-dark);
+  background: linear-gradient(
+    135deg,
+    $uzn-gold-light,
+    $uzn-gold,
+    $uzn-gold-dark
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -123,6 +163,20 @@ body {
   margin-top: 2px;
 }
 
+.uzn-brand-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.uzn-brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 8px 20px rgba(10, 32, 90, 0.35);
+}
+
 // ── Buttons ───────────────────────────────────────
 %uzn-btn-base {
   position: relative;
@@ -135,16 +189,25 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease, color 0.28s ease;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease,
+    color 0.28s ease;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 55%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.28),
+      transparent
+    );
     transform: skewX(-18deg);
   }
 
@@ -152,8 +215,12 @@ body {
     animation: uzn-sweep 0.52s ease forwards;
   }
 
-  &:hover { transform: translateY(-2px); }
-  &:active { transform: translateY(0); }
+  &:hover {
+    transform: translateY(-2px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .uzn-btn-primary {
@@ -166,13 +233,18 @@ body {
 
   &:hover {
     color: #fff;
-    box-shadow: 0 8px 24px rgba(27,108,168,0.42);
+    box-shadow: 0 8px 24px rgba(27, 108, 168, 0.42);
   }
 }
 
 .uzn-btn-gold {
   @extend %uzn-btn-base;
-  background: linear-gradient(135deg, $uzn-gold-light 0%, $uzn-gold 50%, $uzn-gold-dark 100%);
+  background: linear-gradient(
+    135deg,
+    $uzn-gold-light 0%,
+    $uzn-gold 50%,
+    $uzn-gold-dark 100%
+  );
   color: $uzn-dark;
   border: none;
   padding: 14px 32px;
@@ -181,7 +253,7 @@ body {
 
   &:hover {
     color: $uzn-dark;
-    box-shadow: 0 8px 24px rgba(201,168,76,0.48);
+    box-shadow: 0 8px 24px rgba(201, 168, 76, 0.48);
   }
 }
 
@@ -196,7 +268,7 @@ body {
   &:hover {
     background: $uzn-gold;
     color: $uzn-dark;
-    box-shadow: 0 8px 24px rgba(201,168,76,0.38);
+    box-shadow: 0 8px 24px rgba(201, 168, 76, 0.38);
   }
 }
 
@@ -204,7 +276,7 @@ body {
   @extend %uzn-btn-base;
   background: transparent;
   color: $uzn-lazur;
-  border: 1px solid rgba(27,108,168,0.35);
+  border: 1px solid rgba(27, 108, 168, 0.35);
   padding: 8px 16px;
   font-size: 13px;
   font-weight: 500;
@@ -241,13 +313,23 @@ body {
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     flex: 1;
     height: 1px;
-    background: linear-gradient(to right, transparent, $uzn-gold 40%, transparent 100%);
+    background: linear-gradient(
+      to right,
+      transparent,
+      $uzn-gold 40%,
+      transparent 100%
+    );
   }
   &::after {
-    background: linear-gradient(to left, transparent, $uzn-gold 40%, transparent 100%);
+    background: linear-gradient(
+      to left,
+      transparent,
+      $uzn-gold 40%,
+      transparent 100%
+    );
   }
 
   .uzn-ornament-divider__star {
@@ -255,7 +337,7 @@ body {
     color: $uzn-gold;
     display: flex;
     align-items: center;
-    filter: drop-shadow(0 0 4px rgba(201,168,76,0.5));
+    filter: drop-shadow(0 0 4px rgba(201, 168, 76, 0.5));
     animation: uzn-spin-slow 18s linear infinite;
   }
 }
@@ -264,9 +346,9 @@ body {
 .uzn-hero-overlay {
   background: linear-gradient(
     160deg,
-    rgba(26,26,46,0.58)  0%,
-    rgba(27,108,168,0.22) 40%,
-    rgba(26,26,46,0.74)  100%
+    rgba(26, 26, 46, 0.58) 0%,
+    rgba(27, 108, 168, 0.22) 40%,
+    rgba(26, 26, 46, 0.74) 100%
   );
 }
 
@@ -285,22 +367,26 @@ body {
 
 // ── Stat Cards (Hero glassmorphism) ───────────────
 .uzn-stat-card {
-  border: 1px solid rgba(201,168,76,0.22);
+  border: 1px solid rgba(201, 168, 76, 0.22);
   border-radius: var(--uzn-radius-md);
   padding: 22px 16px;
   text-align: center;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   animation: uzn-pulse-glow 5s ease-in-out infinite;
   transition: all 0.3s ease;
 
-  &:nth-child(2) { animation-delay: 1.6s; }
-  &:nth-child(3) { animation-delay: 3.2s; }
+  &:nth-child(2) {
+    animation-delay: 1.6s;
+  }
+  &:nth-child(3) {
+    animation-delay: 3.2s;
+  }
 
   &:hover {
     border-color: $uzn-gold;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     transform: translateY(-4px);
   }
 
@@ -322,7 +408,7 @@ body {
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-image: $islamic-star-light;
@@ -339,7 +425,7 @@ body {
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-image: $islamic-star-dark;
@@ -357,7 +443,7 @@ body {
   animation: uzn-crescent-float 8s ease-in-out infinite;
 
   svg {
-    filter: drop-shadow(0 0 10px rgba(201,168,76,0.42));
+    filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.42));
   }
 
   &.uzn-crescent--delay {
@@ -382,12 +468,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-  background: var(--icon-bg, rgba(27,108,168,0.1));
+  clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    100% 30%,
+    100% 70%,
+    70% 100%,
+    30% 100%,
+    0% 70%,
+    0% 30%
+  );
+  background: var(--icon-bg, rgba(27, 108, 168, 0.1));
   color: var(--icon-color, #1b6ca8);
   margin-bottom: 18px;
   flex-shrink: 0;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 // ── Service Card ──────────────────────────────────
@@ -395,7 +492,7 @@ body {
   background: #fff;
   border-radius: var(--uzn-radius-md);
   padding: 28px 22px;
-  border: 1px solid rgba(201,168,76,0.12);
+  border: 1px solid rgba(201, 168, 76, 0.12);
   transition: all 0.35s ease;
   text-decoration: none;
   display: block;
@@ -404,7 +501,7 @@ body {
   height: 100%;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -421,7 +518,9 @@ body {
   }
 
   &:hover {
-    box-shadow: 0 12px 32px rgba(27,108,168,0.12), 0 0 0 1px rgba(201,168,76,0.2);
+    box-shadow:
+      0 12px 32px rgba(27, 108, 168, 0.12),
+      0 0 0 1px rgba(201, 168, 76, 0.2);
     transform: translateY(-4px);
     text-decoration: none;
 
@@ -440,24 +539,25 @@ body {
   position: relative;
   border-radius: 16px;
   background: $uzn-ivory;
-  border: 1px solid rgba(201,168,76,0.22);
-  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  transition:
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   height: 100%;
 
   // Gold corner ornaments — top-right
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 12px;
     right: 12px;
     width: 22px;
     height: 22px;
-    border-top: 2px solid rgba(201,168,76,0.7);
-    border-right: 2px solid rgba(201,168,76,0.7);
+    border-top: 2px solid rgba(201, 168, 76, 0.7);
+    border-right: 2px solid rgba(201, 168, 76, 0.7);
     border-radius: 0 5px 0 0;
     z-index: 10;
     pointer-events: none;
@@ -466,14 +566,14 @@ body {
 
   // Gold corner ornament — bottom-left
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 12px;
     left: 12px;
     width: 18px;
     height: 18px;
-    border-bottom: 2px solid rgba(201,168,76,0.5);
-    border-left: 2px solid rgba(201,168,76,0.5);
+    border-bottom: 2px solid rgba(201, 168, 76, 0.5);
+    border-left: 2px solid rgba(201, 168, 76, 0.5);
     border-radius: 0 0 0 4px;
     z-index: 10;
     pointer-events: none;
@@ -482,20 +582,24 @@ body {
 
   &:hover {
     transform: translateY(-8px);
-    border-color: rgba(201,168,76,0.65);
+    border-color: rgba(201, 168, 76, 0.65);
     box-shadow:
-      0 28px 60px rgba(26,26,46,0.22),
-      0 0 0 1px rgba(201,168,76,0.38);
+      0 28px 60px rgba(26, 26, 46, 0.22),
+      0 0 0 1px rgba(201, 168, 76, 0.38);
 
-    &::before { border-color: $uzn-gold; }
-    &::after  { border-color: rgba(201,168,76,0.8); }
+    &::before {
+      border-color: $uzn-gold;
+    }
+    &::after {
+      border-color: rgba(201, 168, 76, 0.8);
+    }
 
     .uzn-silk-card__photo img {
       transform: scale(1.08);
     }
 
     .uzn-silk-card__arch-line {
-      border-color: rgba(201,168,76,0.9);
+      border-color: rgba(201, 168, 76, 0.9);
     }
 
     .uzn-silk-card__cta {
@@ -524,23 +628,23 @@ body {
 
   // Gradient overlay — heavy at bottom for text legibility
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(26,26,46,0)    0%,
-      rgba(26,26,46,0.05) 30%,
-      rgba(26,26,46,0.55) 55%,
-      rgba(26,26,46,0.85) 78%,
-      rgba(26,26,46,0.94) 100%
+      rgba(26, 26, 46, 0) 0%,
+      rgba(26, 26, 46, 0.05) 30%,
+      rgba(26, 26, 46, 0.55) 55%,
+      rgba(26, 26, 46, 0.85) 78%,
+      rgba(26, 26, 46, 0.94) 100%
     );
     z-index: 1;
   }
 
   // Ivory arch cutout at the very bottom (creates the iwan arch shape)
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2px;
     left: 50%;
@@ -561,7 +665,7 @@ body {
   transform: translateX(-50%);
   width: 70%;
   height: 32px;
-  border: 1.5px solid rgba(201,168,76,0.52);
+  border: 1.5px solid rgba(201, 168, 76, 0.52);
   border-bottom: none;
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   z-index: 2;
@@ -582,7 +686,7 @@ body {
 }
 
 .uzn-silk-card__dur {
-  background: rgba(19,79,125,0.82);
+  background: rgba(19, 79, 125, 0.82);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: #fff;
@@ -592,14 +696,14 @@ body {
   text-transform: uppercase;
   border-radius: 20px;
   padding: 4px 13px;
-  border: 1px solid rgba(201,168,76,0.38);
+  border: 1px solid rgba(201, 168, 76, 0.38);
 }
 
 .uzn-silk-card__rating {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(26,26,46,0.55);
+  background: rgba(26, 26, 46, 0.55);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: $uzn-gold;
@@ -607,13 +711,13 @@ body {
   font-weight: 700;
   border-radius: 20px;
   padding: 4px 10px;
-  border: 1px solid rgba(201,168,76,0.28);
+  border: 1px solid rgba(201, 168, 76, 0.28);
 }
 
 // Text overlay — lives on the gradient, above the arch cutout
 .uzn-silk-card__text-overlay {
   position: absolute;
-  bottom: 40px;   // clears the 32px arch + a tiny gap
+  bottom: 40px; // clears the 32px arch + a tiny gap
   left: 0;
   right: 0;
   padding: 0 15px 6px;
@@ -632,7 +736,7 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0 0 5px;
-  text-shadow: 0 1px 10px rgba(0,0,0,0.55);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
 }
 
 .uzn-silk-card__location {
@@ -640,7 +744,7 @@ body {
   align-items: center;
   gap: 5px;
   font-size: 11.5px;
-  color: rgba(255,255,255,0.78);
+  color: rgba(255, 255, 255, 0.78);
   font-weight: 500;
   letter-spacing: 0.01em;
 }
@@ -658,7 +762,7 @@ body {
   .uzn-silk-price-label {
     display: block;
     font-size: 10px;
-    color: rgba(26,26,46,0.48);
+    color: rgba(26, 26, 46, 0.48);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     font-weight: 600;
@@ -678,7 +782,7 @@ body {
   .uzn-silk-price-pp {
     display: block;
     font-size: 10px;
-    color: rgba(26,26,46,0.42);
+    color: rgba(26, 26, 46, 0.42);
     margin-top: 2px;
     letter-spacing: 0.04em;
   }
@@ -692,7 +796,7 @@ body {
   font-weight: 600;
   color: $uzn-lazur;
   background: transparent;
-  border: 1.5px solid rgba(27,108,168,0.32);
+  border: 1.5px solid rgba(27, 108, 168, 0.32);
   border-radius: 22px;
   padding: 8px 15px;
   text-decoration: none;
@@ -735,7 +839,7 @@ body {
   width: 100%;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -10px;
     left: -10px;
@@ -750,7 +854,7 @@ body {
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -10px;
     right: -10px;
@@ -765,7 +869,7 @@ body {
   }
 
   img {
-    border: 2px solid rgba(201,168,76,0.32);
+    border: 2px solid rgba(201, 168, 76, 0.32);
     border-radius: var(--uzn-radius-md);
     display: block;
     width: 100%;
@@ -774,7 +878,7 @@ body {
 
 // ── About Stat Cards ──────────────────────────────
 .uzn-about-stat {
-  border: 1px solid rgba(201,168,76,0.28);
+  border: 1px solid rgba(201, 168, 76, 0.28);
   border-radius: var(--uzn-radius-sm);
   padding: 16px 18px;
   background: #fff;
@@ -782,7 +886,7 @@ body {
 
   &:hover {
     border-color: $uzn-gold;
-    box-shadow: 0 6px 20px rgba(201,168,76,0.16);
+    box-shadow: 0 6px 20px rgba(201, 168, 76, 0.16);
     transform: translateY(-2px);
   }
 
@@ -812,10 +916,10 @@ body {
   background-color: $uzn-dark;
   position: relative;
   overflow: hidden;
-  color: rgba(255,255,255,0.78);
+  color: rgba(255, 255, 255, 0.78);
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background-image: $islamic-star-dark;
@@ -831,7 +935,7 @@ body {
   }
 
   a {
-    color: rgba(255,255,255,0.72);
+    color: rgba(255, 255, 255, 0.72);
     transition: color 0.22s ease;
 
     &:hover {
@@ -839,18 +943,24 @@ body {
     }
   }
 
-  h4, h5 {
-    color: rgba(255,255,255,0.96);
+  h4,
+  h5 {
+    color: rgba(255, 255, 255, 0.96);
   }
 
   p {
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
   }
 }
 
 .uzn-footer-bottom-bar {
-  border-top: 1px solid rgba(201,168,76,0.22);
-  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.05), transparent);
+  border-top: 1px solid rgba(201, 168, 76, 0.22);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 168, 76, 0.05),
+    transparent
+  );
   position: relative;
   z-index: 1;
 }
@@ -860,7 +970,7 @@ body {
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2px;
     left: 0;
@@ -881,16 +991,16 @@ body {
 .uzn-locale-pill {
   display: inline-flex;
   border-radius: 24px;
-  border: 1px solid rgba(201,168,76,0.38);
+  border: 1px solid rgba(201, 168, 76, 0.38);
   overflow: hidden;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
 
   button {
     padding: 5px 12px;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.07em;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
     background: transparent;
     border: none;
     cursor: pointer;
@@ -904,8 +1014,104 @@ body {
 
     &:hover:not(.active) {
       color: #fff;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
     }
+  }
+}
+
+// ── Header Popular Services Bar ──────────────────
+.uzn-popular-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 0 12px;
+}
+
+.uzn-popular-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.uzn-popular-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+}
+
+.uzn-popular-chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.uzn-popular-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 168, 76, 0.46);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  text-decoration: none;
+  transition: all 0.22s ease;
+
+  &:hover {
+    color: $uzn-dark;
+    background: linear-gradient(135deg, $uzn-gold-light, $uzn-gold);
+    border-color: $uzn-gold;
+    transform: translateY(-1px);
+  }
+}
+
+.uzn-popular-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.uzn-company-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(201, 168, 76, 0.2);
+  color: $uzn-gold-light;
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.uzn-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.96);
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.22s ease;
+
+  &:hover {
+    color: #fff;
+    border-color: rgba(201, 168, 76, 0.6);
+    background: rgba(201, 168, 76, 0.14);
   }
 }
 
@@ -925,7 +1131,7 @@ body {
   border-radius: 16px;
   overflow: hidden;
   background: #fff;
-  border: 1px solid rgba(201,168,76,0.15);
+  border: 1px solid rgba(201, 168, 76, 0.15);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   position: relative;
@@ -936,8 +1142,8 @@ body {
   &:hover {
     transform: translateY(-8px);
     box-shadow:
-      0 20px 60px rgba(27,108,168,0.15),
-      0 0 0 2px rgba(201,168,76,0.4);
+      0 20px 60px rgba(27, 108, 168, 0.15),
+      0 0 0 2px rgba(201, 168, 76, 0.4);
     text-decoration: none;
   }
 
@@ -956,19 +1162,21 @@ body {
 
     // Dark gradient overlay
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
         transparent 35%,
-        rgba(26,26,46,0.82) 100%
+        rgba(26, 26, 46, 0.82) 100%
       );
       pointer-events: none;
     }
   }
 
-  &:hover &__image img { transform: scale(1.08); }
+  &:hover &__image img {
+    transform: scale(1.08);
+  }
 
   &__corner-ornament {
     position: absolute;
@@ -995,7 +1203,7 @@ body {
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.18);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(4px);
   }
 
@@ -1011,7 +1219,7 @@ body {
     font-size: 15px;
     font-weight: 800;
     letter-spacing: -0.01em;
-    box-shadow: 0 2px 12px rgba(201,168,76,0.35);
+    box-shadow: 0 2px 12px rgba(201, 168, 76, 0.35);
   }
 
   &__location {
@@ -1019,7 +1227,7 @@ body {
     align-items: center;
     gap: 5px;
     font-size: 11px;
-    color: rgba(26,26,46,0.52);
+    color: rgba(26, 26, 46, 0.52);
     font-weight: 500;
     letter-spacing: 0.03em;
     margin-bottom: 6px;
@@ -1060,7 +1268,7 @@ body {
     align-items: center;
     margin-top: 14px;
     padding-top: 12px;
-    border-top: 1px solid rgba(201,168,76,0.15);
+    border-top: 1px solid rgba(201, 168, 76, 0.15);
 
     .stars {
       color: $uzn-gold;
@@ -1073,7 +1281,9 @@ body {
       font-size: 13px;
       font-weight: 600;
       color: $uzn-lazur;
-      transition: color 0.2s ease, letter-spacing 0.2s ease;
+      transition:
+        color 0.2s ease,
+        letter-spacing 0.2s ease;
 
       &:hover {
         color: $uzn-gold;
@@ -1094,7 +1304,7 @@ body {
   background: #fff;
   border-radius: 16px;
   padding: 28px 24px;
-  border: 1px solid rgba(201,168,76,0.12);
+  border: 1px solid rgba(201, 168, 76, 0.12);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -1105,7 +1315,7 @@ body {
 
   // Animated gold top accent line
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -1117,19 +1327,30 @@ body {
     transition: transform 0.35s ease;
   }
 
-  &:hover::before { transform: scaleX(1); }
+  &:hover::before {
+    transform: scaleX(1);
+  }
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(27,108,168,0.12);
-    border-color: rgba(201,168,76,0.35);
+    box-shadow: 0 16px 40px rgba(27, 108, 168, 0.12);
+    border-color: rgba(201, 168, 76, 0.35);
     text-decoration: none;
   }
 
   .service-icon-uzbek {
     width: 64px;
     height: 64px;
-    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    clip-path: polygon(
+      30% 0%,
+      70% 0%,
+      100% 30%,
+      100% 70%,
+      70% 100%,
+      30% 100%,
+      0% 70%,
+      0% 30%
+    );
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1166,15 +1387,21 @@ body {
     font-size: 13px;
     font-weight: 700;
     color: $uzn-gold;
-    transition: gap 0.22s ease, color 0.22s ease;
+    transition:
+      gap 0.22s ease,
+      color 0.22s ease;
     letter-spacing: 0.02em;
 
-    svg { transition: transform 0.22s ease; }
+    svg {
+      transition: transform 0.22s ease;
+    }
 
     &:hover {
       gap: 10px;
       color: $uzn-gold-dark;
-      svg { transform: translateX(3px); }
+      svg {
+        transform: translateX(3px);
+      }
     }
   }
 }
@@ -1188,9 +1415,9 @@ body {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  border: 1.5px solid rgba(201,168,76,0.35);
+  border: 1.5px solid rgba(201, 168, 76, 0.35);
   background: transparent;
-  color: rgba(26,26,46,0.65);
+  color: rgba(26, 26, 46, 0.65);
   transition: all 0.22s ease;
   font-family: var(--font-body);
   letter-spacing: 0.02em;
@@ -1198,32 +1425,44 @@ body {
   &:hover {
     border-color: $uzn-gold;
     color: $uzn-dark;
-    background: rgba(201,168,76,0.08);
+    background: rgba(201, 168, 76, 0.08);
   }
 
   &.active {
     background: linear-gradient(135deg, $uzn-gold-light, $uzn-gold);
     border-color: $uzn-gold;
     color: $uzn-dark;
-    box-shadow: 0 4px 14px rgba(201,168,76,0.3);
+    box-shadow: 0 4px 14px rgba(201, 168, 76, 0.3);
   }
 }
 
 // ── Keyframes ─────────────────────────────────────
 @keyframes rotateSlow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 // ── Responsive ────────────────────────────────────
 @media (max-width: 1024px) {
-  .uzn-logo-name { font-size: 22px; }
+  .uzn-logo-name {
+    font-size: 22px;
+  }
+  .uzn-brand-mark {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 @media (max-width: 768px) {
   .uzn-stat-card {
     padding: 16px 12px;
-    .uzn-stat-num { font-size: 30px; }
+    .uzn-stat-num {
+      font-size: 30px;
+    }
   }
 
   .uzn-btn-primary,
@@ -1233,8 +1472,18 @@ body {
     font-size: 14px;
   }
 
-  .uzn-ornament-divider { margin: 12px 0 18px; }
-  .uzn-logo-name        { font-size: 20px; }
-  .uzn-logo-sub         { font-size: 9px; letter-spacing: 0.16em; }
-  .uzn-icon-octagon     { width: 52px; height: 52px; }
+  .uzn-ornament-divider {
+    margin: 12px 0 18px;
+  }
+  .uzn-logo-name {
+    font-size: 20px;
+  }
+  .uzn-logo-sub {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+  .uzn-icon-octagon {
+    width: 52px;
+    height: 52px;
+  }
 }

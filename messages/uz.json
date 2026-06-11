@@ -1,14 +1,16 @@
 {
   "brand": {
-    "name": "Travel Easy",
-    "tagline": "O'zbekiston",
-    "fullName": "Travel Easy O'zbekiston",
-    "description": "O'zbekistondagi universal sayohat hamkoringiz. Turlar, transferlar, biznes yordam va boshqalar."
+    "name": "TE-UZB Trip",
+    "tagline": "Travel & Tours",
+    "fullName": "TE-UZB Trip",
+    "description": "O'zbekiston bo'ylab ishonchli sayohat xizmatlari: turlar, transferlar, transport va yordam."
   },
   "nav": {
     "home": "Bosh sahifa",
     "tours": "Turlar",
     "services": "Xizmatlar",
+    "popularServices": "Mashhur xizmatlar",
+    "allServices": "Barcha xizmatlar",
     "blog": "Blog",
     "about": "Biz haqimizda",
     "contact": "Aloqa"
@@ -120,9 +122,14 @@
   "services": {
     "pageTitle": "Bizning Xizmatlar",
     "pageSubtitle": "O'zbekistonda mukammal sayohat uchun hamma narsa",
+    "otherServicesTitle": "Qo'shimcha xizmatlar",
+    "otherServicesSubtitle": "Eng mashhur xizmatlardan tashqari boshqa xizmatlarni ham ko'ring",
     "sidebarTitle": "So'rov Yuborish",
     "requestSent": "So'rov Yuborildi!",
     "whatsappDirect": "WhatsApp orqali yozish",
+    "phoneLabel": "Telefon",
+    "emailLabel": "Email",
+    "telegramLabel": "Telegram",
     "contactDirectly": "Kerakli xizmatni topa olmadingizmi? Biz bilan bevosita bog'laning",
     "tours": "Xususiy Turlar",
     "toursDesc": "O'zbekistonning afsonaviy shaharlari bo'ylab maxsus Ipak Yo'li turlari",

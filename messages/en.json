@@ -1,14 +1,16 @@
 {
   "brand": {
-    "name": "Travel Easy",
-    "tagline": "Uzbekistan",
-    "fullName": "Travel Easy Uzbekistan",
-    "description": "Your all-in-one travel partner in Uzbekistan. Tours, transfers, business support and more."
+    "name": "TE-UZB Trip",
+    "tagline": "Travel & Tours",
+    "fullName": "TE-UZB Trip",
+    "description": "Trusted travel services across Uzbekistan: tours, transfers, transport and support."
   },
   "nav": {
     "home": "Home",
     "tours": "Tours",
     "services": "Services",
+    "popularServices": "Popular services",
+    "allServices": "All services",
     "blog": "Blog",
     "about": "About",
     "contact": "Contact"
@@ -120,9 +122,14 @@
   "services": {
     "pageTitle": "Our Services",
     "pageSubtitle": "Everything you need for a perfect Uzbekistan experience",
+    "otherServicesTitle": "More Services",
+    "otherServicesSubtitle": "Explore additional services beyond our most popular options",
     "sidebarTitle": "Book This Service",
     "requestSent": "Request Sent!",
     "whatsappDirect": "WhatsApp Direct",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "telegramLabel": "Telegram",
     "contactDirectly": "Can't find what you need? Contact us directly",
     "tours": "Private Tours",
     "toursDesc": "Hand-crafted Silk Road tours across Uzbekistan's legendary cities",

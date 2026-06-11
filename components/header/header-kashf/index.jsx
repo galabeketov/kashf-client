@@ -4,20 +4,42 @@ import Link from "next/link";
 import { usePathname, useRouter as useNextRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { LuMenu, LuX } from "@/components/shared/Icons";
+import {
+  LuBriefcase,
+  LuCar,
+  LuMail,
+  LuMenu,
+  LuMessageCircle,
+  LuPhone,
+  LuPlane,
+  LuX,
+} from "@/components/shared/Icons";
 import { trackContact } from "@/lib/analytics";
 import { useSettings } from "@/hooks/useSettings";
 import { contact as staticContact } from "@/data/kashf";
 
 const LOCALES = ["en", "uz", "ru"];
+const COMPANY_NAME = "TE-UZB Trip";
+const COMPANY_EMAIL = "uztrip13@gmail.com";
+
+const POPULAR_SERVICES = [
+  { key: "tours", href: "/tours", icon: <LuBriefcase size={14} /> },
+  { key: "transfer", href: "/transfer", icon: <LuPlane size={14} /> },
+  { key: "rentCar", href: "/rent-car", icon: <LuCar size={14} /> },
+  { key: "driver", href: "/driver", icon: <LuPhone size={14} /> },
+];
 
 const HeaderKashf = () => {
   const brandT = useTranslations("brand");
   const t = useTranslations("nav");
+  const servicesT = useTranslations("services");
   const locale = useLocale();
   const { settings } = useSettings();
   const contact = settings?.contact || staticContact;
-  const whatsappUrl = contact?.whatsapp || "https://wa.me/998901234567";
+  const whatsappUrl = contact?.whatsapp || "https://wa.me/998990621736";
+  const phone = contact?.phone || "+998 99 062 17 36";
+  const telegram = contact?.telegram || "https://t.me/traveleasyuz";
+  const brandLogo = "/img/icons/icon-192.png";
   const nextRouter = useNextRouter();
   const pathname = usePathname();
   const [navbar, setNavbar] = useState(false);
@@ -51,6 +73,19 @@ const HeaderKashf = () => {
   );
   const isSticky = isNoHeroPage || navbar;
   const headerBg = isSticky ? "is-sticky" : "";
+  const serviceGradient = "linear-gradient(135deg, #051036 0%, #0d2268 100%)";
+
+  const headerStyle = isNoHeroPage
+    ? {
+        background: serviceGradient,
+        boxShadow: "none",
+      }
+    : isSticky
+      ? {
+          backgroundColor: "var(--uzn-dark)",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.32)",
+        }
+      : {};
 
   const navLinks = [
     { label: t("home"), href: "/" },
@@ -95,17 +130,7 @@ const HeaderKashf = () => {
 
   return (
     <>
-      <header
-        className={`header -type-1 ${headerBg}`}
-        style={
-          isSticky
-            ? {
-                backgroundColor: "var(--uzn-dark)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.32)",
-              }
-            : {}
-        }
-      >
+      <header className={`header -type-1 ${headerBg}`} style={headerStyle}>
         <div className="header__container px-30 sm:px-20">
           <div className="row justify-between items-center">
             {/* Logo */}
@@ -116,8 +141,17 @@ const HeaderKashf = () => {
                   className="header-logo mr-20"
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="uzn-logo-name">{brandT("name")}</div>
-                  <span className="uzn-logo-sub">{brandT("tagline")}</span>
+                  <div className="uzn-brand-wrap">
+                    <img
+                      src={brandLogo}
+                      alt={COMPANY_NAME}
+                      className="uzn-brand-mark"
+                    />
+                    <div>
+                      <div className="uzn-logo-name">{brandT("name")}</div>
+                      <span className="uzn-logo-sub">{brandT("tagline")}</span>
+                    </div>
+                  </div>
                 </Link>
 
                 {/* Desktop nav */}
@@ -173,14 +207,14 @@ const HeaderKashf = () => {
                     style={{ fontSize: "14px" }}
                     onClick={handleWhatsApp}
                   >
-                    WhatsApp
+                    {servicesT("whatsappDirect")}
                   </Link>
                   <Link
-                    href={localizedPath("/tours")}
+                    href={localizedPath("/services")}
                     className="uzn-btn-outline-gold px-28 h-46 ml-12"
                     style={{ fontSize: "14px" }}
                   >
-                    Explore Tours
+                    {t("allServices")}
                   </Link>
                 </div>
 
@@ -220,15 +254,25 @@ const HeaderKashf = () => {
                         href={localizedPath("/")}
                         style={{ textDecoration: "none" }}
                       >
-                        <div
-                          className="uzn-logo-name"
-                          style={{ fontSize: "20px" }}
-                        >
-                          {brandT("name")}
+                        <div className="uzn-brand-wrap">
+                          <img
+                            src={brandLogo}
+                            alt={COMPANY_NAME}
+                            className="uzn-brand-mark"
+                            style={{ width: "36px", height: "36px" }}
+                          />
+                          <div>
+                            <div
+                              className="uzn-logo-name"
+                              style={{ fontSize: "20px" }}
+                            >
+                              {brandT("name")}
+                            </div>
+                            <span className="uzn-logo-sub">
+                              {brandT("tagline")}
+                            </span>
+                          </div>
                         </div>
-                        <span className="uzn-logo-sub">
-                          {brandT("tagline")}
-                        </span>
                       </Link>
                       <div
                         className="fix-icon"
@@ -275,6 +319,24 @@ const HeaderKashf = () => {
                       </div>
 
                       <div className="d-flex flex-column y-gap-10 mt-20">
+                        <div className="text-13 text-dark-1 fw-600">
+                          {COMPANY_NAME}
+                        </div>
+                        <div className="text-13 text-light-1">
+                          <strong>{servicesT("phoneLabel")}: </strong>
+                          {phone}
+                        </div>
+                        <a href={`mailto:${COMPANY_EMAIL}`} className="text-14">
+                          {COMPANY_EMAIL}
+                        </a>
+                        <Link
+                          href={telegram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-14"
+                        >
+                          {servicesT("telegramLabel")}
+                        </Link>
                         <Link
                           href={whatsappUrl}
                           target="_blank"
@@ -282,20 +344,65 @@ const HeaderKashf = () => {
                           className="uzn-btn-gold h-50 text-center"
                           onClick={handleWhatsApp}
                         >
-                          WhatsApp
+                          {servicesT("whatsappDirect")}
                         </Link>
                         <Link
-                          href={localizedPath("/tours")}
+                          href={localizedPath("/services")}
                           className="uzn-btn-primary h-50 text-center"
                           data-bs-dismiss="offcanvas"
                         >
-                          Explore Tours
+                          {t("allServices")}
                         </Link>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div
+            className="uzn-popular-bar md:d-none"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}
+          >
+            <div className="uzn-popular-left">
+              <span className="uzn-popular-title">{t("popularServices")}</span>
+              <div className="uzn-popular-chips">
+                {POPULAR_SERVICES.map((service) => (
+                  <Link
+                    key={`popular-${service.key}`}
+                    href={localizedPath(service.href)}
+                    className="uzn-popular-chip"
+                  >
+                    {service.icon}
+                    <span>{servicesT(service.key)}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="uzn-popular-contact">
+              <span className="uzn-company-pill">{COMPANY_NAME}</span>
+              <a
+                href={`tel:${phone.replace(/\s+/g, "")}`}
+                className="uzn-contact-link"
+              >
+                <LuPhone size={13} />
+                {phone}
+              </a>
+              <a href={`mailto:${COMPANY_EMAIL}`} className="uzn-contact-link">
+                <LuMail size={13} />
+                {COMPANY_EMAIL}
+              </a>
+              <Link
+                href={telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="uzn-contact-link"
+              >
+                <LuMessageCircle size={14} />
+                <span>{servicesT("telegramLabel")}</span>
+              </Link>
             </div>
           </div>
         </div>
