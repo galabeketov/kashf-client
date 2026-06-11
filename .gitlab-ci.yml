@@ -1,0 +1,18 @@
+stages:
+  - build
+  - deploy
+
+build_image_test:
+  stage: build
+  script:
+    - mv .env.master .env
+    - make build-image-test TAG=$CI_PIPELINE_IID SERVICE_NAME=$CI_PROJECT_NAME PROJECT_NAME=$CI_PROJECT_NAMESPACE REGISTRY=$CI_REGISTRY ENV_TAG=latest
+  only:
+    - master
+
+deploy_image_test:
+  stage: deploy
+  script:
+    - docker service update --with-registry-auth --image $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_PIPELINE_IID ${CI_PROJECT_NAME}
+  only:
+    - master
