@@ -31,6 +31,7 @@ module.exports = withNextIntl({
       },
     ];
   },
+  output: "standalone",
   sassOptions: {
     quietDeps: true, // This will silence deprecation warnings
     silenceDeprecations: [
