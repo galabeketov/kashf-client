@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Travel Easy Uzbekistan emblem</title>
+  <desc id="desc">TE monogram with a plane and Uzbekistan architectural skyline</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2cd72"/>
+      <stop offset=".5" stop-color="#c7962f"/>
+      <stop offset="1" stop-color="#9c6c18"/>
+    </linearGradient>
+    <linearGradient id="turquoise" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#45c1c7"/>
+      <stop offset="1" stop-color="#168999"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M94 371C50 306 48 220 80 151C111 84 173 38 243 26C161 54 103 118 89 195C78 255 91 318 126 366Z" fill="#082b58"/>
+  <path d="M176 47C258 4 365 20 430 92C456 121 472 155 479 190C450 121 388 67 313 50C267 39 219 38 176 47Z" fill="url(#gold)"/>
+  <path d="M466 241C484 288 476 344 444 385C460 340 461 289 446 249Z" fill="url(#gold)"/>
+
+  <text x="122" y="307" fill="#082b58" font-family="Georgia, 'Times New Roman', serif" font-size="260" font-weight="700">T</text>
+  <text x="252" y="331" fill="url(#gold)" font-family="Georgia, 'Times New Roman', serif" font-size="230" font-weight="700">E</text>
+
+  <path d="M141 286C190 332 321 296 424 226C331 317 194 365 137 316C119 301 124 282 144 267C137 274 136 281 141 286Z" fill="#082b58"/>
+  <g transform="translate(405 199) rotate(-24)">
+    <path d="M0 19L49 8C58 6 65 9 66 13C67 17 62 21 53 24L36 29L48 48L38 51L19 34L5 38L7 51L0 53L-7 35L-22 26L-19 20L-1 24Z" fill="#082b58"/>
+  </g>
+
+  <g transform="translate(0 8)">
+    <path d="M66 414C159 380 351 380 449 414C343 399 173 399 66 414Z" fill="#082b58"/>
+    <path d="M102 398V314H126V398Z" fill="url(#gold)"/>
+    <path d="M106 314L114 291L122 314Z" fill="url(#gold)"/>
+    <path d="M109 333H119M109 349H119M109 365H119" stroke="#fff" stroke-width="3" opacity=".7"/>
+
+    <path d="M145 398V352H213V398Z" fill="#0c4774"/>
+    <path d="M154 398V363H174V398M184 398V363H204V398" fill="#d5ab51"/>
+    <path d="M151 352C154 319 204 319 208 352Z" fill="url(#turquoise)"/>
+    <path d="M160 352C163 332 196 332 199 352Z" fill="#2fb0b6"/>
+
+    <path d="M222 398V342H281V398Z" fill="#d3a548"/>
+    <path d="M230 398V357H247V398M256 398V357H273V398" fill="#0c4774"/>
+    <path d="M239 342C242 326 262 326 265 342Z" fill="url(#turquoise)"/>
+
+    <path d="M292 398V326H370V398Z" fill="#0c4774"/>
+    <path d="M302 398V339H360V398Z" fill="#d8b35c"/>
+    <path d="M317 398V354C317 329 345 329 345 354V398Z" fill="#082b58"/>
+    <path d="M298 331L365 331M307 340L307 391M355 340L355 391" stroke="#43bfc5" stroke-width="4"/>
+
+    <path d="M379 398V350H427V398Z" fill="#d0a148"/>
+    <path d="M387 398V364H400V398M407 398V364H420V398" fill="#0c4774"/>
+    <path d="M383 350C386 324 420 324 423 350Z" fill="url(#turquoise)"/>
+  </g>
+</svg>

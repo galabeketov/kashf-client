@@ -96,7 +96,7 @@ export async function POST(request) {
     } else if (text === "/contact") {
       await sendMessage(
         chatId,
-        `📞 <b>Contact Samandar Ikromov</b>\n\n📱 <b>Phone/WhatsApp:</b> +998 99 062 17 36\n📧 <b>Email:</b> samandarwtf13@gmail.com\n📍 <b>Location:</b> Tashkent, Uzbekistan\n\n<i>We reply within 24 hours</i>`,
+        `📞 <b>Contact Samandar Ikromov</b>\n\n📱 <b>Phone/WhatsApp:</b> +998 99 062 17 36\n📧 <b>Email:</b> info@travel-easy.uz\n📍 <b>Location:</b> Tashkent, Uzbekistan\n\n<i>We reply within 24 hours</i>`,
         {
           reply_markup: {
             inline_keyboard: [

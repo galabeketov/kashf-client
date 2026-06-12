@@ -58,4 +58,5 @@ export {
   LuShield,
   LuHeadphones,
   LuHeart,
+  LuGrid2X2,
 } from "react-icons/lu";

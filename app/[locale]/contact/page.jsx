@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import KashfHeader from "@/components/header/header-kashf";
-import KashfFooter from "@/components/footer/kashf";
+import TravelHeader from "@/components/header/travel-header";
+import TravelFooter from "@/components/footer/travel-footer";
 import PageHero from "@/components/ui/PageHero";
 import {
   FaCheck,
@@ -16,7 +16,7 @@ import {
   LuMapPin,
   LuPhone,
 } from "@/components/shared/Icons";
-import { contact as staticContact } from "@/data/kashf";
+import { contact as staticContact } from "@/data/travelEasy";
 import { submitInquiry } from "@/lib/inquiries";
 import { useSettings } from "@/hooks/useSettings";
 import { trackContact } from "@/lib/analytics";
@@ -139,7 +139,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <KashfHeader />
+      <TravelHeader />
 
       <PageHero title={t("pageTitle")} subtitle={t("pageSubtitle")} />
 
@@ -214,13 +214,13 @@ export default function ContactPage() {
               </div>
 
               <Link
-                href={contact.whatsapp || "https://wa.me/998901234567"}
+                href={contact.whatsapp || "https://wa.me/998990621736"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button -md -blue-1 bg-blue-1 text-white col-12 h-60 mt-20"
                 onClick={handleContactClick(
                   "whatsapp",
-                  contact.whatsapp || "https://wa.me/998901234567",
+                  contact.whatsapp || "https://wa.me/998990621736",
                   "_blank",
                 )}
               >
@@ -248,6 +248,16 @@ export default function ContactPage() {
                     </a>
                   ))}
                 </div>
+                {contact.instagram ? (
+                  <a
+                    href={contact.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-inline-block text-15 fw-500 text-blue-1 mt-15"
+                  >
+                    Travel Easy Instagram: @traveleasyuz
+                  </a>
+                ) : null}
               </div>
             </div>
 
@@ -341,7 +351,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <KashfFooter />
+      <TravelFooter />
     </>
   );
 }

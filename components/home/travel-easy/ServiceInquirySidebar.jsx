@@ -11,25 +11,40 @@ import {
 } from "@/components/shared/Icons";
 import { submitInquiry } from "@/lib/inquiries";
 import { trackContact } from "@/lib/analytics";
-import { contact as staticContact } from "@/data/kashf";
+import { contact as staticContact } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
+import { normalizeContact } from "@/lib/content";
 
-const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
+const addWhatsAppText = (url, text) =>
+  `${url}${url.includes("?") ? "&" : "?"}text=${encodeURIComponent(text)}`;
+
+const ServiceInquirySidebar = ({
+  serviceSlug,
+  serviceTitle,
+  inquiryContext = "",
+}) => {
   const locale = useLocale();
   const tBooking = useTranslations("booking");
   const tServices = useTranslations("services");
   const { settings } = useSettings();
-  const contact = settings?.contact || staticContact;
-  const whatsappUrl = contact?.whatsapp || "https://wa.me/998901234567";
-  const telegramUrl = contact?.telegram || "https://t.me/traveleasyuz";
-  const instagramUrl = contact?.instagram || "https://instagram.com/traveleasyuz";
+  const contact = normalizeContact(settings?.contact, staticContact);
+  const whatsappUrl = contact.whatsapp;
+  const telegramUrl = contact.telegram;
+  const instagramUrl = contact.instagram;
+  const requestTitle = inquiryContext
+    ? `${serviceTitle}: ${inquiryContext}`
+    : serviceTitle;
+  const messengerText = tServices("messengerTemplate", {
+    service: serviceTitle,
+    selection: inquiryContext || tServices("selectionNotSet"),
+  });
 
   const trackAndOpen = (method) => () => {
     trackContact({
       method,
       source: "service_page",
       tourId: serviceSlug,
-      tourTitle: serviceTitle,
+      tourTitle: requestTitle,
       locale,
     }).catch(() => {});
   };
@@ -52,33 +67,37 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (submitting) return;
+
     setSubmitting(true);
     setError("");
 
     try {
       const result = await submitInquiry({
         ...formData,
+        message: [inquiryContext, formData.message].filter(Boolean).join("\n\n"),
         tourId: serviceSlug,
-        tourTitle: serviceTitle,
+        tourTitle: requestTitle,
         locale,
       });
       if (!result.success) {
+        const validationField = Object.keys(result.errors || {})[0];
         throw new Error(
           result.errorCode === "validation"
-            ? Object.values(result.errors || {})[0]
-            : "Failed to submit inquiry.",
+            ? tBooking(`errors.${validationField}`)
+            : tBooking("errors.submit"),
         );
       }
       await trackContact({
         method: "form",
         source: "service_page",
         tourId: serviceSlug,
-        tourTitle: serviceTitle,
+        tourTitle: requestTitle,
         locale,
       });
       setSubmitted(true);
     } catch (submitError) {
-      setError(submitError?.message || "Failed to submit inquiry.");
+      setError(submitError?.message || tBooking("errors.submit"));
     } finally {
       setSubmitting(false);
     }
@@ -91,20 +110,34 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
         method: "whatsapp",
         source: "service_page",
         tourId: serviceSlug,
-        tourTitle: serviceTitle,
+        tourTitle: requestTitle,
         locale,
       });
     } catch {}
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    window.open(
+      addWhatsAppText(whatsappUrl, messengerText),
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   return (
     <div className="d-flex justify-end js-pin-content">
-      <div className="w-full" style={{ position: "sticky", top: "100px" }}>
+      <div className="w-full travel-service-sidebar">
         <div className="px-30 py-30 rounded-4 border-light bg-white shadow-4">
           <h3 className="text-24 fw-500 text-dark-1">
             {tServices("sidebarTitle")}
           </h3>
+          <p className="text-14 text-light-1 mt-8">
+            {tServices("noPriceNote")}
+          </p>
+
+          {inquiryContext ? (
+            <div className="travel-inquiry-context mt-20" aria-live="polite">
+              <span>{tServices("selectedLabel")}</span>
+              <strong>{inquiryContext}</strong>
+            </div>
+          ) : null}
 
           {!submitted ? (
             <form className="row y-gap-20 pt-30" onSubmit={handleSubmit}>
@@ -117,7 +150,11 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
               )}
 
               <div className="col-12">
+                <label className="travel-field-label" htmlFor={`${serviceSlug}-name`}>
+                  {tBooking("name")}
+                </label>
                 <input
+                  id={`${serviceSlug}-name`}
                   className="border-light rounded-4 h-50 px-20 w-1/1 text-15"
                   name="name"
                   placeholder={tBooking("name")}
@@ -128,7 +165,11 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
               </div>
 
               <div className="col-12">
+                <label className="travel-field-label" htmlFor={`${serviceSlug}-phone`}>
+                  {tBooking("phone")}
+                </label>
                 <input
+                  id={`${serviceSlug}-phone`}
                   className="border-light rounded-4 h-50 px-20 w-1/1 text-15"
                   name="phone"
                   placeholder={tBooking("phone")}
@@ -139,7 +180,11 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
               </div>
 
               <div className="col-12">
+                <label className="travel-field-label" htmlFor={`${serviceSlug}-email`}>
+                  {tBooking("email")}
+                </label>
                 <input
+                  id={`${serviceSlug}-email`}
                   className="border-light rounded-4 h-50 px-20 w-1/1 text-15"
                   name="email"
                   type="email"
@@ -150,7 +195,11 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
               </div>
 
               <div className="col-12">
+                <label className="travel-field-label" htmlFor={`${serviceSlug}-date`}>
+                  {tBooking("date")}
+                </label>
                 <input
+                  id={`${serviceSlug}-date`}
                   className="border-light rounded-4 h-50 px-20 w-1/1 text-15"
                   name="date"
                   type="date"
@@ -161,7 +210,11 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
               </div>
 
               <div className="col-12">
+                <label className="travel-field-label" htmlFor={`${serviceSlug}-message`}>
+                  {tBooking("message")}
+                </label>
                 <textarea
+                  id={`${serviceSlug}-message`}
                   rows="5"
                   className="border-light rounded-4 px-20 py-15 w-1/1 text-15"
                   name="message"
@@ -177,7 +230,9 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
                   type="submit"
                   disabled={submitting}
                 >
-                  {submitting ? tBooking("sending") : tBooking("submit")}
+                  {submitting
+                    ? tBooking("sending")
+                    : tBooking("serviceSubmit")}
                 </button>
               </div>
             </form>
@@ -191,7 +246,7 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
               <h4 className="text-22 fw-500 mt-20">
                 {tServices("requestSent")}
               </h4>
-              <p className="text-15 mt-10">{serviceTitle}</p>
+              <p className="text-15 mt-10">{requestTitle}</p>
             </div>
           )}
         </div>

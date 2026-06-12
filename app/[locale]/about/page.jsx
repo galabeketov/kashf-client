@@ -3,11 +3,39 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import KashfHeader from "@/components/header/header-kashf";
-import KashfFooter from "@/components/footer/kashf";
+import TravelHeader from "@/components/header/travel-header";
+import TravelFooter from "@/components/footer/travel-footer";
 import PageHero from "@/components/ui/PageHero";
-import { defaultSettings } from "@/data/kashf";
+import { defaultSettings } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
+import { SITE_CONFIG, localizedUrl } from "@/lib/site-config";
+
+const GUIDE_SEO_COPY = {
+  en: {
+    title: "Private local guide for tours across Uzbekistan",
+    intro:
+      "Looking for an English-speaking private guide in Uzbekistan? Samandar Ikromov organizes personal tours in Tashkent, Samarkand, Bukhara, Khiva, Shakhrisabz and the mountain regions.",
+    details:
+      "Tours can include a licensed local guide, private transport, airport pickup, hotel support and a flexible itinerary for individuals, families, business guests and small private groups.",
+    languages: "Guide languages: English, Russian and Uzbek.",
+  },
+  uz: {
+    title: "O'zbekiston bo'ylab xususiy mahalliy gid",
+    intro:
+      "O'zbekistonda tajribali xususiy gid qidiryapsizmi? Samandar Ikromov Toshkent, Samarqand, Buxoro, Xiva, Shahrisabz va tog'li hududlarda shaxsiy turlar tashkil qiladi.",
+    details:
+      "Turlarga mahalliy gid, xususiy transport, aeroportdan kutib olish, mehmonxona bo'yicha yordam va oila, biznes mehmonlari hamda kichik guruhlar uchun moslashuvchan marshrut kirishi mumkin.",
+    languages: "Gid tillari: o'zbek, rus va ingliz tillari.",
+  },
+  ru: {
+    title: "Частный местный гид по Узбекистану",
+    intro:
+      "Ищете русскоязычного частного гида по Узбекистану? Самандар Икромов организует индивидуальные экскурсии по Ташкенту, Самарканду, Бухаре, Хиве, Шахрисабзу и горным районам.",
+    details:
+      "Можно заказать местного гида, личный транспорт, встречу в аэропорту, помощь с отелем и гибкий маршрут для индивидуальных туристов, семей, деловых гостей и небольших частных групп.",
+    languages: "Языки гида: русский, английский и узбекский.",
+  },
+};
 
 export default function AboutPage() {
   const locale = useLocale();
@@ -22,10 +50,38 @@ export default function AboutPage() {
   const localized = (value) => value?.[locale] || value?.en || value || "";
 
   const stats = guide.stats || defaultSettings.guide.stats;
+  const guideName = localized(guide.name);
+  const seoCopy = GUIDE_SEO_COPY[locale] || GUIDE_SEO_COPY.en;
+  const guideJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_CONFIG.clientUrl}/#guide`,
+    name: guideName,
+    jobTitle: localized(guide.title),
+    description: `${localized(guide.bio1)} ${localized(guide.bio2)}`,
+    image: `${SITE_CONFIG.clientUrl}${guide.photo}`,
+    url: localizedUrl(locale, "/about"),
+    worksFor: {
+      "@type": "TravelAgency",
+      "@id": `${SITE_CONFIG.clientUrl}/#organization`,
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.clientUrl,
+    },
+    knowsLanguage: ["English", "Russian", "Uzbek"],
+    sameAs: [
+      contact.instagram,
+      contact.telegram,
+      contact.facebook,
+    ].filter(Boolean),
+  };
 
   return (
     <>
-      <KashfHeader />
+      <TravelHeader />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(guideJsonLd) }}
+      />
 
       <PageHero title={t("pageTitle")} subtitle={t("pageSubtitle")} />
 
@@ -55,7 +111,7 @@ export default function AboutPage() {
               >
                 <Image
                   src={guide.photo}
-                  alt={localized(guide.name)}
+                  alt={`${guideName} — ${localized(guide.title)}`}
                   width={560}
                   height={560}
                   className="col-12 h-full object-cover"
@@ -72,7 +128,7 @@ export default function AboutPage() {
                 {t("sectionLabel")}
               </div>
               <h2 className="text-40 lg:text-30 mt-10">
-                {localized(guide.name)}
+                {guideName}
               </h2>
               <div className="text-16 text-blue-1 fw-500 mt-8">
                 {localized(guide.title)}
@@ -98,7 +154,7 @@ export default function AboutPage() {
 
               <div className="d-flex x-gap-15 y-gap-15 flex-wrap mt-30">
                 <Link
-                  href={contact.whatsapp || "https://wa.me/998901234567"}
+                  href={contact.whatsapp || "https://wa.me/998990621736"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="button -md -blue-1 bg-blue-1 text-white"
@@ -112,6 +168,19 @@ export default function AboutPage() {
                   {t("viewTours")}
                 </Link>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="layout-pt-md layout-pb-md bg-light-2">
+        <div className="container">
+          <div className="row justify-center">
+            <div className="col-lg-9">
+              <h2 className="text-30 fw-600">{seoCopy.title}</h2>
+              <p className="text-16 lh-17 mt-20">{seoCopy.intro}</p>
+              <p className="text-16 lh-17 mt-15">{seoCopy.details}</p>
+              <p className="text-16 fw-500 mt-15">{seoCopy.languages}</p>
             </div>
           </div>
         </div>
@@ -157,7 +226,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <KashfFooter />
+      <TravelFooter />
     </>
   );
 }

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useLocale, useTranslations } from "next-intl";
 import { FaArrowRight } from "@/components/shared/Icons";
-import { tours as staticTours } from "@/data/kashf";
+import { tours as staticTours } from "@/data/travelEasy";
 import { getPublishedTours } from "@/lib/tours";
 import TourCard from "@/components/ui/TourCard";
 import OrnamentalDivider from "@/components/ui/OrnamentalDivider";

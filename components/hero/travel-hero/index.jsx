@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { LuArrowRight, LuMessageCircle } from "@/components/shared/Icons";
 import { useSettings } from "@/hooks/useSettings";
-import { contact as staticContact } from "@/data/kashf";
+import { contact as staticContact } from "@/data/travelEasy";
 import { normalizeContact } from "@/lib/content";
 import { trackContact } from "@/lib/analytics";
 
-export default function KashfHero() {
+export default function TravelHero() {
   const t = useTranslations("hero");
   const locale = useLocale();
   const { settings } = useSettings();
@@ -33,7 +33,7 @@ export default function KashfHero() {
   return (
     <section className="travel-hero">
       <Image
-        src="/img/kashf/registan-hero-source.png"
+        src="/img/travel-easy/registan-hero-source.png"
         alt="Registan Square in Samarkand at sunrise"
         fill
         priority

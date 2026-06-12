@@ -11,12 +11,13 @@ import {
   LuMapPin,
   LuPhone,
 } from "@/components/shared/Icons";
-import { contact as staticContact } from "@/data/kashf";
+import { contact as staticContact } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
 import { trackContact } from "@/lib/analytics";
 import DomeDecor from "@/components/ui/DomeDecor";
+import BrandLogo from "@/components/ui/BrandLogo";
 
-const KashfFooter = () => {
+const TravelFooter = () => {
   const t = useTranslations("footer");
   const brandT = useTranslations("brand");
   const navT = useTranslations("nav");
@@ -89,12 +90,12 @@ const KashfFooter = () => {
 
               {/* Brand column */}
               <div className="col-xl-3 col-lg-4 col-sm-6">
-                <div className="uzn-logo-name" style={{ fontSize: "24px" }}>
-                  {brandT("name")}
-                </div>
-                <span className="uzn-logo-sub" style={{ marginBottom: "12px" }}>
-                  {brandT("tagline")}
-                </span>
+                <BrandLogo
+                  name={brandT("name")}
+                  tagline={brandT("tagline")}
+                  size={72}
+                  className="travel-brand-logo--footer"
+                />
                 <p className="text-15 mt-16" style={{ color: "rgba(255,255,255,0.62)", lineHeight: 1.65 }}>
                   {brandT("description")}
                 </p>
@@ -209,4 +210,4 @@ const KashfFooter = () => {
   );
 };
 
-export default KashfFooter;
+export default TravelFooter;

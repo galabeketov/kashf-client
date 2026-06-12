@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { LuCheck } from "@/components/shared/Icons";
-import { defaultSettings } from "@/data/kashf";
+import { defaultSettings } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
 import { trackContact } from "@/lib/analytics";
 import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
@@ -115,24 +115,24 @@ const AboutSection = () => {
               {/* CTA buttons */}
               <div className="d-flex x-gap-14 y-gap-14 flex-wrap mt-30">
                 <Link
-                  href={contact.whatsapp || "https://wa.me/998901234567"}
+                  href={contact.whatsapp || "https://wa.me/998990621736"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="uzn-btn-gold"
                   onClick={handleContactClick(
                     "whatsapp",
-                    contact.whatsapp || "https://wa.me/998901234567",
+                    contact.whatsapp || "https://wa.me/998990621736",
                   )}
                 >
                   {t("whatsapp")}
                 </Link>
                 <Link
-                  href={`mailto:${contact.email || "hello@kashf.uz"}`}
+                  href={`mailto:${contact.email || "info@travel-easy.uz"}`}
                   className="uzn-btn-outline-gold"
                   style={{ color: "#1A1A2E", borderColor: "#C9A84C" }}
                   onClick={handleContactClick(
                     "email",
-                    `mailto:${contact.email || "hello@kashf.uz"}`,
+                    `mailto:${contact.email || "info@travel-easy.uz"}`,
                     "_self",
                   )}
                 >

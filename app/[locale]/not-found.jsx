@@ -1,11 +1,11 @@
 import Link from "next/link";
-import KashfHeader from "@/components/header/header-kashf";
-import KashfFooter from "@/components/footer/kashf";
+import TravelHeader from "@/components/header/travel-header";
+import TravelFooter from "@/components/footer/travel-footer";
 
 export default function NotFound() {
   return (
     <>
-      <KashfHeader />
+      <TravelHeader />
       <section
         className="d-flex flex-column items-center justify-center text-center"
         style={{ minHeight: "70vh", paddingTop: 120 }}
@@ -35,7 +35,7 @@ export default function NotFound() {
           </Link>
         </div>
       </section>
-      <KashfFooter />
+      <TravelFooter />
     </>
   );
 }

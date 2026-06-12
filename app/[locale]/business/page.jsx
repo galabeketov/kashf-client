@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import ServicePageShell from "@/components/home/kashf/ServicePageShell";
+import ServicePageShell from "@/components/home/travel-easy/ServicePageShell";
 import { FaLanguage, LuCar, LuMapPin, LuUser } from "@/components/shared/Icons";
 
 const serviceIcons = {

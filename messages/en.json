@@ -69,10 +69,17 @@
     "groupSize": "Group Size",
     "message": "Message (optional)",
     "submit": "Request This Tour",
+    "serviceSubmit": "Send Service Request",
     "sending": "Sending...",
     "successTitle": "Request Sent!",
     "successText": "We'll contact you within 24 hours.",
-    "cancel": "Free consultation · No booking fee · Cancel anytime"
+    "cancel": "Free consultation · No booking fee · Cancel anytime",
+    "errors": {
+      "name": "Enter at least 2 characters for your name.",
+      "phone": "Enter a valid phone or WhatsApp number.",
+      "email": "Enter a valid email address.",
+      "submit": "The request could not be sent. Please try WhatsApp or Telegram."
+    }
   },
   "features": {
     "title": "Why Choose Travel Easy",
@@ -122,8 +129,8 @@
   "services": {
     "pageTitle": "Our Services",
     "pageSubtitle": "Everything you need for a perfect Uzbekistan experience",
-    "otherServicesTitle": "More Services",
-    "otherServicesSubtitle": "Explore additional services beyond our most popular options",
+    "otherServicesTitle": "Travel Services",
+    "otherServicesSubtitle": "Choose the support you need and send a request directly",
     "sidebarTitle": "Book This Service",
     "requestSent": "Request Sent!",
     "whatsappDirect": "WhatsApp Direct",
@@ -131,6 +138,11 @@
     "emailLabel": "Email",
     "telegramLabel": "Telegram",
     "contactDirectly": "Can't find what you need? Contact us directly",
+    "allServices": "All Services",
+    "noPriceNote": "No fixed price is shown. Send your request and agree the details directly with our team.",
+    "selectedLabel": "Selected request",
+    "selectionNotSet": "I need more information",
+    "messengerTemplate": "Hello! I am interested in {service}. My selection: {selection}. Please contact me to discuss availability and details.",
     "tours": "Private Tours",
     "toursDesc": "Hand-crafted Silk Road tours across Uzbekistan's legendary cities",
     "rentCar": "Rent a Car",
@@ -142,7 +154,7 @@
     "driver": "Personal Driver",
     "driverDesc": "Professional personal driver for city tours or multi-day trips",
     "currency": "Currency Exchange",
-    "currencyDesc": "Best rates for USD, EUR, RUB and all major currencies",
+    "currencyDesc": "Get help arranging an exchange through an authorized bank or exchange office",
     "blog": "Travel Blog",
     "blogDesc": "Tips, guides and stories about traveling in Uzbekistan",
     "telegram": "Telegram Bot",
@@ -160,6 +172,8 @@
         "vehiclesSubtitle": "Popular models available in Uzbekistan. Pick one and contact us.",
         "passengersLabel": "passengers",
         "requestCar": "Request this car",
+        "selectCar": "Select for request",
+        "selectedCar": "Selected",
         "includesTitle": "What's Included",
         "includes": [
           "Optional professional driver",
@@ -352,7 +366,16 @@
       },
       "currency": {
         "aboutTitle": "About Currency Exchange",
-        "aboutText": "Currency exchange at fair, transparent rates — USD, EUR, GBP, RUB, KZT and more. Rates change daily, so contact us for today's exact rate before exchanging.",
+        "aboutText": "Request help exchanging between any available currencies through an authorized bank or exchange office. Rates change daily, so no fixed rate or price is published.",
+        "requestTitle": "Create your currency request",
+        "requestText": "Choose the currency you have, the currency you need and an optional amount. Select Other Currency if it is not listed.",
+        "fromLabel": "I have",
+        "toLabel": "I need",
+        "amountLabel": "Amount",
+        "amountPlaceholder": "For example: 1000",
+        "otherCurrency": "Other currency",
+        "customCurrencyLabel": "Currency code or name",
+        "customCurrencyPlaceholder": "For example: SGD or Singapore dollar",
         "currenciesTitle": "Currencies We Handle",
         "currencies": [
           "USD",
@@ -361,14 +384,14 @@
           "RUB",
           "KZT"
         ],
-        "rateNote": "Contact us for today's rate",
+        "rateNote": "Request current availability",
         "noteTitle": "Important Note",
-        "noteText": "Rates change daily. Message us on WhatsApp or Telegram for today's exact rate before exchanging.",
+        "noteText": "Travel Easy does not set exchange rates or act as a bank. We help you find an authorized provider, whose current rate and requirements must be confirmed before exchange.",
         "whyTitle": "Why Use Our Service",
         "reasons": [
-          "Better rates than the airport",
-          "Safe and transparent",
-          "Home / hotel delivery available"
+          "Authorized exchange options",
+          "Current rate confirmation",
+          "Language and location assistance"
         ],
         "stepsTitle": "How It Works",
         "steps": [
@@ -377,12 +400,12 @@
             "text": "Message on WhatsApp or Telegram."
           },
           {
-            "title": "Confirm amount & rate",
-            "text": "We agree on the amount and today's rate."
+            "title": "Review available options",
+            "text": "We help identify an authorized provider for your currencies and amount."
           },
           {
-            "title": "Exchange safely",
-            "text": "Meet at an agreed, safe location."
+            "title": "Confirm with the provider",
+            "text": "Confirm the provider's rate, documents and location before exchanging."
           }
         ]
       }

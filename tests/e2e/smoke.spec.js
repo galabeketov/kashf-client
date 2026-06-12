@@ -27,3 +27,37 @@ test("tour filters expose selected state", async ({ page }) => {
   await filter.click();
   await expect(filter).toHaveAttribute("aria-pressed", "true");
 });
+
+for (const [locale, currencyLabel] of [
+  ["en", "Currency Exchange"],
+  ["uz", "Valyuta Almashtirish"],
+  ["ru", "Обмен валюты"],
+]) {
+  test(`${locale} service hotkeys are localized`, async ({ page }) => {
+    await page.goto(`/${locale}/currency`);
+    await expect(
+      page.getByRole("link", { name: currencyLabel }),
+    ).toHaveAttribute("aria-current", "page");
+  });
+}
+
+test("car selection is carried into the inquiry", async ({ page }) => {
+  await page.goto("/en/rent-car");
+  const card = page.locator(".travel-car-card").filter({
+    hasText: "Chevrolet Tracker",
+  });
+  await card.getByRole("button", { name: "Select for request" }).click();
+  await expect(page.locator(".travel-inquiry-context")).toContainText(
+    "Chevrolet Tracker",
+  );
+});
+
+test("currency selection is carried into the inquiry", async ({ page }) => {
+  await page.goto("/en/currency");
+  const amount = page.getByLabel("Amount");
+  await amount.fill("1000");
+  await expect(page.locator(".travel-inquiry-context")).toContainText(
+    "USD → UZS",
+  );
+  await expect(page.locator(".travel-inquiry-context")).toContainText("1000");
+});

@@ -12,7 +12,7 @@ export const defaultSettings = {
     },
     bio1: {
       en: "Born and raised in Tashkent, I have spent my entire life discovering the hidden gems and legendary monuments of Uzbekistan.",
-      uz: "Toshkentda tug'ilib o'sganman va butun hayotim davomida O'zbekistonning yashirin go'shalarini kashf etib kelaman.",
+      uz: "Toshkentda tug'ilib o'sganman va butun hayotim davomida O'zbekistonning yashirin go'shalarini o'rganib kelaman.",
       ru: "Родился и вырос в Ташкенте, всю жизнь открываю скрытые жемчужины и легендарные памятники Узбекистана.",
     },
     bio2: {
@@ -72,7 +72,7 @@ export const defaultSettings = {
   hero: {
     title: {
       en: "Discover the Wonders of the Silk Road",
-      uz: "Ipak Yo'lining Mo'jizalarini Kashf Eting",
+      uz: "Ipak Yo'lining Mo'jizalarini His Qiling",
       ru: "Откройте для себя чудеса Шёлкового пути",
     },
     subtitle: {

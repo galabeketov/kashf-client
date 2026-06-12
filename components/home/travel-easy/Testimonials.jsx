@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
 import { useLocale, useTranslations } from "next-intl";
 import { FaStar } from "@/components/shared/Icons";
-import { defaultSettings } from "@/data/kashf";
+import { defaultSettings } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
 
 const Testimonials = () => {
@@ -54,7 +54,7 @@ const Testimonials = () => {
             >
               <Swiper
                 scrollbar={{
-                  el: ".js-kashf-scrollbar",
+                  el: ".js-travel-easy-scrollbar",
                   draggable: true,
                 }}
                 modules={[Scrollbar]}
@@ -98,7 +98,7 @@ const Testimonials = () => {
 
               <div className="d-flex items-center mt-60 sm:mt-20">
                 <div className="text-dark-1 fw-500">01</div>
-                <div className="slider-scrollbar bg-border ml-20 mr-20 w-max-300 js-kashf-scrollbar" />
+                <div className="slider-scrollbar bg-border ml-20 mr-20 w-max-300 js-travel-easy-scrollbar" />
                 <div className="text-dark-1 fw-500">0{testimonials.length}</div>
               </div>
             </div>

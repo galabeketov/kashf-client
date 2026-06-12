@@ -50,7 +50,7 @@ export default function ClientProviders({ children }) {
         duration: reduceMotion ? 0 : 520,
         offset: 40,
         once: true,
-        startEvent: "kashf:aos-start",
+        startEvent: "travel-easy:aos-start",
         disableMutationObserver: false,
         disable: reduceMotion,
       });
@@ -61,7 +61,7 @@ export default function ClientProviders({ children }) {
           runWhenIdle(() => {
             startDelay = window.setTimeout(() => {
               if (cancelled) return;
-              document.dispatchEvent(new Event("kashf:aos-start"));
+              document.dispatchEvent(new Event("travel-easy:aos-start"));
               aosReady.current = true;
               forceAosRecalc();
             }, AOS_START_DELAY);

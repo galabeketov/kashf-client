@@ -5,14 +5,16 @@ import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { LuMenu, LuMessageCircle, LuPhone, LuX } from "@/components/shared/Icons";
-import { contact as staticContact } from "@/data/kashf";
+import { contact as staticContact } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
 import { trackContact } from "@/lib/analytics";
 import { normalizeContact } from "@/lib/content";
+import BrandLogo from "@/components/ui/BrandLogo";
+import ServicesSubnav from "@/components/home/travel-easy/ServicesSubnav";
 
 const LOCALES = ["en", "uz", "ru"];
 
-export default function HeaderKashf() {
+export default function TravelHeader() {
   const brandT = useTranslations("brand");
   const t = useTranslations("nav");
   const servicesT = useTranslations("services");
@@ -35,6 +37,12 @@ export default function HeaderKashf() {
     { label: t("contact"), href: "/contact" },
   ];
   const isHome = barePath === "/";
+  const activeService =
+    barePath === "/services"
+      ? "services"
+      : barePath.startsWith("/tours")
+        ? "tours"
+        : barePath.split("/")[1] || undefined;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -78,11 +86,7 @@ export default function HeaderKashf() {
     >
       <div className="travel-header__inner">
         <Link href={localize("/")} className="travel-brand" aria-label={brandT("fullName")}>
-          <img src="/img/icons/icon-192.png" alt="" width="44" height="44" />
-          <span>
-            <strong>{brandT("name")}</strong>
-            <small>{brandT("tagline")}</small>
-          </span>
+          <BrandLogo name={brandT("name")} tagline={brandT("tagline")} />
         </Link>
 
         <nav className="travel-nav" aria-label="Primary navigation">
@@ -154,11 +158,11 @@ export default function HeaderKashf() {
         <div className="travel-drawer__panel" role="dialog" aria-modal="true">
           <div className="travel-drawer__head">
             <span className="travel-brand">
-              <img src="/img/icons/icon-192.png" alt="" width="40" height="40" />
-              <span>
-                <strong>{brandT("name")}</strong>
-                <small>{brandT("tagline")}</small>
-              </span>
+              <BrandLogo
+                name={brandT("name")}
+                tagline={brandT("tagline")}
+                size={46}
+              />
             </span>
             <button
               type="button"
@@ -207,6 +211,7 @@ export default function HeaderKashf() {
           </div>
         </div>
       </div>
+      <ServicesSubnav active={activeService} />
     </header>
   );
 }

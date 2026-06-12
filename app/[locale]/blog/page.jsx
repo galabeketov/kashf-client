@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import KashfHeader from "@/components/header/header-kashf";
-import KashfFooter from "@/components/footer/kashf";
+import TravelHeader from "@/components/header/travel-header";
+import TravelFooter from "@/components/footer/travel-footer";
 import PageHero from "@/components/ui/PageHero";
 import OptimizedImage from "@/components/shared/OptimizedImage";
 import { getPublishedPosts } from "@/lib/posts";
@@ -75,7 +75,7 @@ export default function BlogPage() {
 
   return (
     <>
-      <KashfHeader />
+      <TravelHeader />
 
       <PageHero title={t("pageTitle")} subtitle={t("pageSubtitle")} />
 
@@ -130,7 +130,7 @@ export default function BlogPage() {
                         height: "220px",
                         borderRadius: "12px",
                         background: "#eef2f7",
-                        animation: "kashfBlogPulse 1.4s ease-in-out infinite",
+                        animation: "travelBlogPulse 1.4s ease-in-out infinite",
                       }}
                     />
                     <div className="mt-12">
@@ -241,10 +241,10 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <KashfFooter />
+      <TravelFooter />
 
       <style jsx global>{`
-        @keyframes kashfBlogPulse {
+        @keyframes travelBlogPulse {
           0% {
             opacity: 1;
           }

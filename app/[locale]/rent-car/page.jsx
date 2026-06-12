@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import ServicePageShell from "@/components/home/kashf/ServicePageShell";
+import ServicePageShell from "@/components/home/travel-easy/ServicePageShell";
 import {
   FaCheck,
   FaWhatsapp,
@@ -10,10 +12,11 @@ import {
   FaInstagram,
   LuCar,
 } from "@/components/shared/Icons";
-import { contact as staticContact } from "@/data/kashf";
+import { contact as staticContact } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
 import { normalizeContact } from "@/lib/content";
 import { trackContact } from "@/lib/analytics";
+import { RENTAL_CARS } from "@/data/services";
 
 const withText = (url, text) =>
   `${url}${url.includes("?") ? "&" : "?"}text=${encodeURIComponent(text)}`;
@@ -23,11 +26,19 @@ export default function RentCarPage() {
   const t = useTranslations("services");
   const navT = useTranslations("nav");
   const title = t("rentCar");
+  const [selectedCar, setSelectedCar] = useState("");
 
   const { settings } = useSettings();
   const contact = normalizeContact(settings?.contact, staticContact);
 
-  const cars = t.raw("detail.rentCar.carList");
+  const carTranslations = t.raw("detail.rentCar.carList");
+  const cars = RENTAL_CARS.map((car) => ({
+    ...car,
+    ...carTranslations[car.translationIndex],
+    name: car.name,
+    image: car.image,
+    passengers: car.passengers,
+  }));
   const includes = t.raw("detail.rentCar.includes");
   const steps = t.raw("detail.rentCar.steps");
   const passengersLabel = t("detail.rentCar.passengersLabel");
@@ -61,6 +72,7 @@ export default function RentCarPage() {
       serviceTitle={title}
       heroTitle={title}
       heroSubtitle={t("rentCarDesc")}
+      inquiryContext={selectedCar}
       breadcrumb={
         <div className="row x-gap-10 y-gap-10 items-center text-14 text-light-1">
           <div className="col-auto">
@@ -101,58 +113,75 @@ export default function RentCarPage() {
         <div className="row y-gap-30 pt-30">
           {cars.map((car) => (
             <div className="col-lg-6" key={car.name}>
-              <div className="border-light rounded-8 px-20 py-20 h-100 position-relative">
+              <div
+                className={`travel-car-card h-100${selectedCar === car.name ? " is-selected" : ""}`}
+              >
                 <span className="uzbek-dome-ornament" aria-hidden="true" />
-                <div className="d-flex items-center">
-                  <div className="size-60 flex-center rounded-12 bg-blue-2 mr-15">
-                    <span className="text-blue-1 d-inline-flex">
-                      <LuCar size={24} />
+                <div className="travel-car-card__image">
+                  <Image
+                    src={car.image}
+                    alt={car.name}
+                    fill
+                    sizes="(max-width: 991px) 100vw, 420px"
+                  />
+                </div>
+
+                <div className="travel-car-card__body">
+                  <div className="d-flex items-start justify-between x-gap-15">
+                    <div>
+                      <h3 className="text-20 fw-600 text-dark-1">{car.name}</h3>
+                      <div className="text-14 text-light-1 mt-4">{car.type}</div>
+                    </div>
+                    <span className="travel-car-card__passengers">
+                      {car.passengers} {passengersLabel}
                     </span>
                   </div>
-                  <div>
-                    <h3 className="text-18 fw-500 text-dark-1">{car.name}</h3>
-                    <div className="text-14 text-light-1">{car.type}</div>
+
+                  <p className="text-14 text-light-1 mt-14">{car.bestFor}</p>
+
+                  <div className="d-flex items-center x-gap-10 pt-20">
+                    <button
+                      type="button"
+                      className="travel-car-card__select"
+                      aria-pressed={selectedCar === car.name}
+                      onClick={() => setSelectedCar(car.name)}
+                    >
+                      <LuCar size={16} />
+                      {selectedCar === car.name
+                        ? t("detail.rentCar.selectedCar")
+                        : t("detail.rentCar.selectCar")}
+                    </button>
+                    <a
+                      href={carUrl(car.name, "whatsapp")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="travel-contact-icon is-whatsapp"
+                      aria-label={`WhatsApp - ${car.name}`}
+                      onClick={trackCar(car.name, "whatsapp")}
+                    >
+                      <FaWhatsapp size={17} />
+                    </a>
+                    <a
+                      href={carUrl(car.name, "telegram")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="travel-contact-icon is-telegram"
+                      aria-label={`Telegram - ${car.name}`}
+                      onClick={trackCar(car.name, "telegram")}
+                    >
+                      <FaTelegramPlane size={17} />
+                    </a>
+                    <a
+                      href={carUrl(car.name, "instagram")}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="travel-contact-icon is-instagram"
+                      aria-label={`Instagram - ${car.name}`}
+                      onClick={trackCar(car.name, "instagram")}
+                    >
+                      <FaInstagram size={17} />
+                    </a>
                   </div>
-                </div>
-
-                <div className="d-flex items-center justify-between mt-15 text-14 text-light-1">
-                  <span>{car.bestFor}</span>
-                  <span className="text-dark-1 fw-500">
-                    {car.passengers} {passengersLabel}
-                  </span>
-                </div>
-
-                <div className="d-flex items-center x-gap-10 pt-20">
-                  <a
-                    href={carUrl(car.name, "whatsapp")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button -sm bg-blue-1 text-white px-20 py-10"
-                    onClick={trackCar(car.name, "whatsapp")}
-                  >
-                    <FaWhatsapp size={15} className="mr-10" />
-                    {t("detail.rentCar.requestCar")}
-                  </a>
-                  <a
-                    href={carUrl(car.name, "telegram")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="size-40 flex-center rounded-full bg-blue-2 text-blue-1"
-                    aria-label="Telegram"
-                    onClick={trackCar(car.name, "telegram")}
-                  >
-                    <FaTelegramPlane size={16} />
-                  </a>
-                  <a
-                    href={carUrl(car.name, "instagram")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="size-40 flex-center rounded-full bg-blue-2 text-blue-1"
-                    aria-label="Instagram"
-                    onClick={trackCar(car.name, "instagram")}
-                  >
-                    <FaInstagram size={16} />
-                  </a>
                 </div>
               </div>
             </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import ServicePageShell from "@/components/home/kashf/ServicePageShell";
+import ServicePageShell from "@/components/home/travel-easy/ServicePageShell";
 import { FaCheck, LuPlane } from "@/components/shared/Icons";
 
 export default function TransferPage() {

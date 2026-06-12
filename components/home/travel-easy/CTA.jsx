@@ -9,7 +9,7 @@ import {
   FaWhatsapp,
   LuMail,
 } from "@/components/shared/Icons";
-import { defaultSettings } from "@/data/kashf";
+import { defaultSettings } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
 import { trackContact } from "@/lib/analytics";
 import DomeDecor from "@/components/ui/DomeDecor";
@@ -57,7 +57,7 @@ const CTA = () => {
 
   const handleWhatsApp = async (event) => {
     event.preventDefault();
-    const href = contact?.whatsapp || "https://wa.me/998901234567";
+    const href = contact?.whatsapp || "https://wa.me/998990621736";
     try {
       await trackContact({ method: "whatsapp", source: "cta", tourId: null, tourTitle: null, locale });
     } catch {}
@@ -96,7 +96,7 @@ const CTA = () => {
           <div className="col-auto">
             <div className="d-flex x-gap-12 y-gap-14 flex-wrap">
               <Link
-                href={contact?.whatsapp || "https://wa.me/998901234567"}
+                href={contact?.whatsapp || "https://wa.me/998990621736"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="uzn-btn-gold h-56"

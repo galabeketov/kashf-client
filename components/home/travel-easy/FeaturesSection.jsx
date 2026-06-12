@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { LuHeadphones, LuShield, LuUser } from "@/components/shared/Icons";
-import { defaultSettings } from "@/data/kashf";
+import { defaultSettings } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
 
 const FeaturesSection = () => {

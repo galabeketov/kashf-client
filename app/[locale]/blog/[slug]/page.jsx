@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
-import KashfHeader from "@/components/header/header-kashf";
-import KashfFooter from "@/components/footer/kashf";
+import TravelHeader from "@/components/header/travel-header";
+import TravelFooter from "@/components/footer/travel-footer";
 import OptimizedImage from "@/components/shared/OptimizedImage";
 import { getPostById } from "@/lib/posts";
 
@@ -62,9 +62,9 @@ export default function BlogDetailPage() {
 
   return (
     <>
-      <KashfHeader />
+      <TravelHeader />
 
-      <section className="py-10 bg-light-2" style={{ marginTop: "96px" }}>
+      <section className="py-10 bg-light-2" style={{ marginTop: "145px" }}>
         <div className="container">
           <div className="row x-gap-10 y-gap-10 items-center text-14 text-light-1">
             <div className="col-auto">
@@ -210,7 +210,7 @@ export default function BlogDetailPage() {
                       </div>
                     </div>
                     <Link
-                      href="https://wa.me/998901234567"
+                      href="https://wa.me/998990621736"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="button -sm -blue-1 bg-blue-1 text-white mt-15"
@@ -229,7 +229,7 @@ export default function BlogDetailPage() {
                     <p className="text-14 text-light-1">{t("planningDesc")}</p>
                     <div className="d-flex flex-column y-gap-10 mt-15">
                       <Link
-                        href="https://wa.me/998901234567"
+                        href="https://wa.me/998990621736"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="button -sm -blue-1 bg-blue-1 text-white"
@@ -251,7 +251,7 @@ export default function BlogDetailPage() {
         </div>
       </section>
 
-      <KashfFooter />
+      <TravelFooter />
     </>
   );
 }

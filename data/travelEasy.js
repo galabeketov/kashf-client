@@ -273,13 +273,13 @@ export const contact = {
   telegram: "https://t.me/traveleasyuz",
   facebook: "https://facebook.com/traveleasyuz",
   instagram: "https://instagram.com/traveleasyuz",
-  email: "uztrip13@gmail.com",
+  email: "info@travel-easy.uz",
   location: "Tashkent, Uzbekistan",
 };
 
 export const defaultSettings = baseDefaultSettings;
 
-const kashfData = {
+const travelEasyData = {
   tours,
   testimonials,
   features,
@@ -287,4 +287,4 @@ const kashfData = {
   contact,
 };
 
-export default kashfData;
+export default travelEasyData;

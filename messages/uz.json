@@ -69,10 +69,17 @@
     "groupSize": "Guruh Hajmi",
     "message": "Xabar (ixtiyoriy)",
     "submit": "Tur So'rash",
+    "serviceSubmit": "Xizmat So'rovini Yuborish",
     "sending": "Yuborilmoqda...",
     "successTitle": "So'rov Yuborildi!",
     "successText": "24 soat ichida siz bilan bog'lanamiz.",
-    "cancel": "Bepul konsultatsiya · Buyurtma to'lovi yo'q · Istalgan vaqt bekor qilish"
+    "cancel": "Bepul konsultatsiya · Buyurtma to'lovi yo'q · Istalgan vaqt bekor qilish",
+    "errors": {
+      "name": "Ismingiz kamida 2 ta belgidan iborat bo'lsin.",
+      "phone": "To'g'ri telefon yoki WhatsApp raqamini kiriting.",
+      "email": "To'g'ri email manzilini kiriting.",
+      "submit": "So'rov yuborilmadi. WhatsApp yoki Telegram orqali urinib ko'ring."
+    }
   },
   "features": {
     "title": "Nima Uchun Travel Easy",
@@ -83,7 +90,7 @@
     "name": "Samandar Ikromov",
     "pageTitle": "Gid Haqida",
     "pageSubtitle": "10+ yil davomida O'zbekiston mo'jizalarini dunyo bilan ulashib kelaman",
-    "bio1": "Toshkentda tug'ilib o'sganman va butun hayotim davomida O'zbekistonning yashirin go'shalarini kashf etib kelaman.",
+    "bio1": "Toshkentda tug'ilib o'sganman va butun hayotim davomida O'zbekistonning yashirin go'shalarini o'rganib kelaman.",
     "bio2": "O'tgan o'n yil ichida yuzlab xalqaro sayohatchilarni Samarqand, Buxoro, Xiva ko'chalarida boshqarganman.",
     "whatsapp": "WhatsApp",
     "viewTours": "Turlarni Ko'rish",
@@ -95,7 +102,7 @@
     "subtitle": "Dunyo bo'ylab haqiqiy sayohatchilarning haqiqiy tajribalari"
   },
   "cta": {
-    "title": "O'zbekistonni Kashf Etishga Tayyormisiz?",
+    "title": "O'zbekiston Bo'ylab Sayohatga Tayyormisiz?",
     "subtitle": "Bepul konsultatsiya va maxsus marshrut uchun bog'laning",
     "whatsapp": "WhatsApp da Yozing",
     "viewTours": "Barcha Turlarni Ko'rish"
@@ -122,8 +129,8 @@
   "services": {
     "pageTitle": "Bizning Xizmatlar",
     "pageSubtitle": "O'zbekistonda mukammal sayohat uchun hamma narsa",
-    "otherServicesTitle": "Qo'shimcha xizmatlar",
-    "otherServicesSubtitle": "Eng mashhur xizmatlardan tashqari boshqa xizmatlarni ham ko'ring",
+    "otherServicesTitle": "Sayohat xizmatlari",
+    "otherServicesSubtitle": "Kerakli yordamni tanlang va bevosita so'rov yuboring",
     "sidebarTitle": "So'rov Yuborish",
     "requestSent": "So'rov Yuborildi!",
     "whatsappDirect": "WhatsApp orqali yozish",
@@ -131,6 +138,11 @@
     "emailLabel": "Email",
     "telegramLabel": "Telegram",
     "contactDirectly": "Kerakli xizmatni topa olmadingizmi? Biz bilan bevosita bog'laning",
+    "allServices": "Barcha xizmatlar",
+    "noPriceNote": "Belgilangan narx ko'rsatilmaydi. So'rov yuboring va tafsilotlarni jamoamiz bilan bevosita kelishib oling.",
+    "selectedLabel": "Tanlangan so'rov",
+    "selectionNotSet": "Batafsil ma'lumot kerak",
+    "messengerTemplate": "Assalomu alaykum! Menga {service} xizmati kerak. Tanlovim: {selection}. Mavjudlik va tafsilotlarni kelishish uchun men bilan bog'laning.",
     "tours": "Xususiy Turlar",
     "toursDesc": "O'zbekistonning afsonaviy shaharlari bo'ylab maxsus Ipak Yo'li turlari",
     "rentCar": "Avtomobil Ijarasi",
@@ -142,7 +154,7 @@
     "driver": "Shaxsiy Haydovchi",
     "driverDesc": "Shahar safari yoki ko'p kunlik sayohat uchun professional shaxsiy haydovchi",
     "currency": "Valyuta Almashtirish",
-    "currencyDesc": "USD, EUR, RUB va barcha asosiy valyutalar uchun eng yaxshi kurslar",
+    "currencyDesc": "Vakolatli bank yoki ayirboshlash shoxobchasi orqali valuta almashtirishda yordam oling",
     "blog": "Sayohat Blogi",
     "blogDesc": "O'zbekistonda sayohat haqida maslahatlar, yo'riqnomalar va hikoyalar",
     "telegram": "Telegram Bot",
@@ -160,6 +172,8 @@
         "vehiclesSubtitle": "O'zbekistonda mashhur modellar. Birini tanlab, biz bilan bog'laning.",
         "passengersLabel": "yo'lovchi",
         "requestCar": "Shu mashinani so'rash",
+        "selectCar": "So'rov uchun tanlash",
+        "selectedCar": "Tanlandi",
         "includesTitle": "Nimalar kiradi",
         "includes": [
           "Ixtiyoriy professional haydovchi",
@@ -352,7 +366,16 @@
       },
       "currency": {
         "aboutTitle": "Valyuta ayirboshlash haqida",
-        "aboutText": "Adolatli, shaffof kurs bo'yicha valyuta ayirboshlash — USD, EUR, GBP, RUB, KZT va boshqalar. Kurs har kuni o'zgaradi, shuning uchun ayirboshlashdan oldin bugungi aniq kurs uchun bog'laning.",
+        "aboutText": "Istalgan mavjud valutani vakolatli bank yoki ayirboshlash shoxobchasi orqali almashtirish uchun yordam so'rang. Kurs har kuni o'zgaradi, shu sababli belgilangan kurs yoki narx e'lon qilinmaydi.",
+        "requestTitle": "Valuta so'rovini yarating",
+        "requestText": "Sizdagi valuta, kerakli valuta va ixtiyoriy summani tanlang. Ro'yxatda bo'lmasa, Boshqa valuta variantini belgilang.",
+        "fromLabel": "Menda bor",
+        "toLabel": "Menga kerak",
+        "amountLabel": "Summa",
+        "amountPlaceholder": "Masalan: 1000",
+        "otherCurrency": "Boshqa valuta",
+        "customCurrencyLabel": "Valuta kodi yoki nomi",
+        "customCurrencyPlaceholder": "Masalan: SGD yoki Singapur dollari",
         "currenciesTitle": "Qabul qilinadigan valyutalar",
         "currencies": [
           "USD",
@@ -361,14 +384,14 @@
           "RUB",
           "KZT"
         ],
-        "rateNote": "Bugungi kurs uchun bog'laning",
+        "rateNote": "Mavjudlikni so'rang",
         "noteTitle": "Muhim eslatma",
-        "noteText": "Kurs har kuni o'zgaradi. Ayirboshlashdan oldin bugungi aniq kurs uchun WhatsApp yoki Telegram orqali yozing.",
+        "noteText": "Travel Easy kurs belgilamaydi va bank sifatida ishlamaydi. Biz vakolatli xizmat ko'rsatuvchini topishga yordam beramiz; ayirboshlashdan oldin uning kursi va talablarini tasdiqlash lozim.",
         "whyTitle": "Nega bizning xizmatimiz",
         "reasons": [
-          "Aeroportdan yaxshiroq kurs",
-          "Xavfsiz va shaffof",
-          "Uy / mehmonxonaga yetkazib berish"
+          "Vakolatli ayirboshlash variantlari",
+          "Amaldagi kursni tasdiqlash",
+          "Til va manzil bo'yicha yordam"
         ],
         "stepsTitle": "Qanday ishlaydi",
         "steps": [
@@ -377,12 +400,12 @@
             "text": "WhatsApp yoki Telegram orqali yozing."
           },
           {
-            "title": "Summa va kursni tasdiqlang",
-            "text": "Summa va bugungi kursni kelishamiz."
+            "title": "Mavjud variantlarni ko'ring",
+            "text": "Valuta va summaga mos vakolatli xizmat ko'rsatuvchini topishga yordam beramiz."
           },
           {
-            "title": "Xavfsiz ayirboshlang",
-            "text": "Kelishilgan xavfsiz joyda uchrashing."
+            "title": "Xizmat ko'rsatuvchi bilan tasdiqlang",
+            "text": "Ayirboshlashdan oldin kurs, hujjatlar va manzilni xizmat ko'rsatuvchi bilan tasdiqlang."
           }
         ]
       }

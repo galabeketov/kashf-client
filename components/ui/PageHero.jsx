@@ -13,7 +13,7 @@ export default function PageHero({ label, title, subtitle }) {
     <section
       className="uzn-section-dark"
       style={{
-        paddingTop: "130px",
+        paddingTop: "190px",
         paddingBottom: "70px",
         overflow: "hidden",
         position: "relative",

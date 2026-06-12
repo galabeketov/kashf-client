@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
-import LocaleDocument from "@/components/common/LocaleDocument";
+import { SITE_CONFIG, localizedUrl } from "@/lib/site-config";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
   const description = descriptions[locale] || descriptions.en;
 
   return {
-    metadataBase: new URL("https://travel-easy.uz"),
+    metadataBase: new URL(SITE_CONFIG.clientUrl),
     title,
     description,
     manifest: "/manifest.json",
@@ -45,8 +45,8 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: "website",
       locale: locale === "uz" ? "uz_UZ" : locale === "ru" ? "ru_RU" : "en_US",
-      url: `https://travel-easy.uz/${locale}`,
-      siteName: "Travel Easy Uzbekistan",
+      url: localizedUrl(locale),
+      siteName: SITE_CONFIG.name,
       title,
       description,
       images: [
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }) {
           url: "/img/og-image.jpg",
           width: 1200,
           height: 630,
-          alt: "Travel Easy Uzbekistan",
+          alt: SITE_CONFIG.name,
         },
       ],
     },
@@ -64,11 +64,12 @@ export async function generateMetadata({ params }) {
       description,
     },
     alternates: {
-      canonical: `https://travel-easy.uz/${locale}`,
+      canonical: localizedUrl(locale),
       languages: {
-        en: "https://travel-easy.uz/en",
-        uz: "https://travel-easy.uz/uz",
-        ru: "https://travel-easy.uz/ru",
+        en: localizedUrl("en"),
+        uz: localizedUrl("uz"),
+        ru: localizedUrl("ru"),
+        "x-default": localizedUrl("en"),
       },
     },
   };
@@ -80,7 +81,6 @@ export default async function LocaleLayout({ children, params }) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <LocaleDocument locale={locale} />
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       {children}
     </NextIntlClientProvider>
