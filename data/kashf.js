@@ -259,7 +259,7 @@ export const guide = {
   name: "Samandar Ikromov",
   title: "Private Uzbekistan Tour Guide",
   bio: "Samandar helps travelers experience Uzbekistan through authentic local stories, smooth logistics, and carefully curated private routes.",
-  photo: "/img/team/1.png",
+  photo: "/img/team/samandar.jpg",
   stats: [
     { num: "8+", label: "Years Experience" },
     { num: "500+", label: "Private Guests" },

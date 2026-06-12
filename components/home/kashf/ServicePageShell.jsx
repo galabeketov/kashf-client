@@ -2,6 +2,8 @@
 
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import PageHero from "@/components/ui/PageHero";
+import ServicesSubnav from "@/components/home/kashf/ServicesSubnav";
 import ServiceInquirySidebar from "@/components/home/kashf/ServiceInquirySidebar";
 
 const ServicePageShell = ({
@@ -16,33 +18,9 @@ const ServicePageShell = ({
     <>
       <KashfHeader />
 
-      <section
-        style={{
-          background: "linear-gradient(135deg, #051036 0%, #0d2268 100%)",
-          paddingTop: "130px",
-          paddingBottom: "60px",
-        }}
-      >
-        <div className="container">
-          <div className="row justify-center text-center">
-            <div className="col-lg-8">
-              <h1
-                className="text-50 lg:text-40 md:text-30 text-white"
-                data-aos="fade-up"
-              >
-                {heroTitle}
-              </h1>
-              <p
-                className="text-white mt-15"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                {heroSubtitle}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero title={heroTitle} subtitle={heroSubtitle} />
+
+      <ServicesSubnav active={serviceSlug} />
 
       <section className="py-10 bg-light-2">
         <div className="container">{breadcrumb}</div>

@@ -864,3 +864,76 @@ textarea {
     transform: none !important;
   }
 }
+
+// ── Services secondary nav (booking.com-style sub-header) ──────────
+.services-subnav {
+  position: sticky;
+  top: 72px;
+  z-index: 900;
+  background: #ffffff;
+  border-bottom: 1px solid #ece7da;
+  box-shadow: 0 4px 14px rgba(5, 16, 54, 0.05);
+}
+
+.services-subnav__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.services-subnav__item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: #1a2235;
+  border: 1px solid #ece7da;
+  background: #faf7f0;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+
+  svg {
+    color: #c9a84c;
+    transition: color 0.2s ease;
+  }
+
+  &:hover {
+    color: #051036;
+    border-color: #c9a84c;
+    background: #fff;
+  }
+
+  &.is-active {
+    color: #fff;
+    background: linear-gradient(135deg, #051036 0%, #0d2268 100%);
+    border-color: #0d2268;
+
+    svg {
+      color: #c9a84c;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .services-subnav {
+    top: 72px;
+  }
+  .services-subnav__inner {
+    padding: 8px 14px;
+  }
+}

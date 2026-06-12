@@ -5,42 +5,21 @@ import { useLocale, useTranslations } from "next-intl";
 import ServicePageShell from "@/components/home/kashf/ServicePageShell";
 import { FaLanguage, LuCar, LuMapPin, LuUser } from "@/components/shared/Icons";
 
-const services = [
-  {
-    icon: "language",
-    title: "Interpretation",
-    text: "EN/RU/UZ, business meetings, conferences",
-  },
-  {
-    icon: "map",
-    title: "Venue booking",
-    text: "Conference rooms, restaurants, hotels",
-  },
-  {
-    icon: "car",
-    title: "Business transport",
-    text: "Airport transfer, inter-city, multi-day",
-  },
-  {
-    icon: "assistant",
-    title: "Personal assistant",
-    text: "Full-day support, scheduling, coordination",
-  },
-];
-
-const reasons = ["Local knowledge", "Multi-language", "Professional service"];
+const serviceIcons = {
+  language: <FaLanguage size={24} />,
+  map: <LuMapPin size={24} />,
+  car: <LuCar size={24} />,
+  assistant: <LuUser size={24} />,
+};
 
 export default function BusinessPage() {
   const locale = useLocale();
   const t = useTranslations("services");
   const navT = useTranslations("nav");
   const title = t("business");
-  const serviceIcons = {
-    language: <FaLanguage size={24} />,
-    map: <LuMapPin size={24} />,
-    car: <LuCar size={24} />,
-    assistant: <LuUser size={24} />,
-  };
+
+  const services = t.raw("detail.business.services");
+  const reasons = t.raw("detail.business.reasons");
 
   return (
     <ServicePageShell
@@ -69,10 +48,9 @@ export default function BusinessPage() {
       }
     >
       <div className="sectionTitle -md">
-        <h2 className="sectionTitle__title">About Business Support</h2>
+        <h2 className="sectionTitle__title">{t("detail.business.aboutTitle")}</h2>
         <p className="sectionTitle__text mt-5 sm:mt-0">
-          Professional business support for foreign companies and delegations
-          visiting Uzbekistan. Interpretation, logistics, venue booking.
+          {t("detail.business.aboutText")}
         </p>
       </div>
 
@@ -99,7 +77,7 @@ export default function BusinessPage() {
 
       <div className="pt-50">
         <div className="sectionTitle -md">
-          <h2 className="sectionTitle__title">Why Choose Us</h2>
+          <h2 className="sectionTitle__title">{t("detail.business.whyTitle")}</h2>
         </div>
         <div className="row y-gap-15 pt-20">
           {reasons.map((reason) => (
@@ -114,10 +92,11 @@ export default function BusinessPage() {
 
       <div className="pt-50">
         <div className="border-light rounded-8 px-30 py-30 bg-blue-2">
-          <h3 className="text-20 fw-500 text-dark-1">Past Clients</h3>
+          <h3 className="text-20 fw-500 text-dark-1">
+            {t("detail.business.clientsTitle")}
+          </h3>
           <p className="text-15 mt-10 text-light-1">
-            We have assisted delegations from Germany, South Korea, UAE, and
-            Russia.
+            {t("detail.business.clientsText")}
           </p>
         </div>
       </div>

@@ -151,7 +151,242 @@
     "instagramDesc": "Sayohatimizni kuzating va O'zbekiston safaringizga ilhom oling",
     "bookNow": "Bron qilish",
     "learnMore": "Batafsil",
-    "contactUs": "Bog'lanish"
+    "contactUs": "Bog'lanish",
+    "detail": {
+      "rentCar": {
+        "aboutTitle": "Avtomobil ijarasi haqida",
+        "aboutText": "O'zbekiston bo'ylab qulay, saralangan avtomobillar — haydovchi bilan yoki haydovchisiz. Quyidan mashina tanlang va so'rov yuboring; biz mavjudligi va eng yaxshi taklif bilan bog'lanamiz. Belgilangan narx yo'q — hammasini bevosita kelishib olamiz.",
+        "vehiclesTitle": "Mavjud avtomobillar",
+        "vehiclesSubtitle": "O'zbekistonda mashhur modellar. Birini tanlab, biz bilan bog'laning.",
+        "passengersLabel": "yo'lovchi",
+        "requestCar": "Shu mashinani so'rash",
+        "includesTitle": "Nimalar kiradi",
+        "includes": [
+          "Ixtiyoriy professional haydovchi",
+          "To'liq sug'urta",
+          "Aeroportdan kutib olish",
+          "24/7 yordam",
+          "O'zbekistonning istalgan nuqtasi",
+          "Moslashuvchan ijara muddati"
+        ],
+        "stepsTitle": "Qanday ishlaydi",
+        "steps": [
+          {
+            "title": "Mashina tanlang",
+            "text": "Sayohatingizga mos avtomobilni tanlang."
+          },
+          {
+            "title": "So'rov yuboring",
+            "text": "Forma, WhatsApp, Telegram yoki Instagram orqali."
+          },
+          {
+            "title": "Tasdiqlang va yo'lga chiqing",
+            "text": "Tafsilotlarni kelishamiz va tayyor."
+          }
+        ],
+        "carList": [
+          {
+            "name": "Chevrolet Cobalt",
+            "passengers": "1-4",
+            "img": "ti",
+            "type": "Tejamkor sedan",
+            "bestFor": "Shahar va aeroport sayohatlari"
+          },
+          {
+            "name": "Chevrolet Malibu",
+            "passengers": "1-4",
+            "img": "ti",
+            "type": "Komfort sedan",
+            "bestFor": "Biznes va qulaylik uchun"
+          },
+          {
+            "name": "Chevrolet Tracker",
+            "passengers": "1-4",
+            "img": "ti",
+            "type": "Krossover / SUV",
+            "bestFor": "Shahar va yengil bezdorozhe"
+          },
+          {
+            "name": "Toyota Land Cruiser Prado",
+            "passengers": "1-5",
+            "img": "ti",
+            "type": "Premium SUV",
+            "bestFor": "Tog'lar va uzoq masofalar"
+          },
+          {
+            "name": "Kia Carnival",
+            "passengers": "1-7",
+            "img": "ti",
+            "type": "Miniven",
+            "bestFor": "Oilalar va kichik guruhlar"
+          },
+          {
+            "name": "Mercedes-Benz Sprinter",
+            "passengers": "1-16",
+            "img": "ti",
+            "type": "Mikroavtobus",
+            "bestFor": "Katta guruhlar va delegatsiyalar"
+          }
+        ]
+      },
+      "transfer": {
+        "aboutTitle": "Aeroport transferi haqida",
+        "aboutText": "Toshkent xalqaro aeroporti va O'zbekistonning istalgan shahriga ishonchli transfer. Kutib olish xizmati, reys kuzatuvi, qulay avtomobillar. Narx bevosita kelishiladi — faqat yo'nalishingizni ayting.",
+        "optionsTitle": "Transfer variantlari",
+        "options": [
+          {
+            "title": "Aeroport → Mehmonxona",
+            "text": "Eshikdan eshikgacha, qulay sedan yoki miniven."
+          },
+          {
+            "title": "Aeroport → Istalgan shahar",
+            "text": "Samarqand, Buxoro, Xiva va boshqa joylar."
+          }
+        ],
+        "includesTitle": "Nimalar kiradi",
+        "includes": [
+          "Reys kuzatuvi",
+          "Ism yozuvli kutib olish",
+          "Yuk bilan yordam",
+          "Bepul kutish vaqti (60 daqiqa)",
+          "Konditsionerli avtomobil",
+          "24/7 mavjudlik"
+        ],
+        "routesTitle": "Mashhur yo'nalishlar",
+        "routesNote": "Narx masofa va avtomobilga bog'liq. Aniq narx uchun biz bilan bog'laning.",
+        "routes": [
+          "Aeroport → Toshkent markazi",
+          "Aeroport → Samarqand",
+          "Aeroport → Buxoro",
+          "Buyurtma bo'yicha yo'nalish"
+        ],
+        "stepsTitle": "Qanday ishlaydi",
+        "steps": [
+          {
+            "title": "Reys ma'lumotini yuboring",
+            "text": "Reys raqami va kelish vaqtini yuboring."
+          },
+          {
+            "title": "Reysni kuzatamiz",
+            "text": "Kechikishlarga avtomatik moslashamiz."
+          },
+          {
+            "title": "Haydovchi kutib oladi",
+            "text": "Haydovchi ism yozuvi bilan kutadi."
+          }
+        ]
+      },
+      "driver": {
+        "aboutTitle": "Shaxsiy haydovchi haqida",
+        "aboutText": "Yakka shaxslar va oilalar uchun professional shaxsiy haydovchi — yarim kun, to'liq kun yoki ko'p kunlik. Ingliz/rus tilida, qulay mashina, moslashuvchan reja. Hammasini bevosita kelishamiz, belgilangan narx yo'q.",
+        "packagesTitle": "Buyurtma variantlari",
+        "packages": [
+          {
+            "name": "Yarim kun",
+            "hours": "4 soatgacha",
+            "text": "Shahar sayri va yumushlar."
+          },
+          {
+            "name": "To'liq kun",
+            "hours": "8 soatgacha",
+            "text": "Istalgan manzil, moslashuvchan reja."
+          },
+          {
+            "name": "Ko'p kunlik",
+            "hours": "Kelishilgan",
+            "text": "Bitta haydovchi bilan O'zbekiston bo'ylab."
+          }
+        ],
+        "includesTitle": "Nimalar kiradi",
+        "includes": [
+          "Professional haydovchi",
+          "Qulay avtomobil",
+          "Yoqilg'i kiradi",
+          "Moslashuvchan reja",
+          "Ingliz / rus tilida"
+        ],
+        "usesTitle": "Mashhur foydalanishlar",
+        "uses": [
+          "Shahar sayri",
+          "Xarid safarlari",
+          "Kunlik sayohatlar",
+          "Biznes uchrashuvlar",
+          "Oilaviy sayohat",
+          "Fototurlar"
+        ]
+      },
+      "business": {
+        "aboutTitle": "Biznes qo'llab-quvvatlash haqida",
+        "aboutText": "O'zbekistonga tashrif buyuruvchi xorijiy kompaniyalar va delegatsiyalar uchun professional yordam: tarjima, logistika, joy bron qilish va shaxsiy yordamchi. Rejangizni ayting — qolganini biz hal qilamiz.",
+        "servicesTitle": "Biz taklif qilamiz",
+        "services": [
+          {
+            "icon": "language",
+            "title": "Tarjima",
+            "text": "Uchrashuv va konferensiyalar uchun EN / RU / UZ."
+          },
+          {
+            "icon": "map",
+            "title": "Joy bron qilish",
+            "text": "Konferensiya zallari, restoranlar, mehmonxonalar."
+          },
+          {
+            "icon": "car",
+            "title": "Biznes transport",
+            "text": "Aeroport transferi, shaharlararo, ko'p kunlik."
+          },
+          {
+            "icon": "assistant",
+            "title": "Shaxsiy yordamchi",
+            "text": "Kun davomida yordam, jadval, muvofiqlashtirish."
+          }
+        ],
+        "whyTitle": "Nega biz",
+        "reasons": [
+          "Mahalliy bilim",
+          "Ko'p tilli jamoa",
+          "Professional xizmat"
+        ],
+        "clientsTitle": "Mijozlarimiz",
+        "clientsText": "Germaniya, Janubiy Koreya, BAA va Rossiyadan delegatsiyalarga yordam berganmiz."
+      },
+      "currency": {
+        "aboutTitle": "Valyuta ayirboshlash haqida",
+        "aboutText": "Adolatli, shaffof kurs bo'yicha valyuta ayirboshlash — USD, EUR, GBP, RUB, KZT va boshqalar. Kurs har kuni o'zgaradi, shuning uchun ayirboshlashdan oldin bugungi aniq kurs uchun bog'laning.",
+        "currenciesTitle": "Qabul qilinadigan valyutalar",
+        "currencies": [
+          "USD",
+          "EUR",
+          "GBP",
+          "RUB",
+          "KZT"
+        ],
+        "rateNote": "Bugungi kurs uchun bog'laning",
+        "noteTitle": "Muhim eslatma",
+        "noteText": "Kurs har kuni o'zgaradi. Ayirboshlashdan oldin bugungi aniq kurs uchun WhatsApp yoki Telegram orqali yozing.",
+        "whyTitle": "Nega bizning xizmatimiz",
+        "reasons": [
+          "Aeroportdan yaxshiroq kurs",
+          "Xavfsiz va shaffof",
+          "Uy / mehmonxonaga yetkazib berish"
+        ],
+        "stepsTitle": "Qanday ishlaydi",
+        "steps": [
+          {
+            "title": "Bog'laning",
+            "text": "WhatsApp yoki Telegram orqali yozing."
+          },
+          {
+            "title": "Summa va kursni tasdiqlang",
+            "text": "Summa va bugungi kursni kelishamiz."
+          },
+          {
+            "title": "Xavfsiz ayirboshlang",
+            "text": "Kelishilgan xavfsiz joyda uchrashing."
+          }
+        ]
+      }
+    }
   },
   "blog": {
     "pageTitle": "Sayohat Blogi",

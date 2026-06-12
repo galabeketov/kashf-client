@@ -151,7 +151,242 @@
     "instagramDesc": "Follow our journey and get inspired for your Uzbekistan trip",
     "bookNow": "Book Now",
     "learnMore": "Learn More",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "detail": {
+      "rentCar": {
+        "aboutTitle": "About Rent a Car",
+        "aboutText": "Comfortable, well-maintained vehicles available across Uzbekistan — with or without a driver. Choose a car below and send a request; we'll get back with availability and the best offer. No fixed pricing — we agree on everything directly.",
+        "vehiclesTitle": "Available Cars",
+        "vehiclesSubtitle": "Popular models available in Uzbekistan. Pick one and contact us.",
+        "passengersLabel": "passengers",
+        "requestCar": "Request this car",
+        "includesTitle": "What's Included",
+        "includes": [
+          "Optional professional driver",
+          "Full insurance",
+          "Airport pickup",
+          "24/7 support",
+          "Any destination in Uzbekistan",
+          "Flexible rental period"
+        ],
+        "stepsTitle": "How It Works",
+        "steps": [
+          {
+            "title": "Choose a car",
+            "text": "Pick the vehicle that fits your trip."
+          },
+          {
+            "title": "Send a request",
+            "text": "Via the form, WhatsApp, Telegram or Instagram."
+          },
+          {
+            "title": "Confirm & ride",
+            "text": "We agree on details and you are good to go."
+          }
+        ],
+        "carList": [
+          {
+            "name": "Chevrolet Cobalt",
+            "passengers": "1-4",
+            "img": "ti",
+            "type": "Economy sedan",
+            "bestFor": "City trips and airport runs"
+          },
+          {
+            "name": "Chevrolet Malibu",
+            "passengers": "1-4",
+            "img": "ti",
+            "type": "Comfort sedan",
+            "bestFor": "Business travel and comfort"
+          },
+          {
+            "name": "Chevrolet Tracker",
+            "passengers": "1-4",
+            "img": "ti",
+            "type": "Crossover / SUV",
+            "bestFor": "City and light off-road"
+          },
+          {
+            "name": "Toyota Land Cruiser Prado",
+            "passengers": "1-5",
+            "img": "ti",
+            "type": "Premium SUV",
+            "bestFor": "Mountains and long distances"
+          },
+          {
+            "name": "Kia Carnival",
+            "passengers": "1-7",
+            "img": "ti",
+            "type": "Minivan",
+            "bestFor": "Families and small groups"
+          },
+          {
+            "name": "Mercedes-Benz Sprinter",
+            "passengers": "1-16",
+            "img": "ti",
+            "type": "Minibus",
+            "bestFor": "Large groups and delegations"
+          }
+        ]
+      },
+      "transfer": {
+        "aboutTitle": "About Airport Transfer",
+        "aboutText": "Reliable transfers to and from Tashkent International Airport and any city in Uzbekistan. Meet & greet service, flight tracking, comfortable vehicles. Prices are agreed directly — just tell us your route.",
+        "optionsTitle": "Transfer Options",
+        "options": [
+          {
+            "title": "Airport → Hotel",
+            "text": "Door-to-door, comfortable sedan or minivan."
+          },
+          {
+            "title": "Airport → Any City",
+            "text": "Samarkand, Bukhara, Khiva and anywhere else."
+          }
+        ],
+        "includesTitle": "What's Included",
+        "includes": [
+          "Flight tracking",
+          "Meet & greet with name sign",
+          "Help with luggage",
+          "Free waiting time (60 min)",
+          "Air-conditioned vehicle",
+          "24/7 availability"
+        ],
+        "routesTitle": "Popular Routes",
+        "routesNote": "Prices depend on distance and vehicle. Contact us for an exact quote.",
+        "routes": [
+          "Airport → Tashkent city center",
+          "Airport → Samarkand",
+          "Airport → Bukhara",
+          "Custom route on request"
+        ],
+        "stepsTitle": "How It Works",
+        "steps": [
+          {
+            "title": "Share flight details",
+            "text": "Send us your flight number and arrival time."
+          },
+          {
+            "title": "We track your flight",
+            "text": "We adjust to delays automatically."
+          },
+          {
+            "title": "Driver meets you",
+            "text": "Your driver waits at arrivals with a name sign."
+          }
+        ]
+      },
+      "driver": {
+        "aboutTitle": "About Personal Driver",
+        "aboutText": "A professional personal driver for individuals and families — half-day, full-day or multi-day. English/Russian speaking, comfortable car, flexible itinerary. We agree on everything directly, no fixed pricing.",
+        "packagesTitle": "Booking Options",
+        "packages": [
+          {
+            "name": "Half Day",
+            "hours": "Up to 4 hours",
+            "text": "City sightseeing and errands."
+          },
+          {
+            "name": "Full Day",
+            "hours": "Up to 8 hours",
+            "text": "Any destination, flexible plan."
+          },
+          {
+            "name": "Multi Day",
+            "hours": "Custom",
+            "text": "Travel across Uzbekistan with one driver."
+          }
+        ],
+        "includesTitle": "What's Included",
+        "includes": [
+          "Professional driver",
+          "Comfortable vehicle",
+          "Fuel included",
+          "Flexible itinerary",
+          "English / Russian speaking"
+        ],
+        "usesTitle": "Popular Uses",
+        "uses": [
+          "City sightseeing",
+          "Shopping trips",
+          "Day trips",
+          "Business meetings",
+          "Family travel",
+          "Photography tours"
+        ]
+      },
+      "business": {
+        "aboutTitle": "About Business Support",
+        "aboutText": "Professional support for foreign companies and delegations visiting Uzbekistan: interpretation, logistics, venue booking and a personal assistant. Tell us your agenda and we handle the rest.",
+        "servicesTitle": "What We Offer",
+        "services": [
+          {
+            "icon": "language",
+            "title": "Interpretation",
+            "text": "EN / RU / UZ for meetings and conferences."
+          },
+          {
+            "icon": "map",
+            "title": "Venue Booking",
+            "text": "Conference rooms, restaurants, hotels."
+          },
+          {
+            "icon": "car",
+            "title": "Business Transport",
+            "text": "Airport transfer, inter-city, multi-day."
+          },
+          {
+            "icon": "assistant",
+            "title": "Personal Assistant",
+            "text": "Full-day support, scheduling, coordination."
+          }
+        ],
+        "whyTitle": "Why Choose Us",
+        "reasons": [
+          "Local knowledge",
+          "Multi-language team",
+          "Professional service"
+        ],
+        "clientsTitle": "Past Clients",
+        "clientsText": "We have assisted delegations from Germany, South Korea, the UAE and Russia."
+      },
+      "currency": {
+        "aboutTitle": "About Currency Exchange",
+        "aboutText": "Currency exchange at fair, transparent rates — USD, EUR, GBP, RUB, KZT and more. Rates change daily, so contact us for today's exact rate before exchanging.",
+        "currenciesTitle": "Currencies We Handle",
+        "currencies": [
+          "USD",
+          "EUR",
+          "GBP",
+          "RUB",
+          "KZT"
+        ],
+        "rateNote": "Contact us for today's rate",
+        "noteTitle": "Important Note",
+        "noteText": "Rates change daily. Message us on WhatsApp or Telegram for today's exact rate before exchanging.",
+        "whyTitle": "Why Use Our Service",
+        "reasons": [
+          "Better rates than the airport",
+          "Safe and transparent",
+          "Home / hotel delivery available"
+        ],
+        "stepsTitle": "How It Works",
+        "steps": [
+          {
+            "title": "Contact us",
+            "text": "Message on WhatsApp or Telegram."
+          },
+          {
+            "title": "Confirm amount & rate",
+            "text": "We agree on the amount and today's rate."
+          },
+          {
+            "title": "Exchange safely",
+            "text": "Meet at an agreed, safe location."
+          }
+        ]
+      }
+    }
   },
   "blog": {
     "pageTitle": "Travel Blog",

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
+import PageHero from "@/components/ui/PageHero";
 import OptimizedImage from "@/components/shared/OptimizedImage";
 import { getPublishedPosts } from "@/lib/posts";
 
@@ -76,33 +77,7 @@ export default function BlogPage() {
     <>
       <KashfHeader />
 
-      <section
-        style={{
-          background: "linear-gradient(135deg, #051036 0%, #0d2268 100%)",
-          paddingTop: "130px",
-          paddingBottom: "60px",
-        }}
-      >
-        <div className="container">
-          <div className="row justify-center text-center">
-            <div className="col-lg-8">
-              <h1
-                className="text-50 lg:text-40 md:text-30 text-white"
-                data-aos="fade-up"
-              >
-                {t("pageTitle")}
-              </h1>
-              <p
-                className="text-white mt-15"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                {t("pageSubtitle")}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero title={t("pageTitle")} subtitle={t("pageSubtitle")} />
 
       <section className="py-10 bg-light-2">
         <div className="container">

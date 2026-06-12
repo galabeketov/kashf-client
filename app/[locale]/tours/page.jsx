@@ -8,6 +8,7 @@ import KashfHeader from "@/components/header/header-kashf";
 import KashfFooter from "@/components/footer/kashf";
 import TourCard from "@/components/ui/TourCard";
 import IslamicPattern from "@/components/ui/IslamicPattern";
+import ServicesSubnav from "@/components/home/kashf/ServicesSubnav";
 import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
 import { tours as staticTours } from "@/data/kashf";
 import { getPublishedTours } from "@/lib/tours";
@@ -158,6 +159,8 @@ export default function ToursPage() {
           </div>
         </div>
       </section>
+
+      <ServicesSubnav active="tours" />
 
       {/* ── Breadcrumb ── */}
       <nav

@@ -20,7 +20,7 @@ export const defaultSettings = {
       uz: "O'tgan o'n yil ichida yuzlab xalqaro sayohatchilarni Samarqand, Buxoro, Xiva ko'chalarida boshqarganman.",
       ru: "За последнее десятилетие провёл сотни международных туристов по древним улицам Самарканда, Бухары, Хивы и других городов.",
     },
-    photo: "/img/team/1.png",
+    photo: "/img/team/samandar.jpg",
     stats: [
       {
         num: "10+",

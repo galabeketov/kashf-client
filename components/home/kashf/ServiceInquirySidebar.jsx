@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { FaCheck } from "@/components/shared/Icons";
+import {
+  FaCheck,
+  FaWhatsapp,
+  FaTelegramPlane,
+  FaInstagram,
+} from "@/components/shared/Icons";
 import { submitInquiry } from "@/lib/inquiries";
 import { trackContact } from "@/lib/analytics";
 import { contact as staticContact } from "@/data/kashf";
@@ -16,6 +21,18 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
   const { settings } = useSettings();
   const contact = settings?.contact || staticContact;
   const whatsappUrl = contact?.whatsapp || "https://wa.me/998901234567";
+  const telegramUrl = contact?.telegram || "https://t.me/traveleasyuz";
+  const instagramUrl = contact?.instagram || "https://instagram.com/traveleasyuz";
+
+  const trackAndOpen = (method) => () => {
+    trackContact({
+      method,
+      source: "service_page",
+      tourId: serviceSlug,
+      tourTitle: serviceTitle,
+      locale,
+    }).catch(() => {});
+  };
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -186,8 +203,32 @@ const ServiceInquirySidebar = ({ serviceSlug, serviceTitle }) => {
           className="button -md bg-blue-1 text-white h-60 col-12 mt-15"
           onClick={handleWhatsApp}
         >
+          <FaWhatsapp size={18} className="mr-10" />
           {tServices("whatsappDirect")}
         </Link>
+
+        <div className="d-flex x-gap-10 mt-15">
+          <a
+            href={telegramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button -md border-light text-dark-1 h-50 col-6"
+            onClick={trackAndOpen("telegram")}
+          >
+            <FaTelegramPlane size={17} className="mr-10" />
+            {tServices("telegramLabel")}
+          </a>
+          <a
+            href={instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button -md border-light text-dark-1 h-50 col-6"
+            onClick={trackAndOpen("instagram")}
+          >
+            <FaInstagram size={17} className="mr-10" />
+            {tServices("instagram")}
+          </a>
+        </div>
       </div>
     </div>
   );

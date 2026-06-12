@@ -5,49 +5,15 @@ import { useLocale, useTranslations } from "next-intl";
 import ServicePageShell from "@/components/home/kashf/ServicePageShell";
 import { FaCheck, LuUser } from "@/components/shared/Icons";
 
-const packages = [
-  {
-    name: "Half Day",
-    hours: "4 hours",
-    text: "City only",
-    price: "From $25",
-  },
-  {
-    name: "Full Day",
-    hours: "8 hours",
-    text: "Any destination",
-    price: "From $45",
-  },
-  {
-    name: "Multi Day",
-    hours: "Custom",
-    text: "Uzbekistan-wide",
-    price: "Contact for price",
-  },
-];
-
-const includes = [
-  "Professional driver",
-  "Comfortable vehicle",
-  "Fuel included",
-  "Flexible itinerary",
-  "English/Russian speaking",
-];
-
-const chips = [
-  "City sightseeing",
-  "Shopping trips",
-  "Day trips",
-  "Business meetings",
-  "Family travel",
-  "Photography tours",
-];
-
 export default function DriverPage() {
   const locale = useLocale();
   const t = useTranslations("services");
   const navT = useTranslations("nav");
   const title = t("driver");
+
+  const packages = t.raw("detail.driver.packages");
+  const includes = t.raw("detail.driver.includes");
+  const uses = t.raw("detail.driver.uses");
 
   return (
     <ServicePageShell
@@ -76,10 +42,9 @@ export default function DriverPage() {
       }
     >
       <div className="sectionTitle -md">
-        <h2 className="sectionTitle__title">About Personal Driver</h2>
+        <h2 className="sectionTitle__title">{t("detail.driver.aboutTitle")}</h2>
         <p className="sectionTitle__text mt-5 sm:mt-0">
-          Professional personal driver service for individuals and families.
-          Half-day, full-day, or multi-day bookings.
+          {t("detail.driver.aboutText")}
         </p>
       </div>
 
@@ -96,9 +61,6 @@ export default function DriverPage() {
               <h3 className="text-18 fw-500 text-dark-1">{pkg.name}</h3>
               <div className="text-14 text-light-1 mt-5">{pkg.hours}</div>
               <p className="text-15 text-light-1 mt-10">{pkg.text}</p>
-              <div className="text-16 fw-500 text-blue-1 mt-15">
-                {pkg.price}
-              </div>
             </div>
           </div>
         ))}
@@ -106,7 +68,9 @@ export default function DriverPage() {
 
       <div className="pt-50">
         <div className="sectionTitle -md">
-          <h2 className="sectionTitle__title">What's Included</h2>
+          <h2 className="sectionTitle__title">
+            {t("detail.driver.includesTitle")}
+          </h2>
         </div>
         <div className="row y-gap-15 pt-20">
           {includes.map((item) => (
@@ -124,10 +88,10 @@ export default function DriverPage() {
 
       <div className="pt-50">
         <div className="sectionTitle -md">
-          <h2 className="sectionTitle__title">Popular Uses</h2>
+          <h2 className="sectionTitle__title">{t("detail.driver.usesTitle")}</h2>
         </div>
         <div className="d-flex flex-wrap x-gap-10 y-gap-10 pt-20">
-          {chips.map((chip) => (
+          {uses.map((chip) => (
             <span
               key={chip}
               className="px-20 py-10 rounded-full bg-blue-2 text-14 text-dark-1"
