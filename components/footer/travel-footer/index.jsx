@@ -182,7 +182,8 @@ const TravelFooter = () => {
             <div className="py-20 row justify-between items-center y-gap-10">
               <div className="col-auto">
                 <div className="text-14" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  © {new Date().getFullYear()} {brandT("fullName")}. {t("copyright")}
+                  © 2022–{new Date().getFullYear()} {brandT("fullName")}.{" "}
+                  {t("copyright")}
                 </div>
               </div>
               <div className="col-auto">
