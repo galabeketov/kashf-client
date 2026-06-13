@@ -3,6 +3,7 @@
 import Aos from "aos";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
 
@@ -16,6 +17,7 @@ const forceAosRecalc = () => {
 export default function ClientProviders({ children }) {
   const pathname = usePathname();
   const aosReady = useRef(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -110,5 +112,20 @@ export default function ClientProviders({ children }) {
     };
   }, [pathname]);
 
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <Provider store={store}>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={pathname}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={shouldReduceMotion ? undefined : { opacity: 0, y: -6 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          style={{ minHeight: "100vh" }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    </Provider>
+  );
 }

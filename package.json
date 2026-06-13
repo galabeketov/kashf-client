@@ -19,6 +19,7 @@
     "firebase": "^12.13.0",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
+    "motion": "^12.40.0",
     "next": "16.2.3",
     "next-intl": "^4.12.0",
     "photoswipe": "^5.4.4",
