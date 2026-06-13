@@ -34,6 +34,7 @@ export { MdLocationOn, MdEmail, MdPhone, MdSupport } from "react-icons/md";
 
 export {
   LuMapPin,
+  LuMap,
   LuClock,
   LuUsers,
   LuStar,

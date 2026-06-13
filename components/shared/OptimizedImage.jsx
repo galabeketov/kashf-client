@@ -37,6 +37,7 @@ const OptimizedImage = ({
     >
       {!loaded && (
         <div
+          className="travel-image-placeholder"
           aria-hidden="true"
           style={{
             position: "absolute",
@@ -44,7 +45,6 @@ const OptimizedImage = ({
             background:
               "linear-gradient(110deg, rgba(255,255,255,0.55) 8%, rgba(255,255,255,0.15) 18%, rgba(255,255,255,0.55) 33%)",
             backgroundSize: "200% 100%",
-            animation: "travelImageShimmer 1.4s ease-in-out infinite",
             ...skeletonStyle,
           }}
         />
@@ -67,16 +67,6 @@ const OptimizedImage = ({
         }}
         onLoad={() => setLoaded(true)}
       />
-      <style jsx global>{`
-        @keyframes travelImageShimmer {
-          0% {
-            background-position: 200% 0;
-          }
-          100% {
-            background-position: -200% 0;
-          }
-        }
-      `}</style>
     </div>
   );
 };

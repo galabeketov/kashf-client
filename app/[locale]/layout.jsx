@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import GoogleAnalytics from "@/components/shared/GoogleAnalytics";
 import { SITE_CONFIG, localizedUrl } from "@/lib/site-config";
+import MobileActionBar from "@/components/common/MobileActionBar";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -83,6 +84,7 @@ export default async function LocaleLayout({ children, params }) {
     <NextIntlClientProvider locale={locale} messages={messages}>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       {children}
+      <MobileActionBar />
     </NextIntlClientProvider>
   );
 }

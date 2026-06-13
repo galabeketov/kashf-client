@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { LuMenu, LuMessageCircle, LuPhone, LuX } from "@/components/shared/Icons";
@@ -11,6 +11,10 @@ import { trackContact } from "@/lib/analytics";
 import { normalizeContact } from "@/lib/content";
 import BrandLogo from "@/components/ui/BrandLogo";
 import ServicesSubnav from "@/components/home/travel-easy/ServicesSubnav";
+import {
+  createPageInquiryMessage,
+  createWhatsAppUrl,
+} from "@/lib/whatsapp";
 
 const LOCALES = ["en", "uz", "ru"];
 
@@ -25,6 +29,8 @@ export default function TravelHeader() {
   const contact = normalizeContact(settings?.contact, staticContact);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  const drawerRef = useRef(null);
 
   const barePath = pathname.replace(/^\/(en|uz|ru)(?=\/|$)/, "") || "/";
   const localize = (path) => (path === "/" ? `/${locale}` : `/${locale}${path}`);
@@ -57,8 +63,36 @@ export default function TravelHeader() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    if (!menuOpen) return undefined;
+
+    const panel = drawerRef.current;
+    const focusable = panel?.querySelectorAll(
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+    const first = focusable?.[0];
+    const last = focusable?.[focusable.length - 1];
+    first?.focus();
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        return;
+      }
+      if (event.key !== "Tab" || !first || !last) return;
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKeyDown);
+      menuButtonRef.current?.focus();
     };
   }, [menuOpen]);
 
@@ -77,7 +111,16 @@ export default function TravelHeader() {
         locale,
       });
     } catch {}
-    window.open(contact.whatsapp, "_blank", "noopener,noreferrer");
+    const message = createPageInquiryMessage({
+      locale,
+      title: servicesT("pageTitle"),
+      url: window.location.href,
+    });
+    window.open(
+      createWhatsAppUrl(contact.whatsapp, message),
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   return (
@@ -133,6 +176,7 @@ export default function TravelHeader() {
             <span>{servicesT("whatsappDirect")}</span>
           </a>
           <button
+            ref={menuButtonRef}
             type="button"
             className="travel-menu-button"
             onClick={() => setMenuOpen(true)}
@@ -155,7 +199,13 @@ export default function TravelHeader() {
           aria-label="Close menu"
           tabIndex={menuOpen ? 0 : -1}
         />
-        <div className="travel-drawer__panel" role="dialog" aria-modal="true">
+        <div
+          ref={drawerRef}
+          className="travel-drawer__panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+        >
           <div className="travel-drawer__head">
             <span className="travel-brand">
               <BrandLogo
@@ -175,11 +225,23 @@ export default function TravelHeader() {
           </div>
 
           <nav className="travel-drawer__nav" aria-label="Mobile navigation">
-            {navLinks.map((item) => (
-              <Link key={item.href} href={localize(item.href)}>
-                {item.label}
-              </Link>
-            ))}
+            {navLinks.map((item) => {
+              const active =
+                item.href === "/"
+                  ? barePath === "/"
+                  : barePath === item.href ||
+                    barePath.startsWith(`${item.href}/`);
+              return (
+                <Link
+                  key={item.href}
+                  href={localize(item.href)}
+                  className={active ? "is-active" : ""}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="travel-drawer__locale">

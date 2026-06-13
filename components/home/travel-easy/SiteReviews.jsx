@@ -1,32 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useLocale, useTranslations } from "next-intl";
 import { FaStar } from "react-icons/fa";
-import { getApprovedReviews } from "@/lib/reviews";
 
-const SiteReviews = () => {
+const SiteReviews = ({ initialReviews = [] }) => {
   const t = useTranslations("reviews");
   const locale = useLocale();
-  const [reviews, setReviews] = useState([]);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const load = async () => {
-      const items = await getApprovedReviews("site");
-      if (!mounted) return;
-      setReviews(items);
-    };
-
-    load();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  const reviews = initialReviews;
 
   const average = useMemo(() => {
     if (!reviews.length) return 0;

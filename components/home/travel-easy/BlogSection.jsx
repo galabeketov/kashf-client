@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { LuArrowRight } from "@/components/shared/Icons";
 import OptimizedImage from "@/components/shared/OptimizedImage";
-import { getFeaturedPosts } from "@/lib/posts";
 
 const getLocalized = (value, locale) => {
   if (!value) return "";
@@ -13,31 +11,10 @@ const getLocalized = (value, locale) => {
   return value?.[locale] || value?.en || "";
 };
 
-export default function BlogSection() {
+export default function BlogSection({ initialPosts = [] }) {
   const locale = useLocale();
   const t = useTranslations("blog");
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadPosts = async () => {
-      try {
-        const all = await getFeaturedPosts();
-        if (!isMounted) return;
-        setPosts(all.slice(0, 3));
-      } catch {
-        if (!isMounted) return;
-        setPosts([]);
-      }
-    };
-
-    loadPosts();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const posts = initialPosts;
 
   if (!posts.length) return null;
 

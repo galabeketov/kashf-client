@@ -19,6 +19,20 @@ test("mobile drawer opens without horizontal overflow", async ({ page }) => {
     () => document.documentElement.scrollWidth > window.innerWidth,
   );
   expect(overflow).toBe(false);
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+});
+
+test("mobile quick actions stay visible and carry page context", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en/tours");
+  const actions = page.getByRole("navigation", { name: "Quick contact" });
+  await expect(actions).toBeVisible();
+  const whatsapp = actions.getByRole("link", { name: /WhatsApp/i });
+  await expect(whatsapp).toHaveAttribute("href", /text=/);
+  await expect(actions.getByRole("link", { name: "Tours" })).toBeVisible();
 });
 
 test("tour filters expose selected state", async ({ page }) => {
@@ -60,4 +74,17 @@ test("currency selection is carried into the inquiry", async ({ page }) => {
     "USD → UZS",
   );
   await expect(page.locator(".travel-inquiry-context")).toContainText("1000");
+});
+
+test("tour detail renders useful content in initial HTML", async ({
+  page,
+  request,
+}) => {
+  const response = await request.get("/en/tours/4-days-uzbekistan-highlights");
+  const html = await response.text();
+  expect(html).toContain("4 Days Uzbekistan Highlights");
+  expect(html).toContain("application/ld+json");
+
+  await page.goto("/en/tours/4-days-uzbekistan-highlights");
+  await expect(page.getByRole("heading", { name: "FAQ" })).toBeVisible();
 });

@@ -1,53 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useLocale, useTranslations } from "next-intl";
 import { FaArrowRight } from "@/components/shared/Icons";
-import { tours as staticTours } from "@/data/travelEasy";
-import { getPublishedTours } from "@/lib/tours";
 import TourCard from "@/components/ui/TourCard";
 import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
 
-const SkeletonCard = () => (
-  <div
-    style={{
-      borderRadius: "16px",
-      height: "370px",
-      background: "linear-gradient(135deg, #f5f0e8, #ede8de)",
-      animation: "silkPulse 1.6s ease-in-out infinite",
-      border: "1px solid rgba(201,168,76,0.12)",
-    }}
-  />
-);
-
-const ToursSection = () => {
+const ToursSection = ({ initialTours = [] }) => {
   const t = useTranslations("tours");
   const locale = useLocale();
-  const [tours, setTours] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let isMounted = true;
-    const load = async () => {
-      try {
-        const remote = await getPublishedTours();
-        if (!isMounted) return;
-        setTours(remote.length ? remote : staticTours);
-      } catch {
-        if (!isMounted) return;
-        setTours(staticTours);
-      } finally {
-        if (isMounted) setLoading(false);
-      }
-    };
-    load();
-    return () => { isMounted = false; };
-  }, []);
-
-  const displayTours = tours.length ? tours : staticTours;
+  const displayTours = initialTours;
 
   return (
     <section className="layout-pt-lg layout-pb-md travel-section travel-section--ivory">
@@ -95,13 +59,7 @@ const ToursSection = () => {
               1200: { slidesPerView: 4 },
             }}
           >
-            {loading
-              ? Array.from({ length: 4 }).map((_, i) => (
-                  <SwiperSlide key={`sk-${i}`}>
-                    <SkeletonCard />
-                  </SwiperSlide>
-                ))
-              : displayTours.slice(0, 8).map((tour, idx) => (
+            {displayTours.slice(0, 8).map((tour, idx) => (
                   <SwiperSlide key={tour.id} style={{ height: "auto" }}>
                     <div
                       style={{ height: "100%" }}

@@ -8,8 +8,21 @@ import BlogSection from "@/components/home/travel-easy/BlogSection";
 import CTA from "@/components/home/travel-easy/CTA";
 import TravelFooter from "@/components/footer/travel-footer";
 import { SITE_CONFIG } from "@/lib/site-config";
+import { tours as staticTours } from "@/data/travelEasy";
+import { getFeaturedTours } from "@/lib/tours";
+import { getFeaturedPosts } from "@/lib/posts";
+import { getApprovedReviews } from "@/lib/reviews";
+import TrustProcessSection from "@/components/home/travel-easy/TrustProcessSection";
 
-export default function HomePage() {
+const serialize = (value) => JSON.parse(JSON.stringify(value));
+
+export default async function HomePage() {
+  const [remoteTours, posts, reviews] = await Promise.all([
+    getFeaturedTours().catch(() => []),
+    getFeaturedPosts().catch(() => []),
+    getApprovedReviews("site").catch(() => []),
+  ]);
+  const tours = remoteTours.length ? remoteTours : staticTours.slice(0, 8);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
@@ -54,12 +67,13 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <TravelHero />
-      <ToursSection />
+      <ToursSection initialTours={serialize(tours)} />
       <ServicesSection />
+      <TrustProcessSection />
       <AboutSection />
-      <SiteReviews />
+      <SiteReviews initialReviews={serialize(reviews)} />
       <CTA />
-      <BlogSection />
+      <BlogSection initialPosts={serialize(posts.slice(0, 3))} />
       <TravelFooter />
     </>
   );

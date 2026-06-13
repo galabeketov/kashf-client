@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
 
-const AOS_START_DELAY = 450;
+const AOS_START_DELAY = 220;
 
 const forceAosRecalc = () => {
   Aos.refreshHard();
@@ -47,8 +47,8 @@ export default function ClientProviders({ children }) {
       ).matches;
 
       Aos.init({
-        duration: reduceMotion ? 0 : 520,
-        offset: 40,
+        duration: reduceMotion ? 0 : 420,
+        offset: 28,
         once: true,
         startEvent: "travel-easy:aos-start",
         disableMutationObserver: false,
@@ -103,7 +103,6 @@ export default function ClientProviders({ children }) {
     // Recalculate in small waves so late-mounted sections don't stay hidden.
     timers.push(window.setTimeout(forceAosRecalc, 180));
     timers.push(window.setTimeout(forceAosRecalc, 520));
-    timers.push(window.setTimeout(forceAosRecalc, 950));
 
     return () => {
       if (raf) window.cancelAnimationFrame(raf);

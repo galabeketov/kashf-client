@@ -8,6 +8,10 @@ import { useSettings } from "@/hooks/useSettings";
 import { contact as staticContact } from "@/data/travelEasy";
 import { normalizeContact } from "@/lib/content";
 import { trackContact } from "@/lib/analytics";
+import {
+  createPageInquiryMessage,
+  createWhatsAppUrl,
+} from "@/lib/whatsapp";
 
 export default function TravelHero() {
   const t = useTranslations("hero");
@@ -27,7 +31,16 @@ export default function TravelHero() {
         locale,
       });
     } catch {}
-    window.open(contact.whatsapp, "_blank", "noopener,noreferrer");
+    const message = createPageInquiryMessage({
+      locale,
+      title: t("title"),
+      url: window.location.href,
+    });
+    window.open(
+      createWhatsAppUrl(contact.whatsapp, message),
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   return (

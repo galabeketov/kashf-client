@@ -23,6 +23,11 @@ import { contact as staticContact } from "@/data/travelEasy";
 import { trackContact } from "@/lib/analytics";
 import { getTourById } from "@/lib/tours";
 import { submitInquiry } from "@/lib/inquiries";
+import {
+  createPageInquiryMessage,
+  createWhatsAppUrl,
+} from "@/lib/whatsapp";
+import TourCard from "@/components/ui/TourCard";
 
 const locationById = {
   "4-days-uzbekistan-highlights": "Tashkent, Samarkand, Amirsoy",
@@ -37,7 +42,28 @@ const localizedTourText = (value, locale) => {
   return value?.[locale] || value?.en || value?.uz || value?.ru || "";
 };
 
-export default function TourDetailsClient({ initialTour = null }) {
+const FAQ_COPY = {
+  en: [
+    ["Is this a private tour?", "Yes. The itinerary and pace are arranged only for your group."],
+    ["Can the itinerary be changed?", "Yes. Stops, duration, transport and hotel support can be adjusted before confirmation."],
+    ["How do I confirm the tour?", "Send your dates and group size. We confirm availability and final details directly."],
+  ],
+  uz: [
+    ["Bu xususiy turmi?", "Ha. Marshrut va sayohat tezligi faqat sizning guruhingiz uchun tashkil qilinadi."],
+    ["Marshrutni o'zgartirish mumkinmi?", "Ha. Tasdiqlashdan oldin joylar, davomiylik, transport va mehmonxona yordamini moslashtiramiz."],
+    ["Turni qanday tasdiqlayman?", "Sana va guruh hajmini yuboring. Mavjudlik va yakuniy tafsilotlarni bevosita tasdiqlaymiz."],
+  ],
+  ru: [
+    ["Это индивидуальный тур?", "Да. Маршрут и темп поездки организуются только для вашей группы."],
+    ["Можно изменить программу?", "Да. До подтверждения можно изменить остановки, длительность, транспорт и помощь с отелем."],
+    ["Как подтвердить тур?", "Отправьте даты и размер группы. Мы напрямую подтвердим наличие и итоговые детали."],
+  ],
+};
+
+export default function TourDetailsClient({
+  initialTour = null,
+  relatedTours = [],
+}) {
   const { slug } = useParams();
   const locale = useLocale();
   const tTours = useTranslations("tours");
@@ -201,6 +227,7 @@ export default function TourDetailsClient({ initialTour = null }) {
     (Array.isArray(tour.includes) ? tour.includes : []);
   const itinerary = Array.isArray(tour.itinerary) ? tour.itinerary : [];
   const whatsappUrl = contact?.whatsapp || "https://wa.me/998990621736";
+  const faqItems = FAQ_COPY[locale] || FAQ_COPY.en;
 
   const tourJsonLd = {
     "@context": "https://schema.org",
@@ -235,7 +262,17 @@ export default function TourDetailsClient({ initialTour = null }) {
         locale,
       });
     } catch {}
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    const message = createPageInquiryMessage({
+      locale,
+      title: tourTitle,
+      selection: `${tour.duration || ""} ${tTours("days")}`.trim(),
+      url: window.location.href,
+    });
+    window.open(
+      createWhatsAppUrl(whatsappUrl, message),
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   return (
@@ -504,14 +541,22 @@ export default function TourDetailsClient({ initialTour = null }) {
             </div>
 
             <div className="col-lg-4">
-              <div style={{ position: "sticky", top: "100px" }}>
-                <div className="px-30 py-30 rounded-4 border-light bg-white shadow-4">
+              <div className="travel-tour-booking">
+                <div className="px-30 py-30 rounded-8 border-light bg-white shadow-4">
                   <div className="text-14 text-light-1">
-                    {tTours("from")}
-                    <span className="text-20 fw-500 text-dark-1 ml-5">
-                      US${tour.price}
-                    </span>
-                    <span className="ml-5">/ {tTours("perPerson")}</span>
+                    {tour.price ? (
+                      <>
+                        {tTours("from")}
+                        <span className="text-20 fw-500 text-dark-1 ml-5">
+                          US${tour.price}
+                        </span>
+                        <span className="ml-5">/ {tTours("perPerson")}</span>
+                      </>
+                    ) : (
+                      <span className="text-20 fw-500 text-dark-1">
+                        {tTours("priceOnRequest")}
+                      </span>
+                    )}
                   </div>
 
                   {!submitted ? (
@@ -527,7 +572,11 @@ export default function TourDetailsClient({ initialTour = null }) {
                         )}
                       </div>
                       <div className="col-12">
+                        <label className="travel-field-label" htmlFor="tour-name">
+                          {tBooking("name")}
+                        </label>
                         <input
+                          id="tour-name"
                           className="border-light rounded-4 px-20 py-10 w-1/1"
                           name="name"
                           placeholder={tBooking("name")}
@@ -537,7 +586,11 @@ export default function TourDetailsClient({ initialTour = null }) {
                         />
                       </div>
                       <div className="col-12">
+                        <label className="travel-field-label" htmlFor="tour-phone">
+                          {tBooking("phone")}
+                        </label>
                         <input
+                          id="tour-phone"
                           className="border-light rounded-4 px-20 py-10 w-1/1"
                           name="phone"
                           placeholder={tBooking("phone")}
@@ -547,7 +600,11 @@ export default function TourDetailsClient({ initialTour = null }) {
                         />
                       </div>
                       <div className="col-12">
+                        <label className="travel-field-label" htmlFor="tour-email">
+                          {tBooking("email")}
+                        </label>
                         <input
+                          id="tour-email"
                           className="border-light rounded-4 px-20 py-10 w-1/1"
                           name="email"
                           type="email"
@@ -557,7 +614,11 @@ export default function TourDetailsClient({ initialTour = null }) {
                         />
                       </div>
                       <div className="col-12">
+                        <label className="travel-field-label" htmlFor="tour-date">
+                          {tBooking("date")}
+                        </label>
                         <input
+                          id="tour-date"
                           className="border-light rounded-4 px-20 py-10 w-1/1"
                           name="date"
                           type="date"
@@ -567,7 +628,11 @@ export default function TourDetailsClient({ initialTour = null }) {
                         />
                       </div>
                       <div className="col-12">
+                        <label className="travel-field-label" htmlFor="tour-group">
+                          {tBooking("groupSize")}
+                        </label>
                         <select
+                          id="tour-group"
                           className="border-light rounded-4 px-20 py-10 w-1/1"
                           name="groupSize"
                           value={formData.groupSize}
@@ -589,7 +654,11 @@ export default function TourDetailsClient({ initialTour = null }) {
                         </select>
                       </div>
                       <div className="col-12">
+                        <label className="travel-field-label" htmlFor="tour-message">
+                          {tBooking("message")}
+                        </label>
                         <textarea
+                          id="tour-message"
                           className="border-light rounded-4 px-20 py-10 w-1/1"
                           name="message"
                           rows="4"
@@ -604,7 +673,7 @@ export default function TourDetailsClient({ initialTour = null }) {
                           type="submit"
                           disabled={submitting}
                         >
-                          {submitting ? "Submitting..." : tBooking("submit")}
+                          {submitting ? tBooking("sending") : tBooking("submit")}
                         </button>
                       </div>
                     </form>
@@ -646,6 +715,50 @@ export default function TourDetailsClient({ initialTour = null }) {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="layout-pb-lg">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8">
+              <h2 className="text-30 fw-600">FAQ</h2>
+              <div className="travel-faq mt-20">
+                {faqItems.map(([question, answer]) => (
+                  <details key={question}>
+                    <summary>{question}</summary>
+                    <p>{answer}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {relatedTours.length ? (
+            <div className="mt-60">
+              <div className="d-flex justify-between items-end y-gap-15 flex-wrap">
+                <div>
+                  <h2 className="text-30 fw-600">{tTours("sectionTitle")}</h2>
+                  <p className="text-15 text-light-1 mt-5">
+                    {tTours("sectionSubtitle")}
+                  </p>
+                </div>
+                <Link
+                  href={`/${locale}/tours`}
+                  className="travel-btn travel-btn--primary"
+                >
+                  {tTours("viewAll")}
+                </Link>
+              </div>
+              <div className="row y-gap-24 pt-30">
+                {relatedTours.map((item) => (
+                  <div className="col-lg-4 col-md-6" key={item.id}>
+                    <TourCard tour={item} locale={locale} t={tTours} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
 

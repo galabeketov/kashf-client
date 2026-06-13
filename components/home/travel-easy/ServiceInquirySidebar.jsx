@@ -14,9 +14,7 @@ import { trackContact } from "@/lib/analytics";
 import { contact as staticContact } from "@/data/travelEasy";
 import { useSettings } from "@/hooks/useSettings";
 import { normalizeContact } from "@/lib/content";
-
-const addWhatsAppText = (url, text) =>
-  `${url}${url.includes("?") ? "&" : "?"}text=${encodeURIComponent(text)}`;
+import { createWhatsAppUrl } from "@/lib/whatsapp";
 
 const ServiceInquirySidebar = ({
   serviceSlug,
@@ -115,7 +113,7 @@ const ServiceInquirySidebar = ({
       });
     } catch {}
     window.open(
-      addWhatsAppText(whatsappUrl, messengerText),
+      createWhatsAppUrl(whatsappUrl, messengerText),
       "_blank",
       "noopener,noreferrer",
     );
@@ -247,6 +245,19 @@ const ServiceInquirySidebar = ({
                 {tServices("requestSent")}
               </h4>
               <p className="text-15 mt-10">{requestTitle}</p>
+              <p className="text-14 text-light-1 mt-8">
+                {tBooking("successText")}
+              </p>
+              <a
+                href={createWhatsAppUrl(whatsappUrl, messengerText)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button -md bg-blue-1 text-white mt-20"
+                onClick={handleWhatsApp}
+              >
+                <FaWhatsapp size={18} className="mr-10" />
+                {tServices("whatsappDirect")}
+              </a>
             </div>
           )}
         </div>
